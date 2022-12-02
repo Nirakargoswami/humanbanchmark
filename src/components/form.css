@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+width: 100%;
+}
+
+.actions {
+    float: left;
+}
+
+
+.formbox {
+    display: flex;
+    align-items: center;
+    width: 50%;
+   justify-content: space-around;
+    flex-wrap: wrap;
+}
+.BOX{
+    display: flex;
+    flex-wrap: wrap;
+        width: 100%;
+}
+@media  (max-width: 883px)  {
+.formbox{
+    width: 100%;
+}
+
+}
+.input{
+background-color: green;
+}
+.DROPER{
+   min-width: 100%;
+   height: 50px;
+    background-color:#ff0000;
+    display: flex;
+    justify-content: flex-end;
+}
