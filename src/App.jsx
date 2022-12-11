@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Routes, Route, Link, Form } from 'react-router
 import From from "./components/form"
 import { useSelector, useDispatch } from 'react-redux'
 import Table from "./table"
-
+ import "./App.css"
+ import WordTriel from "./components/WordsTriel/WordsTriel"
+ import SequenceMemoryTest from "./components/SequenceMemoryTest/SequenceMemoryTest"
 function App() {
     const [rows, setRows] = useState("")
     const [headCells, setHeadCells] = useState("")
@@ -24,18 +26,23 @@ function App() {
 
     return (
         <>
-            <div style={{ display: "flex", justifyContent: "center", marginTop: "80px",marginBottom:"70px" }}>
-                { }
 
-
-
+            <div className="Maionpage">
+                <div className="secondwraper">
+                    
                 <Routes>
-                    <Route path='/' element={rows && headCells && <Table headCells={headCells} rows={rows && rows} />
-                    } />
-                    <Route path='/form' element={<From />} />
+                    <Route path='/' element= {<WordTriel />}
+                    />
+                    {/* <Route path='/form' element={<From />} /> */}
                 </Routes>
+                </div>
 
             </div>
+
+
+
+
+            
 
 
 

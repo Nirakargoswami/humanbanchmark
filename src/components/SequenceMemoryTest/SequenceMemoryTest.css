@@ -1,0 +1,64 @@
+
+ .SeqMain{
+    animation-name: slideFadeIn;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    
+ }   
+ .SeqSec{
+    background: rgb(43, 135, 209);
+    position: relative;
+    cursor: pointer;
+    color: white;
+    user-select: none;
+    overflow: hidden;
+    text-align: center;
+    font-size: 28px;
+
+ }
+ .SecLevel{
+    margin: 0px 15px;
+ }
+ .Cubename{
+    margin: 30px 0px 0px;
+ }
+ .SeqSec span{
+    font-size: 28px;
+
+ }
+ .Cubesec{
+    position: relative;
+    transform: translateZ(0px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+ }
+ .TEXt{
+    margin-right: 10px;
+    opacity: 0.6;    font-size: 28px;
+
+ }
+ .Cube{
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    width: 113px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 113px;
+    background-image: initial;
+    background-position: initial;
+    background-size: initial;
+    background-repeat: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-color: rgb(0, 0, 102);
+    opacity: 0.15;
+    border-radius: 10px;
+    border: 4px solid rgba(0, 0, 0, 0);
+    backface-visibility: visible;
+    transform: scale(1, 1);
+    z-index: 1;
+    background-clip: padding-box !important;
+ }
