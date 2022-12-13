@@ -18,7 +18,10 @@ color: white;
 user-select: none;
 overflow: hidden;
 text-align: center;
+
 }
+
+
 .secondwraper{
     display: flex;
     flex-direction: column;

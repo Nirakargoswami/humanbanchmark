@@ -7,7 +7,7 @@ import "./WordsTriel.css"
 const WordsTriel = () => {
     const [Arry, setArry] = useState([])
     const [count, setCount] = useState(0)
-    const [word, setword] = useState("")
+    const [word, setword] = useState("acces")
     const [inputword, setInputword] = useState("")
   const[no,setNocount] = useState(0)
   const[start,setStart] = useState(false)
@@ -87,12 +87,8 @@ const WordsTriel = () => {
                     const Exist = word.includes(value)
              if (Exist){
                 const indexOfFirst = word.indexOf(value)
-                console.log()
                 const indexOfSec = inputword.indexOf(value)
                 const Check = indexOfFirst === no
-                console.log(indexOfFirst)
-                console.log(no)
-                   console.log(Check)
                 if(Check){
                     x.value = value
                     x.backgroundColor = "green"
@@ -120,9 +116,7 @@ const WordsTriel = () => {
                 const indexOfFirst = word.indexOf(value)
                 const indexOfSec = inputword.indexOf(value)
                 const Check = indexOfFirst === no
-                console.log(indexOfFirst)
-                console.log(indexOfSec)
-                   console.log(Check)
+                
                 if(Check){
                     x.value = value
                     x.backgroundColor = "green"

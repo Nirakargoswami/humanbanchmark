@@ -4,6 +4,7 @@ import AppsIcon from '@mui/icons-material/Apps';
 import "./SequenceMemoryTest.css"
 
 const SequenceMemoryTest = () => {
+    const [shwonaimation,setShowanimaton] = useState(false)
     const [start, setStart] = useState(true)
     const [Count, setCount] = useState()
     const [Level,setlevel] = useState(1)
@@ -18,6 +19,7 @@ const SequenceMemoryTest = () => {
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
+    
     useEffect(() => {
 
         !start && setTimeout(() => {
@@ -36,70 +38,77 @@ const SequenceMemoryTest = () => {
     // }
 
     const setmocup = () => {
-
+        console.log("added")
+        
         const Firstcount = randomIntFromInterval(1, 9)
         countarry.push(Firstcount)
-        console.log(countarry)
+
         setCount(0)
     }
     
 
     useEffect(() => {
-        console.log(Count)
-        console.log(typeof( Count))
-        console.log(countarry.length > Count && !start)
+       
+      
        if (countarry.length > Count && !start) {
-            console.log(countarry)
             const No = countarry[Count]
 
-            console.log(No)
             Setflashcount(No)
-            console.log(typeof( Count),)
            setTimeout(() => {
             Setflashcount()
-            console.log(Count)
-         setCount(Count + 1)
+           setCount(Count + 1)
            },1000)
           
 
         }
 }, [Count])
-console.log(Count)
 
     const Sowcube = () =>
         Noarry.map((x) => {
 
-            return (<div key={x} style={{ backgroundColor: x === flashcount ? "white" : null }} onClick={() => Cubeclick(x)} className='Cube'>
+            return (<div key={x} style={{ backgroundColor: x === flashcount ? "white" : null ,opacity : x === flashcount ? 1 :  0.15 }} onClick={() => Cubeclick(x)} className='Cube'>
                 {x}
             </div>)
 
         })
 
+        // 0.5s linear 0s 1 normal none running animation-1sioss
 
 
+      
     const Cubeclick = (x) => {
-
         check.push(x)
 
-
-        console.log(countarry.indexOf(x) === check.indexOf(x))
+        setShowanimaton(false)
         if (countarry.indexOf(x) === check.indexOf(x)) {
+            Setflashcount(x)
+            setTimeout(() => {
+                Setflashcount("")
+            }, 100);
+            
             doublecheck.push(x)
 
         } else {
 
         }
         if (doublecheck.length === countarry.length) {
-            setCheck([])
-            setDoubleCheck([])
-            setmocup()
-            setlevel(Level + 1)
+            setShowanimaton(true)
+            setTimeout(() => {
+                setCheck([])
+                setDoubleCheck([])
+                setmocup()
+                setlevel(Level + 1)
+            },800)
+          
+           
+            
            
         }
 
 
     }
-
+   console.log(shwonaimation)
+    const classnaem = `Cubename ${ shwonaimation && "animate"}`
 
     return (
         <div>
@@ -108,13 +117,13 @@ console.log(Count)
             }
 
             {!start &&
-                <div className='SeqMain'>
-                    <div className='SeqSec'>
+                <div className="SeqMain">
+                    <div className={"SeqSec"}>
                         <span className='SecLevel'>
                             <span className='TEXt'>Level </span>
                             <span >{Level}</span>
                         </span>
-                        <div className='Cubename'>
+                        <div className={classnaem}>
                             <div className='Cubesec'>
 
                                 {
