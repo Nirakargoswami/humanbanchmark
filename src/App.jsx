@@ -1,5 +1,5 @@
 import React, { useState, useEffect ,useRef} from 'react'
-
+import Reactiontime from "./components/Retiontime /reactiontime"
 import { BrowserRouter as Router, Routes, Route, Link, Form } from 'react-router-dom';
 import From from "./components/form"
 import { useSelector, useDispatch } from 'react-redux'
@@ -7,6 +7,7 @@ import Table from "./table"
  import "./App.css"
  import WordTriel from "./components/WordsTriel/WordsTriel"
  import SequenceMemoryTest from "./components/SequenceMemoryTest/SequenceMemoryTest"
+ import Visualmemory from "./components/visualmemory/visualmemory"
 function App() {
     const [rows, setRows] = useState("")
     const [headCells, setHeadCells] = useState("")
@@ -33,7 +34,7 @@ const stopdoanimation = () => {
                 <div className="secondwraper">
                     
                 <Routes>
-                    <Route path='/' element= {<SequenceMemoryTest  />}
+                    <Route path='/' element= {<Reactiontime  />}
                     />
                     {/* <Route path='/form' element={<From />} /> */}
                 </Routes>

@@ -3,11 +3,11 @@ import { Mainwraper } from "../inexpage/index"
 import AppsIcon from '@mui/icons-material/Apps';
 import "./SequenceMemoryTest.css"
 
-const SequenceMemoryTest = () => {
-    const [shwonaimation,setShowanimaton] = useState(false)
-    const [start, setStart] = useState(true)
+const SequenceMemoryTest = (props) => {
+    const [shwonaimation, setShowanimaton] = useState(false)
+    const [start, setStart] = useState(false)
     const [Count, setCount] = useState()
-    const [Level,setlevel] = useState(1)
+    const [Level, setlevel] = useState(1)
     const [countarry, setCountArry] = useState([])
     const [flashcount, Setflashcount] = useState()
     const [check, setCheck] = useState([])
@@ -19,7 +19,7 @@ const SequenceMemoryTest = () => {
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
-    
+
     useEffect(() => {
 
         !start && setTimeout(() => {
@@ -39,43 +39,43 @@ const SequenceMemoryTest = () => {
 
     const setmocup = () => {
         console.log("added")
-        
+
         const Firstcount = randomIntFromInterval(1, 9)
         countarry.push(Firstcount)
 
         setCount(0)
     }
-    
+
 
     useEffect(() => {
-       
-      
-       if (countarry.length > Count && !start) {
+
+
+        if (countarry.length > Count && !start) {
             const No = countarry[Count]
 
             Setflashcount(No)
-           setTimeout(() => {
-            Setflashcount()
-           setCount(Count + 1)
-           },1000)
-          
+            setTimeout(() => {
+                Setflashcount()
+                setCount(Count + 1)
+            }, 1000)
+
 
         }
-}, [Count])
+    }, [Count])
 
     const Sowcube = () =>
         Noarry.map((x) => {
 
-            return (<div key={x} style={{ backgroundColor: x === flashcount ? "white" : null ,opacity : x === flashcount ? 1 :  0.15 }} onClick={() => Cubeclick(x)} className='Cube'>
+            return (<div key={x} style={{ backgroundColor: x === flashcount ? "white" : null, opacity: x === flashcount ? 1 : 0.15 }} onClick={() => Cubeclick(x)} className='Cube'>
                 {x}
             </div>)
 
         })
 
-        // 0.5s linear 0s 1 normal none running animation-1sioss
+    // 0.5s linear 0s 1 normal none running animation-1sioss
 
 
-      
+
     const Cubeclick = (x) => {
         check.push(x)
 
@@ -84,8 +84,8 @@ const SequenceMemoryTest = () => {
             Setflashcount(x)
             setTimeout(() => {
                 Setflashcount("")
-            }, 100);
-            
+            }, 800);
+
             doublecheck.push(x)
 
         } else {
@@ -98,17 +98,16 @@ const SequenceMemoryTest = () => {
                 setDoubleCheck([])
                 setmocup()
                 setlevel(Level + 1)
-            },800)
-          
-           
-            
-           
+            }, 800)
+
+
+
+
         }
 
 
     }
-   console.log(shwonaimation)
-    const classnaem = `Cubename ${ shwonaimation && "animate"}`
+    const classnaem = `Cubename ${shwonaimation && "animate"}`
 
     return (
         <div>
@@ -127,7 +126,7 @@ const SequenceMemoryTest = () => {
                             <div className='Cubesec'>
 
                                 {
-                                    <Sowcube />
+                                   props.children 
 
                                 }
                             </div>

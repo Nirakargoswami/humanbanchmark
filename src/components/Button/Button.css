@@ -1,0 +1,36 @@
+.Savescore{padding: 12px 30px;
+    background: rgb(255, 209, 84);
+    display: inline-block;
+    border: none;
+    border-radius: 3px;
+    transition:background 0.1s linear 0s;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    margin: 5px 5px 0px;
+    color: rgb(51, 51, 51) !important;
+    text-decoration: none !important;
+    
+   
+}
+
+.Tryagain{
+    padding: 12px 30px;
+    background: rgba(255, 255, 255, 0.5);    display: inline-block;
+    border: none;
+    border-radius: 3px;
+    transition: background 0.1s linear 0s;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    margin: 5px 5px 0px;
+    color: rgb(51, 51, 51) !important;
+    text-decoration: none !important;
+  
+    
+}
+
