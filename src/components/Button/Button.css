@@ -34,3 +34,24 @@
     
 }
 
+.Time{
+    font-size: 6vh;
+}
+@media (min-width: 500px){
+    .Time
+        .css-saet2v h1 {
+            font-size: 80px
+        }
+}
+
+@media (max-width:500px) {
+    .Icon{
+        height:50px ;
+        width: 50px;
+    }
+
+}
+.Icon{
+width: 100px;
+height: 100px;
+}
