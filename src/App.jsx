@@ -9,6 +9,7 @@ import Table from "./table"
  import SequenceMemoryTest from "./components/SequenceMemoryTest/SequenceMemoryTest"
  import Visualmemory from "./components/visualmemory/visualmemory"
  import Numbermemory from "./components/Numbermemory/Numbermemory"
+ import MathGame from "./components/mathgaem/mathgaem"
 function App() {
     const [rows, setRows] = useState("")
     const [headCells, setHeadCells] = useState("")
@@ -35,7 +36,7 @@ const stopdoanimation = () => {
                 <div className="secondwraper">
                     
                 <Routes>
-                    <Route path='/' element= {<Numbermemory  />}
+                    <Route path='/' element= {<Visualmemory  />}
                     />
                     {/* <Route path='/form' element={<From />} /> */}
                 </Routes>

@@ -4,87 +4,127 @@ import AppsIcon from '@mui/icons-material/Apps';
 
 import SequenceMemoryTest from '../SequenceMemoryTest/SequenceMemoryTest'
 import Cuebmaekr from "../Cubecomponent/Cubecomponent"
-import {Mainwraper} from "../../components/inexpage/index"
+import { Mainwraper } from "../../components/inexpage/index"
 const Visualmemory = () => {
-const [flashcount,setFlashcount] = useState(0)
-const [mianarry,setMainarry] =useState([])
-const [Start,setStart] = useState(true)
+    const [flashcount, setFlashcount] = useState()
+    const [mianarry, setMainarry] = useState([])
+    const [Start, setStart] = useState(true)
+    const [leve, setLevel] = useState(3)
+    const [levelArry,setLevelArry] = useState()
+    const[ans,setAns] = useState()
+    const [newobj,setNewobj] = useState({})
+     
     const Noarry = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-   const  Cubeclick=() => {
-           
+
+
+    function randomIntFromInterval(min, max) { // min and max included 
+        return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
-
-const level = [2,3,9]
-useEffect(() => {
-    Noarry.map((x) => {
-        mianarry.push({
-            value:x,
-            animate:false,
-    
-        })
-    })
-    
-},[])
-
-
-useEffect(() => {
-    if(!Start){
-        findCommonElement(level,mianarry)
-        setTimeout(() => {
-            Sowcube()
-        },1000)
-    }
-},[Start])
-
-function findCommonElement(array1, array2) {
-          
-    // Loop for array1
-    for(let i = 0; i < array1.length; i++) {
-          
-        // Loop for array2
-        for(let j = 0; j < array2.length; j++) {
-              
-            // Compare the element of each and
-            // every element from both of the
-            // arrays
-            if(array1[i] === array2[j].value) {
-
-                array2[j].animate = true 
-              console.log(array2[j])
-                // Return if common element found
-               
+    const Nomaker = () => {
+        const MianArry = [...Array(9).keys()]
+        const NewArryobj = [];
+        MianArry.map((x) => {
+            const obj = {
+                key : x ,
+                animate:false,
+                bacg:false
             }
+            newobj[`${x}`] = obj
+            NewArryobj.push(obj)
+        })
+         console.log(NewArryobj)
+       
+        for (let i = 0; i < leve ; i++) {
+            const Rendno = randomIntFromInterval(0, 9)
+                
+            NewArryobj[`${Rendno}`].animate = true
+            // if(mianarry.indexOf(Rendno) !== -1){
+            //     i--
+            // }else{
+            //     mianarry.push(Rendno)
+            //     console.log(Rendno)
+            //     console.log( NewArryobj[Rendno])
+            //     NewArryobj[Rendno].animate = true
+
+            // }
         }
-  
+        console.log(newobj)
+        console.log(mianarry)
+        setLevelArry(NewArryobj)
+     
     }
-      
-    // Return if no common element exist
+
+    
+    // Object.entries(newobj).forEach(([key, value]) => {
+    //     console.log(`${key}`)
+    // });
+const Cubeclikck = (x) => {
+console.log(x)
+if(x){
+    let obj = newobj[`${x}`]
+    obj.bacg = true
+    console.log(newobj[`${x}`])
+    setNewobj(prevState => (
+        {...newobj ,
+            ...prevState[`${x}`].bacg = true
+
+        }
+    ))
     
 }
-useEffect(() => {
+
+}
+
     
-},[flashcount])
-    const Sowcube = () =>
+    useEffect((x) => {
+        Nomaker()
 
-    !Start &&  mianarry.map((x) => {
-const Class = ` Cube ${ x.animate == true &&"Animate" }`
-            return (<div key={x.value} style={{ backgroundColor: x.value === flashcount ? "white" : null, opacity: x.value === flashcount ? 1 : 0.15 }} onClick={() => setFlashcount(x.value)} className={Class} >
-                {x.value}
-            </div>)
+    }, [])
 
-        })
+
+    useEffect(() => {
+        !Start && Sowcube()
+    },[newobj])
+
+console.log(levelArry)
+  
+    const Sowcube = () =>{
+        const  A = Object.keys(newobj)
+       
+      return Object.keys(newobj).map((x,y) =>  
+      {
+        const Item = newobj[`${x}`]
+        console.log(Item)
+   const classs = ` Cube ${Item.animate && "Animate"} `
+   return (<div key={y}  style={{backgroundColor: Item.bacg == true ? "white" : ""}} onClick={() => Cubeclikck(Item.key)}  className={classs} >
+       {Item.key}
+   </div>)
+      })
+           
+       
+        
+    }
+    
+    // !Start && Object.keys(newobj).forEach(x => 
+  
+    // (<div>
+    //         ok
+    //     </div>)
+        
+    ;
+        
 
     return (
         <>
-        
-             {Start &&
+
+            {Start &&
                 <Mainwraper setStart={setStart} Img={<AppsIcon />} linktext={"Start"} Text={"Memorize the pattern"} Header={"Visual  Memory Test"} />
             }
-        {!Start && 
-           <Cuebmaekr>
-           <Sowcube/>
-           </Cuebmaekr>}
+            {!Start &&
+                <Cuebmaekr>
+                    <Sowcube />
+                </Cuebmaekr>}
         </>
     )
 }
