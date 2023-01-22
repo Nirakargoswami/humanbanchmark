@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 113px;
+    /* height: 113px; */
     background-image: initial;
     background-position: initial;
     background-size: initial;
@@ -59,3 +59,25 @@
   }
 }
 
+
+@media (max-width:800px) {
+  /* .Cube{
+    height: 100px !important;
+    width: 100px !important;
+  } */
+  .Mainboxofcube{
+    width: 310px !important;
+    height: 310px !important;
+    
+  }
+  
+}
+
+.Mainboxofcube{
+  width: 345px;
+  border: 1px solid black;
+  height: 345px;
+  display: flex;
+  flex-wrap: wrap;
+  
+}
