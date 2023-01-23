@@ -4,26 +4,27 @@ import randomIntFromInterval from "../Lib/lib"
 import AppsIcon from '@mui/icons-material/Apps';
 import "./GuessFlage.css"
 import { Mainwraper } from "../../components/inexpage/index"
-
+import {Custombutton} from "../Button/Button"
 const GuessFlage = () => {
-    const [flage, setflage] = useState("")
+    const [flage, setflage] = useState(0)
     const [Start, setStart] = useState(true)
     const [flagedata,setflagedata] = useState([])
     const [value,setvalue] = useState(0)
     const [id,setid] = useState()
-
-
-
+    const [Gmestart,setGmestart] = useState(true)
+    const [stopgame,setstopgame] = useState("")
+    const [right,setright] = useState()
+    const [ansvlaue,setansvlaue] = useState("")
     var varCounter = 0;
+
+
     var varName = function(){
 
-         if(value <= 5) {
-              setvalue(varCounter++)
+         if(value < 4) {
+              setvalue(value => value + 1)
               /* your code goes here */
          }
     };
-
-
 
     function shuffleArray(arr) {
         for (let i = arr.length - 1; i > 0; i--) {
@@ -47,6 +48,7 @@ const GuessFlage = () => {
 
     }
 
+
     useEffect(() => {
         flage &&  flage.map((x) => {
             console.log("flage")
@@ -56,9 +58,15 @@ const GuessFlage = () => {
             .then(res => res.json())
             .then(
               (result) => {
+                const obj = {
+                    flage : "",
+                    name : ""
+                }
                 const Data= result[0]
-                const flage = Data.flags
-                flagedata.push(flage.png)
+                obj.flage = Data.flags.png
+                obj.name= Data.name.common
+
+                flagedata.push(obj)
                 
 
               },
@@ -73,53 +81,115 @@ const GuessFlage = () => {
               }
             )
         })
-       
-    },[])
+    },[flage])
 
- let time 
-    // const Showflage = () => {
-    //       time =  setInterval(() => {
-    //         setvalue((x) => x + 1)
-    //     }, 1000);
+ useEffect(() => {
+if(!Gmestart){
 
-        
-      
-
-    // }
-
-  
-
-useEffect(() => {
+  const   intervalId = setInterval(varName, 2000)
+    setid(intervalId)
+}
+ },[Gmestart])
     
-    console.log(value)
-    if(value > 4){
-        clearInterval(id)
-    }else{
-        Flagemachine()
-    }
-},[value])
+
+
+
+
+    useEffect(() => {
+        
+        setflagedata([])
+            const data = getRandom5(Flagedata)
+            setflage(data)
+            
+        
+
+    }, [])
+
+
+    useEffect(() => {
+       if(flage){
+        console.log(value)
+        if(value > 3){
+
+          const No =   randomIntFromInterval(0,5)
+           clearInterval(id)
+           const ans = flagedata[No]
+           setstopgame(ans)
+           setGmestart(false)
+
+           
+        }else{
+         Flagemachine()
+        }
+       }
+       
+    },[value])
+
 
 const Flagemachine = () => {
-    console.log(flagedata)
+    console.log("value")
+ 
+    console.log(value)
     return(
-<div >
+<div className="Flagebox" >
 
-<img  src={flagedata[value]} />
+<img className="Image" src={`${flagedata[value].flage}`} />
+<div>{`${flagedata[value ].name}`}</div>
 </div>
     )
 }
+
+const ans = (x,y) => {
+    console.log(x)
+    console.log(ansvlaue)
+  if(x == stopgame.name ){
+    setansvlaue(y)
+    console.log(x == stopgame.name )
+    const data = getRandom5(Flagedata)
+    // setflage(data)
+  }else{
+    //   setvalue("")
+
+  }
+
+}
+useEffect(() => {
+
+},[ansvlaue])
 
 console.log(flagedata)
 
     return (
         <div>
-         
+            
+         {
+                 !Start && Gmestart && !stopgame &&
+                 <div>
+                 <div>ok</div>
+                 <button onClick={() => setGmestart(!Gmestart)}>
+                    ok
+                 </button>
+                 </div>
+              }
          {Start &&
                 <Mainwraper setStart={setStart} Img={<AppsIcon />} linktext={"Start"} Text={"Memorize the pattern"} Header={"Visual  Memory Test"} />
             }
-
             {
-              !Start &&  
+                !Start &&  !Gmestart &&  stopgame && 
+                
+                flagedata.map((x,y) => {
+                  console.log((ansvlaue === false))
+                    return (
+                        <div style={{border: ansvlaue ? "2px solid black" :  ansvlaue == y ? "2px solid yellow" :  "2px solid red"  }} onClick={() => (ans(x.name,y))} className="Question">
+
+                            {x.name}
+                        </div>
+                    )
+                })
+            }
+              
+            {
+              !Start &&  !Gmestart && !stopgame &&
               <Flagemachine/>
             }
         </div>

@@ -1,5 +1,7 @@
 .Image {
-    margin-top: 20px;
+    
+    height: 100%;
+    width: 100%;
 }
 
 .Flageimagecont{
@@ -10,7 +12,16 @@
     }
 
     .Flagebox{
-        
+        margin-top: 20px;
+        height: 200px;
+        width: 300px;
+        object-fit: contain;
+
     }
 
+    .Question{
+        margin-top: 20px;
+        height: 50px;
+        width: 200px;
+    }
   
