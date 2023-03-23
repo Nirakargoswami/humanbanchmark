@@ -1,0 +1,395 @@
+.main_div{
+  background-color:  #363d47!important;
+
+    color: white;
+  }
+  .main_div2{
+    background-color:  #363d47!important;
+    color: white;
+  }
+  .login_button{
+    background: transparent;
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+  
+    align-items: center;
+    line-height: 1.6;
+    height: 48px;
+    border-radius: 4px;
+   
+    border: 1px solid white !important;
+  }
+  .login_button:hover{
+    background-color:#787A94 !important;
+    
+   border: 1px solid transparent !important;
+  }
+  
+  .input_box{
+    background: transparent;
+    border: 1px solid white;
+    color:white
+  }
+  .main_div{
+    background-color:  #363d47 !important;
+    color: white;
+    display: flex;
+    
+  }
+  .main_div2{
+    background-color: #363d47 !important;;
+    color: white;
+  }
+  .login_button{
+    background: transparent;
+    border: 1px solid white;
+    
+  }
+  .login_button:hover{
+    background-color : #2B3139 !important;
+    transition: 0.7s;
+    color: white !important;
+    border: none;
+  }
+  .input_box{
+    background: transparent;
+    border: 1px solid white;
+    color:white
+  }
+  .login_first_banner_ad{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+  }
+  .login_second_banner_ad{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+  }
+  .login_card{
+    /* margin-top: 25px; */
+  }
+  .login_div{
+    display: flex;
+    flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  }
+  .first_square_ad{
+    margin-left: auto;
+    margin-right: auto;
+    /* justify-content: center;
+    align-items: center; */
+  }
+  .second_square_ad{
+    margin-left: auto;
+    margin-right: auto;
+    /* justify-content: center;
+    align-items: center; */
+  }
+  @media screen and (min-width: 100px) and (max-width: 1024px) {
+    .first_square_ad{
+      display: none;
+    }
+    .second_square_ad{
+      display: none;
+  
+    }
+    
+  }
+  .social_logins{
+    display: flex;
+    justify-content: center;
+    /* margin-top: 5px; */
+  }
+  
+  
+  .loginbox{
+    display: flex;
+  
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 504px;
+  }
+  
+  
+  
+  .padding{
+    padding: 0px 16px 0px 16px;
+  }
+  
+  
+  @media screen and (max-width: 769px){
+    .loginbox {
+      width: 100%;
+  }
+  }
+  
+  
+  .Logintext{
+    margin: 0px 0px 10px;
+    min-width: 0px;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    color: rgb(234, 236, 239);
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  
+  @media screen and (min-width: 767px){
+    .Logintext {
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 40px;
+      text-align: start;
+  }
+  }
+  
+  .clor1{
+    color: #59CE8F;
+
+  
+  }
+  
+  .Emailtext{
+    box-sizing: border-box;
+    margin: 0px 0px 4px;
+    min-width: 0px;
+    display: flex;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 20px;
+    width: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(234, 236, 239);
+    cursor: auto;
+  }
+  
+  
+  .Emailinput{
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+  
+    align-items: center;
+    line-height: 1.6;
+    height: 48px;
+    border-radius: 4px;
+    background-color: transparent !important;
+    display: flex;
+    flex: 1 1 0%;
+    width: 100%;
+  }
+  .input[type=email]:focus{
+    border:  1px solid red !important;
+  }
+  
+  
+  
+  .lable{
+    box-sizing: border-box;
+      margin: 4px 0px 0px;
+      min-width: 0px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      width: 100%;
+      color: rgb(246, 70, 93);
+  }
+  
+  .Loginbutton{
+    margin: 0px 0px 16px 0px;
+      appearance: none;
+      user-select: none;
+      cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-flex;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      justify-content: center;
+      box-sizing: border-box;
+      font-size: 16px;
+      font-family: inherit;
+      font-weight: 500;
+      text-align: center;
+      text-decoration: none;
+      outline: none;
+      padding: 12px 24px;
+      line-height: 24px;
+      min-width: 80px;
+      word-break: keep-all;
+      color: rgb(24, 26, 32);
+      border-radius: 4px;
+      min-height: 24px;
+      border: none;
+      background-image: none;
+      background-color: rgb(252, 213, 53);
+      white-space: normal;
+      width: 100%;
+      height: 48px;
+  }
+  .googlebutton{
+    margin: 10px 0px 0px 0px ;
+    appearance: none;
+    user-select: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-flex;
+    box-sizing: border-box;
+    font-size: 16px !important;
+    font-family: inherit;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    padding: 12px 24px;
+    line-height: 24px;
+    min-width: 80px;
+    word-break: keep-all;
+    min-height: 24px;
+    border: none;
+    background-image: none;
+    background-color: rgb(71, 77, 87) !important;
+    border-radius: 4px;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100% !important;
+    -webkit-box-pack: center;
+    justify-content: center;
+    color: rgb(234, 236, 239) !important;
+    cursor: pointer;
+  }
+  
+  .googlebutton div{
+    background-color: transparent !important;
+  }
+  
+  .social_login{
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+  }
+  
+  
+  
+  .social_login span{
+    margin: 0px;
+    appearance: none;
+    user-select: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-flex;
+    box-sizing: border-box;
+    font-size: 16px !important;
+    font-family: inherit;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    padding: 12px 24px;
+    line-height: 24px;
+    min-width: 80px;
+    word-break: keep-all;
+    min-height: 24px;
+    border: none;
+    background-image: none;
+    background-color: rgb(71, 77, 87) !important;
+    border-radius: 4px;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100% !important;
+    -webkit-box-pack: center;
+    justify-content: center;
+    color: rgb(234, 236, 239) !important;
+    cursor: pointer;
+  }
+  
+  .Facebookbutto span{
+    width: 100%;
+  }
+  
+  
+  .navbars {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 18px;
+    background-color: #181A20;
+    height: 64px;
+  }
+  
+  
+  .Image {
+    box-sizing: border-box;
+      margin: 0;
+      min-width: 0;
+      color: currentColor;
+      width: 152px;
+      font-size: 24px;
+      fill: #EAECEF;
+      fill: currentColor;
+      height: 39px;
+  }
+  .xvxpe5{
+    box-sizing: border-box;
+    margin: 0px 0px 24px;
+    min-width: 0px;
+    width: 100%;
+}
+.hiy16i {
+  box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  width: 100%;
+  position: relative;
+  min-height: 12px;
+}
+
+.Labeleinput {
+  box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  display: flex;
+  -webkit-box-align: center;
+  color: rgb(183, 189, 198);
+  font-size: 14px;
+  align-items: flex-start;
+}
+.lablebox{
+  box-sizing: border-box;
+  margin: 2px 8px 0px 0px;
+  min-width: 0px;
+  flex-shrink: 0;
+  width: 16px;
+  border: 1px solid rgb(94, 102, 115);;
+  height: 16px;
+  line-height: 16px;
+  border-radius: 2px;
+  color: white !important;
+}
+.lablebox:hover{
+  border: 1px solid  #5e6673 !important;
+
+}
+
+.lebale{
+  box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  flex: 1 1 0%;
+}

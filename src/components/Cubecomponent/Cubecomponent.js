@@ -1,9 +1,9 @@
 
-import style from "./Cubecomponent.css"
+import  "./Cubecomponent.css"
 const Cuebmaekr = (props) => {
    
     return (
-        <div className='Cubename'>
+        <div className='Cubename Cubemargin'>
             <div className='Cubesec'>
 
                 {

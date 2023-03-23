@@ -5,6 +5,7 @@ import style from "./reactiontime.css"
 import AppsIcon from '@mui/icons-material/Apps';
 import { Tryagin, Savebutton } from "../Button/Button"
 import AccessAlarmsIcon from '@mui/icons-material/AccessAlarms';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
 
 const Reactiontime = () => {
     const [start, setStart] = useState(true)
@@ -13,22 +14,22 @@ const Reactiontime = () => {
     const [red, setRed] = useState(false)
     const [clickfast, setCliltofst] = useState(false)
     const [timerid, settimeid] = useState()
-    const [shwosocre,setShowscore] = useState(false)
-    const [level,setLvel] = useState(0)
-    const [time,setEverytrietime] = useState()
-    const[combinetime,setCombinetime] = useState(0)
+    const [shwosocre, setShowscore] = useState(false)
+    const [level, setLvel] = useState(0)
+    const [time, setEverytrietime] = useState()
+    const [combinetime, setCombinetime] = useState(0)
     const screen = useRef(null)
-    
+
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
-const Tryagins = () => {
-    setCliltofst(false)
-    setShowscore(false)
-    setStart(true)
-    
-}
+    const Tryagins = () => {
+        setCliltofst(false)
+        setShowscore(false)
+        setStart(true)
+
+    }
 
 
     const Clik = () => {
@@ -50,7 +51,7 @@ const Tryagins = () => {
 
                     setGreentime(Dates)
                     screen.current.style.backgroundColor = "green"
-                    
+
                 }, 1000 * rndInt);
                 settimeid(timeid)
 
@@ -59,7 +60,7 @@ const Tryagins = () => {
 
 
 
-        } else if(!green){
+        } else if (!green) {
             setGreen(false)
             clearTimeout(timerid)
             setCliltofst(true)
@@ -71,91 +72,98 @@ const Tryagins = () => {
             setGreen(false)
             screen.current.style.backgroundColor = "rgb(43, 135, 209)"
             setStart(true)
-             setLvel(level + 1)
+            setLvel(level + 1)
             const secdate = new Date()
             const time = secdate.getTime()
             const Miantime = time - greentime.getTime()
-    
-           
-            setCombinetime(combinetime + Miantime )
+
+
+            setCombinetime(combinetime + Miantime)
             setEverytrietime(Miantime)
-          
+
         }
     }
 
 
-useEffect(() => {
- if(start && level > 2 ){
-    setShowscore(true)
-    setStart(false)
-    setGreen(false)
-    setGreentime()
-    setRed(false)
-    setCliltofst(false)
-    settimeid()
-    setLvel(0)
-    setEverytrietime()
-   
-    }
-},[level])
+    useEffect(() => {
+        if (start && level > 2) {
+            setShowscore(true)
+            setStart(false)
+            setGreen(false)
+            setGreentime()
+            setRed(false)
+            setCliltofst(false)
+            settimeid()
+            setLvel(0)
+            setEverytrietime()
+
+        }
+    }, [level])
 
 
-    console.log(shwosocre,level,combinetime)
+    console.log(shwosocre, level, combinetime)
 
     return (
         <div ref={screen} onClick={() => Clik()} className='display'>
-{
-     green && 
-     <div style={{display:"flex",flexDirection:"column"}}>
-     <h1 className='Time'>
-       Click as fast as you can 
-     </h1>
+            {
+                green &&
+                <div style={{ display: "flex", flexDirection: "column", marginTop: "20px" }}>
+                    <h1 className='Time'>
+                        Click as fast as you can
+                    </h1>
 
-      <h2>CLick to contiue </h2>
-    </div>
-}    
-{
-     clickfast && 
-     <div style={{display:"flex",flexDirection:"column"}}>
-     <h1 className='Time'>
-       Click To soon
-     </h1>
+                    <h2>CLick too contiue </h2>
+                </div>
+            }
+            {
+                clickfast &&
+                <div style={{ display: "flex", flexDirection: "column", marginTop: "20px" }}>
+                    <h1 className='Time'>
+                        Click Too soon
+                    </h1>
 
-      <h2>CLick to contiue </h2>
-    </div>
-}   
-{
-    start && !clickfast &&  <div style={{display:"flex",flexDirection:"column"}}>
-    <h1 className='Time'>
-      Click Any where to start
+                    <h3>Click too keep going </h3>
+                </div>
+            }
+            {
+                start && !clickfast && !time &&
+                <div style={{ display: "flex", flexDirection: "column", marginTop: "20px", padding: "10px" }}>
+                    <div className="Logo">
+                        <AcUnitIcon style={{ fontSize: "60px" }} />
+                    </div>
+                    <div style={{ opacity: 1, transition: "all 1s linear 0s", }} ><h1 style={{ fontSize: "6vh" }}>Reaction Time Test</h1></div>
+                    <h2 style={{ fontSize: "4vh" }}>When the red box turns green, click as quickly as you can.</h2>
+                    <h2 style={{ fontSize: "4vh" }} >
+                        Click Any where To start
 
-    </h1>
+                    </h2>
 
-   </div>
-}
+                </div>
+            }
 
-{red && 
-   
-    <div style={{display:"flex",flexDirection:"column"}}>
-    <h1 className='Time'>
-      Wait for green
-    </h1>
+            {red &&
 
-    
-   </div>
-}
+                <div style={{ display: "flex", flexDirection: "column", marginTop: "20px" }}>
+                    <h1 className='Time'>
+                        Wait for green
+                    </h1>
 
-         { time &&  <div>
-            <h1 className='Time'>
-                {time}
-             <AccessAlarmsIcon className='Icon' />
-            </h1>
 
-             <h2>CLick to contiue </h2>
-           </div>
-           }
+                </div>
+            }
 
-            {shwosocre && <div className='Mainbox'>
+            {time && <div style={{ marginTop: "20px" }}>
+                <AccessAlarmsIcon className='Icon' />
+                <h1 className='Time' >
+                    {time}
+
+                </h1>
+
+                <h2>Click too keep going  </h2>
+            </div>
+            }
+
+            {shwosocre && <div className='Mainbox' >
                 <div className='Secondbox'>
 
                     <AppsIcon className='Icon' />
@@ -175,17 +183,17 @@ useEffect(() => {
                         </p>
                         <div className='
                         Flex'>
-                         <Savebutton/>
-                         <Tryagin Tryagin={Tryagins} />
+                            <Savebutton />
+                            <Tryagin Tryagin={Tryagins} />
                         </div>
-                        
+
                     </div>
                 </div>
-                
+
             </div>
-                
+
             }
-            
+
 
 
 

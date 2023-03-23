@@ -24,7 +24,7 @@ export const Savebutton = ({Savebutton}) => {
 export const Tryagin = ({Tryagin}) => {
     return (
         
-            <button onClick={Tryagin} className="Tryagain" >
+            <button onClick={() => Tryagin()} className="Tryagain" >
             Tryagin
             </button>
         

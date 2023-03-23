@@ -1,0 +1,29 @@
+.RoteCon{
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+width: 100%;
+margin-bottom: 20px;
+padding: 10px;
+}
+
+.css-uaat4j {
+    margin-bottom: 20px;
+
+    display: block;
+    -webkit-box-shadow: 2px 13px 15px -13px rgba(0,0,0,0.75);
+-moz-box-shadow: 2px 13px 15px -13px rgba(0,0,0,0.75);
+box-shadow: 2px 13px 15px -13px rgba(0,0,0,0.75);
+    width: 100%;
+    flex: 1 1 0%;
+    line-height: 1;
+    background: white;
+    padding: 20px 0px;
+    transition: transform 0.2s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s;
+    color: rgb(51, 51, 51) !important;
+    text-decoration: none !important;
+}
+.css-1ur49oz > * {
+    margin-bottom: 20px;
+}

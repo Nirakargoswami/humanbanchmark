@@ -10,24 +10,23 @@ const Visualmemory = () => {
     const [flashcount, setFlashcount] = useState()
     const [mianarry, setMainarry] = useState([])
     const [Start, setStart] = useState(true)
-    const [leve, setLevel] = useState(3)
+
     const [levelArry, setLevelArry] = useState([])
     const [ans, setAns] = useState([])
     const [newobj, setNewobj] = useState({})
     const [gamestart, setGAmestart] = useState(false)
     const [chnce, setchance] = useState(3)
-    const [mianchange, setmincahnce] = useState(3)
     const [value, setValue] = useState()
-    const [ansarry, setAnsarry] = useState([])
     const [count, setCount] = useState(1)
-    const [Stagecount,setStagecount] = useState(0)
-    const [stage,setStage] = useState(3)
-  const [mainlevel,setmainlevel] = useState(3)
-    const [nocube,setnocube] = useState(leve * leve)
-const [newwidth,setnewwidth] = useState((310 / 3) - 2)
+    const [Stagecount, setStagecount] = useState(0)
+    const [mainlevel, setmainlevel] = useState(3)
+    const [leve, setLevel] = useState(3)
+    
+    const [nocube, setnocube] = useState(leve * leve)
+    const [newwidth, setnewwidth] = useState((310 / 3) - 2)
 
     const Noarry = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-console.log(nocube)
+    console.log(nocube)
 
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
@@ -78,9 +77,7 @@ console.log(nocube)
     }
 
 
-    // Object.entries(newobj).forEach(([key, value]) => {
-    //     console.log(`${key}`)
-    // });
+
     const Cubeclikck = (x) => {
 
         const ansarry = []
@@ -89,7 +86,7 @@ console.log(nocube)
             setGAmestart(true)
         }
         if (ans.includes(x)) {
-          
+
             let obj = newobj[`${x}`]
             obj.bacg = true
             setNewobj(prevState => (
@@ -102,15 +99,15 @@ console.log(nocube)
             )
             setCount(count + 1)
             ansarry.push(x)
-          
 
-        //   console.log(leve,count)
+
+            //   console.log(leve,count)
             if (count == leve) {
-               
+
                 setGAmestart(false)
 
                 setTimeout(() => {
-                    console.log("500")
+
 
                     const MianArry = [...Array(nocube).keys()]
                     const NewArryobj = [];
@@ -132,21 +129,21 @@ console.log(nocube)
 
                 setTimeout(() => {
 
-            
+
                     setCount(1)
-                     console.log("Nirakar")
-                    if(Stagecount  < 2){
+                    console.log("Nirakar")
+                    if (Stagecount < 2) {
                         console.log(Stagecount)
                         setStagecount(Stagecount + 1)
                         setLevel(leve + 2)
-                       
-                    }else{
+
+                    } else {
                         console.log("Nirakar")
                         setmainlevel(mainlevel + 1)
-                       
-                         
+
+
                     }
-                   
+
                 }, 1000)
             }
         } else {
@@ -172,29 +169,24 @@ console.log(nocube)
 
     useEffect((x) => {
         Nomaker(nocube)
-    console.log("okk")
-    
     }, [leve])
 
     useEffect(() => {
-        if(Stagecount){
+        if (Stagecount) {
             console.log(mainlevel)
             setStagecount(0)
-            setnewwidth((310 / mainlevel ) - 2 )
+            setnewwidth((310 / mainlevel) - 2)
             setnocube(mainlevel * mainlevel)
         }
-        
-        
-     },[mainlevel])
 
 
-useEffect(() =>{
-    Nomaker(nocube) 
-},[nocube])
-    // useEffect(() => {
-    //     console.log(Start)
-    //     !Start && Sowcube()
-    // }, [newobj])
+    }, [mainlevel])
+
+
+    useEffect(() => {
+        Nomaker(nocube)
+    }, [nocube])
+
 
 
     const Sowcube = () => {
@@ -205,22 +197,17 @@ useEffect(() =>{
             const Item = levelArry[`${x}`]
 
             const classs = ` Cube ${!gamestart && Item.animate && "Animate"}`
-            return (<div key={y} style={{  width : `${newwidth}px`,height : `${newwidth}px` ,  backgroundColor: Item.bacg == true ? "white" : value == Item.key ? "red" : "", opacity: Item.bacg == true ? "1" : value == Item.key ? "1" : "0.15" }} onClick={() => Cubeclikck(Item.key)} className={classs} >
+            return (<div key={y} style={{ width: `${newwidth}px`, height: `${newwidth}px`, backgroundColor: Item.bacg == true ? "white" : value == Item.key ? "red" : "", opacity: Item.bacg == true ? "1" : value == Item.key ? "1" : "0.15" }} onClick={() => Cubeclikck(Item.key)} className={classs} >
                 {Item.key}
             </div>)
         })
 
 
-      
+
     }
 
-        // !Start && Object.keys(newobj).forEach(x => 
 
-        // (<div>
-        //         ok
-        //     </div>)
 
-        ;
 
 
     return (
@@ -232,9 +219,9 @@ useEffect(() =>{
             {!Start &&
                 <Cuebmaekr>
                     <div className='Mainboxofcube'>
-                    <Sowcube />
+                        <Sowcube />
                     </div>
-                    
+
                 </Cuebmaekr>}
         </>
     )

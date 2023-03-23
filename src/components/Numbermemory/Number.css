@@ -1,0 +1,79 @@
+.Nodisplay{
+    height: 500px;
+    width: 100%;
+    background: rgb(43, 135, 209);
+    position: relative;
+    color: white;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.css-18qa6we  {
+    background: rgba(0, 0, 100, 0.2);
+    border-radius: 3px;
+    text-align: center;
+    font-size: 48px;
+    width: 100%;
+    
+    outline-style: none;
+    box-shadow: none;
+    border-color: transparent;
+    appearance: none;
+}
+
+.progress {
+  background: rgba(255,255,255,0.1);
+  justify-content: flex-start;
+  border-radius: 100px;
+  align-items: center;
+  position: relative;
+  padding: 0 5px;
+  display: flex;
+  height: 20px;
+  width: 200px;
+}
+
+.progress-value {
+  animation: load 1.5s normal forwards;
+  box-shadow: 0 10px 40px -10px #fff;
+  border-radius: 100px;
+  background: #fff;
+  height: 30px;
+  width: 0;
+}
+
+@keyframes load {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+.column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.label {
+    font-size: 50%;
+}
+.css-qm6rs9 {
+    padding: 12px 30px;
+    background: rgb(255, 209, 84);
+    display: inline-block;
+    border: none;
+    border-radius: 3px;
+    transition:  0.1s linear 0s;
+    font-weight: bold;
+   
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    margin: 5px 5px 0px;
+    color: rgb(51, 51, 51) !important;
+    text-decoration: none !important;
+}

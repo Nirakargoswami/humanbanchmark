@@ -2,18 +2,26 @@ import React, { useState, useEffect } from 'react'
 import { Mainwraper } from "../inexpage/index"
 import AppsIcon from '@mui/icons-material/Apps';
 import "./SequenceMemoryTest.css"
+import { Tryagin, Savebutton } from "../Button/Button"
 
+import { Secondscreen } from "../../components/firstscreen/firstScrenn"
 const SequenceMemoryTest = (props) => {
     const [shwonaimation, setShowanimaton] = useState(false)
-    const [start, setStart] = useState(false)
+    const [start, setStart] = useState(true)
     const [Count, setCount] = useState()
     const [Level, setlevel] = useState(1)
     const [countarry, setCountArry] = useState([])
     const [flashcount, Setflashcount] = useState()
     const [check, setCheck] = useState([])
-    const [gameover, setgameove] = useState(false)
     const [doublecheck, setDoubleCheck] = useState([])
-    const Noarry = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    const [leve, setLevel] = useState(3)
+    const [levelcount, setlevelcount] = useState(0)
+    const [mainlevel, setmainlevel] = useState(6)
+    const [mylevel, setmylevel] = useState(3)
+    const [nocube, setnocube] = useState(mylevel * mylevel)
+    const [newwidth, setnewwidth] = useState((310 / 3) - 2)
+    const [showanswer, setshowanswer] = useState(false)
+    const Noarry = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
@@ -40,8 +48,14 @@ const SequenceMemoryTest = (props) => {
     const setmocup = () => {
         console.log("added")
 
-        const Firstcount = randomIntFromInterval(1, 9)
-        countarry.push(Firstcount)
+        const Firstcount = randomIntFromInterval(1, nocube - 1)
+        console.log(countarry)
+        if (Firstcount == countarry[countarry.length - 1]) {
+            setmocup()
+        } else {
+            countarry.push(Firstcount)
+        }
+
 
         setCount(0)
     }
@@ -63,14 +77,19 @@ const SequenceMemoryTest = (props) => {
         }
     }, [Count])
 
-    const Sowcube = () =>
-        Noarry.map((x) => {
+    const Sowcube = () => {
+        const MianArry = [...Array(nocube).keys()]
 
-            return (<div key={x} style={{ backgroundColor: x === flashcount ? "white" : null, opacity: x === flashcount ? 1 : 0.15 }} onClick={() => Cubeclick(x)} className='Cube'>
+        return MianArry.map((x) => {
+            console.log(countarry)
+
+            return (<div key={x} style={{ width: `${newwidth}px`, height: `${newwidth}px`, backgroundColor: x === flashcount ? "white" : null, opacity: x === flashcount ? 1 : 0.15 }} onClick={() => Cubeclick(x)} className='Cube'>
                 {x}
             </div>)
 
         })
+    }
+
 
     // 0.5s linear 0s 1 normal none running animation-1sioss
 
@@ -84,12 +103,12 @@ const SequenceMemoryTest = (props) => {
             Setflashcount(x)
             setTimeout(() => {
                 Setflashcount("")
-            }, 800);
+            }, 500);
 
             doublecheck.push(x)
 
         } else {
-
+            setshowanswer(true)
         }
         if (doublecheck.length === countarry.length) {
             setShowanimaton(true)
@@ -98,26 +117,95 @@ const SequenceMemoryTest = (props) => {
                 setDoubleCheck([])
                 setmocup()
                 setlevel(Level + 1)
+                setlevelcount(levelcount + 1)
             }, 800)
 
 
+            if (levelcount == mainlevel) {
+
+                setTimeout(() => {
+                    Tiemlapse()
+                }, 500)
+
+
+
+            }
 
 
         }
 
 
+
+
     }
-    const classnaem = `Cubename ${shwonaimation && "animate"}`
+
+    const Tryagain = () => {
+
+        setShowanimaton(false)
+        setStart(true)
+        setLevel(1)
+        setCountArry([])
+        Setflashcount()
+        setCheck([])
+        setDoubleCheck([])
+        setLevel(3)
+        setlevelcount(0)
+        setmainlevel(4)
+        setmylevel(3)
+        setnocube(9)
+        setlevel(1)
+        setnewwidth((310 / 3) - 2)
+        setshowanswer(false)
+    }
+
+    const Tiemlapse = () => {
+
+        return (setlevelcount(1),
+            setmylevel(mylevel + 1),
+            console.log(mylevel),
+            setnewwidth((310 / (mylevel + 1)) - 2),
+            setnocube((mylevel + 1) * (mylevel + 1)))
+    }
+    const classnaem = `Cubenames   ${shwonaimation && "animate"}`
 
     return (
         <div>
-            {start &&
+            {start && !showanswer &&
                 <Mainwraper setStart={setStart} Img={<AppsIcon />} linktext={"Start"} Text={"Memorize the pattern"} Header={"Sequence Memory Test"} />
             }
+            {showanswer && <div
+            style={{backgroundColor:"rgb(43, 135, 209)"}}
+            className='Mainbox' >
+                <div className='Secondbox'>
 
-            {!start &&
+                    <AppsIcon className='Icon' />
+                    <div className='textbox'>
+                        <div className='textfirst'>
+                            Reaction Time
+                        </div>
+                        
+                    </div>
+
+                    <div className='textbox '>
+                        <p className='Discription'>
+                            Save your score to see how you compare.
+
+                        </p>
+                        <div className='
+                        Flex'>
+                            
+                            <Tryagin Tryagin={Tryagain} />
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            }
+
+            {!start && !showanswer && 
                 <div className="SeqMain">
-                    <div className={"SeqSec"}>
+                    <div className="SeqSec">
                         <span className='SecLevel'>
                             <span className='TEXt'>Level </span>
                             <span >{Level}</span>
@@ -126,7 +214,7 @@ const SequenceMemoryTest = (props) => {
                             <div className='Cubesec'>
 
                                 {
-                                   props.children 
+                                    Sowcube()
 
                                 }
                             </div>
