@@ -110,7 +110,22 @@ function Login(props) {
   }
  
 
- 
+  // var provider = new firebase.auth.GoogleAuthProvider();
+  // firebase.auth().signInWithPopup(provider)
+  //   .then((result) => {
+  //     // Retrieve the user ID from the User object
+  //     var userId = result.user.uid;
+  
+  //     // Create a node for the user in Firebase Database
+  //     var database = firebase.database();
+  //     var usersRef = database.ref("users");
+  //     var userRef = usersRef.child(userId);
+  //     userRef.child("game1").set(0);
+  //     userRef.child("game2").set(0);
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
 
  
 

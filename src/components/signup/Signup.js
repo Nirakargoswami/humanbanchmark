@@ -24,19 +24,19 @@ function Signup() {
     settoogle(!toogle)
   }
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      // Redirect to Dashboard
-      navigate("/")
-    }
-  });
-  function Namevalidation() {
-    if (name.length < 2 || password.length > 50) {
-      setvalidName(false)
-    } else {
-      setvalidName(true)
-    }
-  }
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     // Redirect to Dashboard
+  //     navigate("/")
+  //   }
+  // });
+  // function Namevalidation() {
+  //   if (name.length < 2 || password.length > 50) {
+  //     setvalidName(false)
+  //   } else {
+  //     setvalidName(true)
+  //   }
+  // }
   function Emailvalidation(email) {
     var filter = /^([a-zA-Z0-9_+\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if (!filter.test(email)) {
@@ -100,11 +100,12 @@ function Signup() {
     return valid
   }
   function handleSignIn() {
+    console.log("workaon")
     setSubmit(true)
-    let valid = validation()
-    if (!valid) {
-      return
-    }
+    // let valid = validation()
+    // if (!valid) {
+    //   return
+    // }
     // var myHeaders = new Headers();
     // myHeaders.append("Content-Type", "application/json");
     // var raw = JSON.stringify({

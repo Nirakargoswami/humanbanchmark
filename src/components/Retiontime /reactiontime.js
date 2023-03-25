@@ -6,7 +6,8 @@ import AppsIcon from '@mui/icons-material/Apps';
 import { Tryagin, Savebutton } from "../Button/Button"
 import AccessAlarmsIcon from '@mui/icons-material/AccessAlarms';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
-
+import { useDispatch } from 'react-redux';
+import {Reactiontimescore} from "../../redux/actions/points"
 const Reactiontime = () => {
     const [start, setStart] = useState(true)
     const [green, setGreen] = useState(false)
@@ -19,6 +20,7 @@ const Reactiontime = () => {
     const [time, setEverytrietime] = useState()
     const [combinetime, setCombinetime] = useState(0)
     const screen = useRef(null)
+    const dispatch = useDispatch()
 
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
@@ -84,7 +86,12 @@ const Reactiontime = () => {
         }
     }
 
+const SavebuttonScore = () => {
+    console.log(combinetime)
+dispatch(Reactiontimescore(combinetime))
 
+
+}
     useEffect(() => {
         if (start && level > 2) {
             setShowscore(true)
@@ -183,7 +190,7 @@ const Reactiontime = () => {
                         </p>
                         <div className='
                         Flex'>
-                            <Savebutton />
+                            <Savebutton Score={SavebuttonScore} />
                             <Tryagin Tryagin={Tryagins} />
                         </div>
 

@@ -11,10 +11,10 @@ export const Custombutton = ({Click,Text,styles}) => {
     )
 }
 
-export const Savebutton = ({Savebutton}) => {
+export const Savebutton = ({Score}) => {
     return (
         
-            <button onClick={Savebutton} className="Savescore" >
+            <button onClick={() => Score()} className="Savescore" >
             Save score
             </button>
        
