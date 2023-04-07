@@ -7,7 +7,7 @@ import { Tryagin, Savebutton } from "../Button/Button"
 import AccessAlarmsIcon from '@mui/icons-material/AccessAlarms';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { useDispatch } from 'react-redux';
-import {Reactiontimescore} from "../../redux/actions/points"
+import {Reactiontimescore} from "../../redux/actions/gamescore"
 const Reactiontime = () => {
     const [start, setStart] = useState(true)
     const [green, setGreen] = useState(false)
@@ -111,7 +111,7 @@ dispatch(Reactiontimescore(combinetime))
     console.log(shwosocre, level, combinetime)
 
     return (
-        <div ref={screen} onClick={() => Clik()} className='display'>
+        <div ref={screen} onClick={() => Clik()} className='display anim-slide-fade-in'>
             {
                 green &&
                 <div style={{ display: "flex", flexDirection: "column", marginTop: "20px" }}>

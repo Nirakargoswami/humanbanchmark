@@ -3,7 +3,8 @@ import { Mainwraper } from "../inexpage/index"
 import AppsIcon from '@mui/icons-material/Apps';
 import "./SequenceMemoryTest.css"
 import { Tryagin, Savebutton } from "../Button/Button"
-
+import { SeauenceScore } from "../../redux/actions/gamescore"
+import { useDispatch } from 'react-redux';
 import { Secondscreen } from "../../components/firstscreen/firstScrenn"
 const SequenceMemoryTest = (props) => {
     const [shwonaimation, setShowanimaton] = useState(false)
@@ -22,7 +23,7 @@ const SequenceMemoryTest = (props) => {
     const [newwidth, setnewwidth] = useState((310 / 3) - 2)
     const [showanswer, setshowanswer] = useState(false)
     const Noarry = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-
+    const dispatch = useDispatch()
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
@@ -158,6 +159,10 @@ const SequenceMemoryTest = (props) => {
         setshowanswer(false)
     }
 
+    const SavebuttonScore = () => {
+        dispatch(SeauenceScore(Level))
+    }
+
     const Tiemlapse = () => {
 
         return (setlevelcount(1),
@@ -174,27 +179,35 @@ const SequenceMemoryTest = (props) => {
                 <Mainwraper setStart={setStart} Img={<AppsIcon />} linktext={"Start"} Text={"Memorize the pattern"} Header={"Sequence Memory Test"} />
             }
             {showanswer && <div
-            style={{backgroundColor:"rgb(43, 135, 209)"}}
-            className='Mainbox' >
+                style={{ backgroundColor: "rgb(43, 135, 209)" }}
+                className='Mainbox' >
                 <div className='Secondbox'>
 
                     <AppsIcon className='Icon' />
                     <div className='textbox'>
+                        <span className='SecLevel'>
+                            <span className='TEXt'>Level </span>
+                            <span style={{fontSize:"27px"}} >{Level}</span>
+                        </span>
                         <div className='textfirst'>
                             Reaction Time
                         </div>
-                        
+
                     </div>
 
                     <div className='textbox '>
+
                         <p className='Discription'>
                             Save your score to see how you compare.
 
                         </p>
+
                         <div className='
                         Flex'>
-                            
+
                             <Tryagin Tryagin={Tryagain} />
+                            <Savebutton Score={SavebuttonScore} />
+
                         </div>
 
                     </div>
@@ -203,7 +216,7 @@ const SequenceMemoryTest = (props) => {
             </div>
             }
 
-            {!start && !showanswer && 
+            {!start && !showanswer &&
                 <div className="SeqMain">
                     <div className="SeqSec">
                         <span className='SecLevel'>

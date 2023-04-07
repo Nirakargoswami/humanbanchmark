@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import {
     GoogleAuthProvider,
@@ -8,6 +9,7 @@ import {
     createUserWithEmailAndPassword,
     sendPasswordResetEmail,
     signOut,
+    onAuthStateChanged
 } from "firebase/auth";
 import {
     getFirestore,
@@ -18,7 +20,8 @@ import {
     addDoc,
     getDoc,
     updateDoc,
-    doc
+    doc,
+    
 } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -50,44 +53,41 @@ const signInWithGoogle = async () => {
     try {
         const res = await signInWithPopup(auth, googleProvider);
         const user = res.user;
-        console.log(user)
         var userId = user.uid;
-       
-        try {
-            const docRef = await addDoc(collection(db, "users"), {
-                id: userId,
-              name: user.displayName,
-              reactiontime: 0,
-              sequencememory:0,
-               verbalmemory:0,
-               visualmemory:0,
-               wordmemory:0,
-            });
+        const q = query(collection(db, "users"), where("id", "==", userId));
+        console.log(q)
 
-        localStorage.setItem("user", JSON.stringify(docRef))
+        const querySnapshot = await getDocs(q);
+        console.log(querySnapshot)
+        if(querySnapshot.size === 0  ){
+            
+                const docRef = await addDoc(collection(db, "users"), {
+                    id: userId,
+                  name: user.displayName,
+                  reactiontime: 0,
+                  numbermemory:0,
+                  sequencememory:0,
+                   verbalmemory:0,
+                   visualmemory:0,
+                   wordmemory:0,
+                });
+    
+            localStorage.setItem("user", JSON.stringify(user))
+    
+                console.log("Document written with ID: ", user);
+                 return {
+                    loged:true
+                 }
+        }else{
+         
+            localStorage.setItem("user", JSON.stringify(user))
+            return {
+                loged:true
+             }
+        }
+      
 
-            console.log("Document written with ID: ", docRef);
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
-
-        // const q = query(collection(db, "users"), where("uid", "==", user.uid));
-        // console.log(q)
-        // const querySnapshot = await getDocs(q);
-        // console.log(querySnapshot)
-        // if (querySnapshot) {
-        //     querySnapshot.forEach((doc) => {
-        //         // doc.data() is never undefined for query doc snapshots
-        //         const data = doc.data()
-        //         const User = {
-        //             id: data.uid,
-
-        //             name: data.name
-        //         }
-        //         localStorage.setItem("user", JSON.stringify(User))
-
-        //     });
-        // }
+     
 
         setTimeout(() => {
             //   window.location.href = "../"
@@ -95,54 +95,45 @@ const signInWithGoogle = async () => {
         }, 2000)
 
     } catch (err) {
-        console.error(err);
-        alert(err.message);
+        return err
     }
 };
+
 
 
 const logInWithEmailAndPassword = async (email, password) => {
+    console.log(email, password);
     try {
-        await signInWithEmailAndPassword(auth, email, password).then(async (result) => {
-            if (result) {
+        const result = await signInWithEmailAndPassword(auth, email, password);
 
-                const q = query(collection(db, "users"), where("uid", "==", result.user.uid));
+        const q = query(collection(db, "users"), where("id", "==", result.user.uid));
+        const querySnapshot = await getDocs(q);
 
-                const querySnapshot = await getDocs(q);
-
-                if (querySnapshot) {
-                    querySnapshot.forEach((doc) => {
-                        // doc.data() is never undefined for query doc snapshots
-                        const data = doc.data()
-                        console.log(doc.id, " => ",);
-                        const User = {
-                            id: data.uid,
-
-                            name: data.name
-                        }
-                        localStorage.setItem("user", JSON.stringify(User))
-
-                    });
+        if (querySnapshot) {
+            querySnapshot.forEach((doc) => {
+                const data = doc.data()
+                console.log(doc.id, " => ",);
+                const User = {
+                    id: data.uid,
+                    name: data.name
                 }
+                localStorage.setItem("user", JSON.stringify(User))
+            });
+        }
 
-                setTimeout(() => {
-                    window.location.href = "../"
+        setTimeout(() => {
+            window.location.href = "/"
+        }, 2000)
 
-                }, 2000)
-
-            } else {
-                // toast.error(result.body, {
-                //   position: "bottom-right",
-                //   autoClose: 5000,
-                // })
-            }
-        })
-            .catch(error => console.log('error', error));
-    } catch (err) {
-        console.error(err);
-        alert(err.message);
+        return {
+            logged: true
+        };
+    } catch (error) {
+        console.log(error);
+        return error;
     }
 };
+
 
 const registerWithEmailAndPassword = async (displayName, email, password) => {
     console.log(displayName)
@@ -155,42 +146,60 @@ const registerWithEmailAndPassword = async (displayName, email, password) => {
             id: res.user.uid,
           name: displayName,
           reactiontime: 0,
+          numbermemory:0,
           sequencememory:0,
            verbalmemory:0,
            visualmemory:0,
            wordmemory:0,
         });
 
-        // setTimeout(() => {
-        //     window.location.href = "../login"
 
-        // }, 1000)
+         
+        setTimeout(() => {
+            window.location.href = "/"
 
+        }, 1000)
+     return res
 
     } catch (err) {
         console.error(err);
-        alert(err.message);
+        return (err);
     }
 };
 
 const Savedata =async (id,updateitem ,score) => {
+   
     const userRef =  query(collection(db, "users"), where("id", "==", id));
     const querySnapshot = await getDocs(userRef);
-console.log(querySnapshot)
 if (querySnapshot.docs.length > 0) {
+
     const userRef = querySnapshot.docs[0].ref;
+    console.log(querySnapshot.docs[0].data())
     const updateObj = {
       [updateitem]: score
     };
     await updateDoc(userRef, updateObj);
+    
     console.log("Document successfully updated!");
   } else {
     console.log("Document not found!");
   }
-   
-   
-   
    }
+
+   const Getallscore = async(id) => {
+    const userRef =  query(collection(db, "users"), where("id", "==", id));
+    const querySnapshot = await getDocs(userRef);
+if (querySnapshot.docs.length > 0) {
+    const Data = querySnapshot.docs[0].data()
+    return Data
+   
+  } else {
+    console.log("Document not found!");
+  }
+   }
+   
+
+
 const sendPasswordReset = async (email) => {
     try {
         await sendPasswordResetEmail(auth, email);
@@ -204,7 +213,17 @@ const Signout = () => {
     console.log("i")
     localStorage.clear();
 
-    signOut(auth);
+    signOut(auth)
+        .then(() => {
+            // Perform some action after sign out
+            console.log("User signed out successfully");
+            // For example, you can navigate to a different page or reload the current page
+            window.location.reload();
+        })
+        .catch((error) => {
+            // Handle errors that occur during sign out
+            console.error(error);
+        });
 };
 export {
     auth,
@@ -214,5 +233,7 @@ export {
     registerWithEmailAndPassword,
     sendPasswordReset,
     Signout,
-    Savedata
+    Savedata,
+    onAuthStateChanged,
+    Getallscore
 };

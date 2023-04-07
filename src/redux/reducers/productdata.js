@@ -3,26 +3,18 @@ import { PRODUCT_DATA,ADD_ITEM,REMOVE_ITEM,
   NUMBER_MEMORY,
   VERBAL_MEMORY,
   VISUAL_MEMORY,
-  REACTION_TIME
+  REACTION_TIME,
+  SCORE_DATA
 } from "../actions/types";
 import {Savedata} from "../../Firebse/firebse"
 import { Co2Sharp } from "@mui/icons-material";
 
 
-function createData(name, calories, fat, carbs, protein) {
-  
-  return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-  };
-}
+
 const initialState = {
   dashboad : {
-    ractiontime :"",
-    sequence:"",
+    reactiontime :"",
+    sequencememory:"",
     numbermemory:"",
     visualmemory:"",
     verbalmemory:"",
@@ -45,7 +37,7 @@ export default function (state = initialState, action){
 
             return {
               ...state,
-              sequence: payload,
+              sequencememory: payload,
               
             };
             case NUMBER_MEMORY:
@@ -56,7 +48,13 @@ export default function (state = initialState, action){
               ...state,
               numbermemory: payload,
               
-            };
+            };  
+             case SCORE_DATA:            
+          return {
+            ...state,
+             ...payload,
+            
+          };
             case VERBAL_MEMORY:
               
               Savedata(userid.uid,"verbalmemory",payload)
@@ -79,7 +77,7 @@ export default function (state = initialState, action){
 
             return {
               ...state,
-              ractiontime: payload,
+              reactiontime: payload+"ml",
               
             };
 

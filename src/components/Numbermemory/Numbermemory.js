@@ -3,16 +3,20 @@ import { useEffect, useState } from "react";
 import AppsIcon from '@mui/icons-material/Apps';
 import { Mainwraper } from "../inexpage/index"
 import { useRef } from 'react';
+import {Savebutton} from "../Button/Button"
+import { useDispatch } from "react-redux";
+import {Numbermemoryscore} from "../../redux/actions/gamescore"
 import "./Number.css"
 const Numbermemory = () => {
     const [start, setStart] = useState(true)
-    const [value, setVAlue] = useState()
+    const [value, setVAlue] = useState("")
     const [level, setLevel] = useState(1)
     const [no, setNo] = useState()
     const [Noshow, setNoshow] = useState()
     const[showanswer, setshowanswer] = useState(false)
     const inputRef = useRef(null);
     const [eroro,seteroro] = useState("")
+    const dispatch = useDispatch()
     const Checkvalue = () => {
  if (value == ""){
     seteroro(true)
@@ -74,7 +78,9 @@ const Numbermemory = () => {
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
-
+const SavebuttonScore = () => {
+    dispatch(Numbermemoryscore(level - 1))
+}
 const Tryagain = () =>{
     
 
@@ -85,9 +91,8 @@ const Tryagain = () =>{
     setNoshow()
     setshowanswer(false)
 }
-
     return (
-        <div className="Nodisplay">
+        <div className="Nodisplay anim-slide-fade-in">
             {start &&
                 <Mainwraper setStart={setStart} Img={<AppsIcon />} linktext={"Start"} Text={"The average person can remember 7 numbers at once. Can you do more?"} Header={"Number Memory"} />
             }
@@ -116,11 +121,13 @@ const Tryagain = () =>{
                     </div>
                     <div>
                         <div style={{fontSize:"40px"}} >Your answer</div>
-                        <div style={{fontSize:"40px"}}>{value}</div>
+                        <div >
+                            <p style={{ textDecoration: 'line-through' ,fontSize:"40px" ,color: 'black'}}>{value}</p>
+                        </div>
 
                     </div>
                     <div>
-                    <span style={{fontSize:"40px"}}>Level {level}</span>
+                    <span style={{fontSize:"40px"}}>Level {level }</span>
 
                     </div>
                     <div>
@@ -130,6 +137,8 @@ const Tryagain = () =>{
                     <div>
 
                     <button onClick={() => Tryagain()} class="css-qm6rs9 ">Try again </button>
+                    <Savebutton Score={SavebuttonScore} />
+
                     </div>
 
                 </div>

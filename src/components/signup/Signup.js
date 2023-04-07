@@ -114,7 +114,13 @@ function Signup() {
     //   "password": password,
     //   "referal_code": localStorage.getItem('referrar')
     // });
-     registerWithEmailAndPassword(name,email,password)
+     registerWithEmailAndPassword(name,email,password).then((x) => {
+      if(x.message){
+        console.log(x.message)
+      }else{
+        alert()
+      }
+     })
     // fetch(API_URL + "/register", {
     //   method: 'POST',
     //   headers: myHeaders,
@@ -154,18 +160,15 @@ function Signup() {
   return (
     <>
       <div className="relative flex flex-col  min-h-screen overflow-hidden main_div">
-        <div className='navbars'>
-
-        </div>
+      
         
         <div className='login_div'>
           
           <div className='loginbox'>
 
             <div className="w-full p-4 m-auto bg-white rounded-md shadow-md lg:max-w-xl main_div2 shadow-sm">
-              <h1 className="Logintext">
-                <span className='clor1'> WORDY</span> Signup
-
+            <h1 style={{color:"rgb(43, 135, 209)"}} className="Logintext">
+                <span style={{color:"white",marginRight:"5px"}} > Brain Banchmark</span >Signup
               </h1>
               <form className="mt-4">
                 {/* <div className="mb-2">
@@ -201,6 +204,7 @@ function Signup() {
                     onChange={e => { setName(e.target.value) }}
                     type="text"
                     className="Emailinput"
+                    style={{color:"white"}}
                   />
                  
                 </div>
@@ -214,7 +218,7 @@ function Signup() {
                   <input
                     value={email}
                     defaultValue={email}
-
+                    style={{color:"white"}}
                     onChange={e => { setEmail(e.target.value); Emailvalidation(e.target.value) }}
                     type="email"
                     className="Emailinput"
@@ -233,6 +237,7 @@ function Signup() {
                     Password
                   </label>
                   <input
+                  style={{color:"white"}}
                     value={password}
                     onChange={e => { setpassword(e.target.value); Passwordvalidation(e.target.value) }}
                     type="password"
@@ -264,11 +269,7 @@ function Signup() {
                     </label> : ""
                   }
                 </div> */}
-                <a
-                  className="text-xs hover:underline"
-                >
-                  Forget Password?
-                </a>
+               
 
 
                 <div className='xvxpe5'>
@@ -304,9 +305,10 @@ function Signup() {
                 {" "}
                 have an account?{" "}
                 <button className="Loginbutton" style={{ color: "white" }}>
-                  <a href="../login">
+                 
+                  <Link to={"/login"}>
                     Login
-                  </a>
+                  </Link>
                 </button>
               </p>
             </div>

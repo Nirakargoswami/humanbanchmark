@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import "./visualmemory.css"
 import AppsIcon from '@mui/icons-material/Apps';
+import { Tryagin, Savebutton } from "../Button/Button"
 
 import SequenceMemoryTest from '../SequenceMemoryTest/SequenceMemoryTest'
 import Cuebmaekr from "../Cubecomponent/Cubecomponent"
 import { Mainwraper } from "../../components/inexpage/index"
 import { StartOutlined } from '@mui/icons-material';
 const Visualmemory = () => {
-    const [flashcount, setFlashcount] = useState()
-    const [mianarry, setMainarry] = useState([])
     const [Start, setStart] = useState(true)
-
     const [levelArry, setLevelArry] = useState([])
     const [ans, setAns] = useState([])
     const [newobj, setNewobj] = useState({})
@@ -21,7 +19,7 @@ const Visualmemory = () => {
     const [Stagecount, setStagecount] = useState(0)
     const [mainlevel, setmainlevel] = useState(3)
     const [leve, setLevel] = useState(3)
-    
+    const [gameover,setGameover] = useState(false)
     const [nocube, setnocube] = useState(leve * leve)
     const [newwidth, setnewwidth] = useState((310 / 3) - 2)
 
@@ -147,19 +145,10 @@ const Visualmemory = () => {
                 }, 1000)
             }
         } else {
-
-            setValue(x)
-            setTimeout(() => {
-                setValue()
-                setFlashcount()
-                setMainarry([])
-                setLevelArry()
-                setAns([])
-                setCount(0)
-                setGAmestart(false)
-                setchance(chnce - 1)
-                Nomaker(nocube)
-            }, 500)
+            
+            
+           setGameover(true)
+         
 
         }
 
@@ -206,23 +195,76 @@ const Visualmemory = () => {
 
     }
 
+const Tryagain = () => {
+    setGameover(false)
+    setLevelArry([])
+    setAns([])
+    setNewobj({})
+    setchance(3)
+    setValue()
+    setCount(1)
+    setStagecount(0)
+    setmainlevel(3)
+    setLevel(3)
+    setnocube(3 * 3)
+    setnewwidth((310 / 3) - 2)
+}
 
+const  SavebuttonScore =() => {
 
+}
 
 
     return (
         <>
 
-            {Start &&
+            {Start && !gameover && 
                 <Mainwraper setStart={setStart} Img={<AppsIcon />} linktext={"Start"} Text={"Memorize the pattern"} Header={"Visual  Memory Test"} />
             }
-            {!Start &&
+            {!Start && !gameover &&
                 <Cuebmaekr>
                     <div className='Mainboxofcube'>
                         <Sowcube />
                     </div>
 
                 </Cuebmaekr>}
+                { gameover  &&  <div
+                style={{ backgroundColor: "rgb(43, 135, 209)" }}
+                className='Mainbox' >
+                <div className='Secondbox'>
+
+                    <AppsIcon className='Icon' />
+                    <div className='textbox'>
+                        <span className='SecLevel'>
+                            <span className='TEXt'>Level </span>
+                            <span style={{fontSize:"27px"}} >{leve}</span>
+                        </span>
+                        <div className='textfirst'>
+                            Reaction Time
+                        </div>
+
+                    </div>
+
+                    <div className='textbox '>
+
+                        <p className='Discription'>
+                            Save your score to see how you compare.
+
+                        </p>
+
+                        <div className='
+                        Flex'>
+
+                            <Tryagin Tryagin={Tryagain} />
+                            <Savebutton Score={SavebuttonScore} />
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            }
         </>
     )
 }

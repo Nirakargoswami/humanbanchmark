@@ -4,7 +4,7 @@
     color: white;
   }
   .main_div2{
-    background-color:  #363d47!important;
+    background-color: #007bff!important;
     color: white;
   }
   .login_button{
@@ -32,7 +32,7 @@
     color:white
   }
   .main_div{
-    background-color:  #363d47 !important;
+    background-color:  rgb(43, 135, 209) !important;
     color: white;
     display: flex;
     
@@ -108,9 +108,9 @@
   
   .loginbox{
     display: flex;
-  
-    flex-direction: column;
+  background-color: rgb(43, 135, 209) !important;
     justify-content: center;
+    margin-top: 50px;
     align-items: center;
     width: 504px;
   }

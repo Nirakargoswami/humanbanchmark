@@ -1,5 +1,5 @@
 .main_div{
-  background-color:  #363d47!important;
+  background-color:  rgb(43, 135, 209)!important;
   color: white;
   display: flex;
   
@@ -14,7 +14,7 @@
   
 }
 .login_button:hover{
-  background-color:#787A94;
+  background-color:rgb(43, 135, 209) !important;
   transition: 0.7s;
  
     border: 1px solid transparent;
@@ -316,7 +316,7 @@ width: 100%;
   align-items: center;
   padding-left: 16px;
   padding-right: 18px;
-  background-color: #363d47 !important;
+  background-color: rgb(43, 135, 209) !important;
   height: 64px;
 }
 

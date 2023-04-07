@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from "react-router-dom"
 import './login.css'
+import {Scoredata} from "../../redux/actions/gamescore"
 
-import { signInWithGoogle, logInWithEmailAndPassword ,auth} from "../../Firebse/firebse"
+import { signInWithGoogle, logInWithEmailAndPassword, auth } from "../../Firebse/firebse"
+import {Getallscore} from "../../Firebse/firebse"
+import {  useDispatch } from "react-redux";
 
 
 function Login(props) {
@@ -12,20 +15,21 @@ function Login(props) {
   const [password, setpassword] = useState("");
   const [validEmail, setvalidEmail] = useState(true)
   const [validPassword, setvalidPassword] = useState(true)
-
+ const [usercreated,setusercreated] = useState(false)
   const isAuthenticated = auth
+  const dipatch= useDispatch()
 
-//   useEffect(() => {
-//     auth.onAuthStateChanged(user => {
-//  if(user){
-//   window.location.href = "../"
-//  }
-//     })
-//   },[isAuthenticated])
-  
-  
+  //   useEffect(() => {
+  //     auth.onAuthStateChanged(user => {
+  //  if(user){
+  //   window.location.href = "../"
+  //  }
+  //     })
+  //   },[isAuthenticated])
 
-  
+
+
+
 
   function Emailvalidation() {
     var filter = /^([a-zA-Z0-9_+\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -64,70 +68,49 @@ function Login(props) {
   }
 
 
-  function handleLogin() {
-    let valid = validation()
-    if (!valid) {
-      return
+  async function  handleLogin () {
+   
+   const  x =  await logInWithEmailAndPassword(email, password)
+   .then((x) => {
+    if(x.logged){
+      setusercreated("Loged in successfully")
+    }else{
+      setusercreated(x.message)
+
     }
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    var raw = JSON.stringify({
-      "email": email,
-      "password": password
-    });
-    logInWithEmailAndPassword(email, password)
-    // fetch(API_URL + "/login", {
-    //   method: 'POST',
-    //   headers: myHeaders,
-    //   body: raw,
-    //   redirect: 'follow'
-    // })
-    //   .then(response => response.json())
-    //   .then(result => {
-    //     if (result.statusCode === "200") {
-
-    //       signIn({
-    //         token: result.body.accessToken,
-    //         tokenType: "Bearer",
-    //         expiresIn: 3600,
-    //         authState: { user: result.body.user }
-    //       })
-    //       localStorage.setItem("id", result.body.user.id)
-    //       localStorage.setItem("referrals", result.body.user.referrals)
-    //       //navigate("/")
-    //       window.location.href = "../"
-
-    //     } else {
-    //       toast.error(result.body, {
-    //         position: "bottom-right",
-    //         autoClose: 5000,
-    //       })
-    //     }
-    //   })
-    //   .catch(error => console.log('error', error));
+    setTimeout(() => {
+setusercreated(false)
+    },2000)
+   })
 
   }
- 
-
-  // var provider = new firebase.auth.GoogleAuthProvider();
-  // firebase.auth().signInWithPopup(provider)
-  //   .then((result) => {
-  //     // Retrieve the user ID from the User object
-  //     var userId = result.user.uid;
   
-  //     // Create a node for the user in Firebase Database
-  //     var database = firebase.database();
-  //     var usersRef = database.ref("users");
-  //     var userRef = usersRef.child(userId);
-  //     userRef.child("game1").set(0);
-  //     userRef.child("game2").set(0);
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //   });
+  const getdata = async() => {
+    const userid = JSON.parse(localStorage.getItem("user"))
 
- 
+    const data =  Getallscore(userid.uid)
+    data.then((responce) => {
+      console.log(responce)
+      dipatch(Scoredata(responce))
+
+    }).catch(() => {
+
+    })
+    if(data){
+    }
+  }
+
+  const Goolelogin = () => {
+    signInWithGoogle().then((x) => {
+      console.log(x)
+        if(x.loged){
+          getdata()
+        }else{
+          console.log(x.message)
+        }
+    })
+
+  }
 
 
   const Setemial = (e) => {
@@ -137,18 +120,24 @@ function Login(props) {
   return (
     <>
 
-      <div className='navbars'>
 
-      </div>
       <div className="relative flex flex-col  min-h-screen overflow-hidden main_div">
 
         <div className='login_div'>
 
           <div className='loginbox'>
+         
+          {usercreated ?
+              <h1 style={{ color: "rgb(43, 135, 209)" }} className="Logintext">
+                <span style={{ color: "white" }} ></span>
+              </h1>
+              :
 
+              null
+            }
             <div className="w-full padding m-auto bg-white rounded-md shadow-md lg:max-w-xl main_div2 shadow-sm login_card">
-              <h1 className="Logintext">
-                <span className='clor1'> WORDX</span> Login
+              <h1 style={{ color: "rgb(43, 135, 209)" }} className="Logintext">
+                <span style={{ color: "white" }} > Brain Banchmark</span> Login
               </h1>
               <form className="mt-6">
                 <div className="mb-2">
@@ -223,9 +212,14 @@ function Login(props) {
 
                   </div>
                   <div className='social_logins'>
-                    <div onClick={signInWithGoogle}>
-                      Login with goole
-                    </div>
+                    <button
+                      type='button'
+                      className="Loginbutton">
+                      <div onClick={() => Goolelogin()}>
+                        Login with goole
+                      </div>
+                    </button>
+
 
                     {/* <GoogleLogin
                    
@@ -245,16 +239,16 @@ function Login(props) {
               <p className="mt-8 text-xs font-light text-center" style={{ color: "white" }}>
                 {" "}
                 Don't have an account?{" "}
-                <button className="font-medium hover:underline" style={{ color: "white" }}>
-                  <a href="../signup">
-                    Sign Up
-                  </a>
-                </button>
+                <Link
+                  to="/signup"
+                  className="text-xs hover:underline"
+                >                    Sign Up
+                </Link>
               </p>
             </div>
 
           </div>
-         
+
         </div>
         {/* <div className='login_second_banner_ad'>
             <ins data-revive-zoneid="2" data-revive-id="00885bcd5807a6fdf17d7982d17956a2"></ins> 

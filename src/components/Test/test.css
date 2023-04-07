@@ -1,22 +1,23 @@
 .RoteCon{
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-width: 100%;
-margin-bottom: 20px;
-padding: 10px;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* flex-direction: column; */
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    flex-wrap: wrap;
 }
 
 .css-uaat4j {
+   
     margin-bottom: 20px;
-
+    margin-right: 0px;
     display: block;
-    -webkit-box-shadow: 2px 13px 15px -13px rgba(0,0,0,0.75);
--moz-box-shadow: 2px 13px 15px -13px rgba(0,0,0,0.75);
-box-shadow: 2px 13px 15px -13px rgba(0,0,0,0.75);
-    width: 100%;
-    flex: 1 1 0%;
+    box-shadow: 2px 13px 15px -13px rgba(0,0,0,0.75);
+    width: 327px;
+    /* flex: 1 1; */
     line-height: 1;
     background: white;
     padding: 20px 0px;
@@ -26,4 +27,14 @@ box-shadow: 2px 13px 15px -13px rgba(0,0,0,0.75);
 }
 .css-1ur49oz > * {
     margin-bottom: 20px;
+}
+@media (width:700) {
+    .RoteCon{
+        flex-direction: row;
+    }
+    .css-uaat4j{
+        margin-right: 0px;
+
+    }
+    
 }

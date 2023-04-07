@@ -5,7 +5,7 @@ import "./idnex.css"
 export  const Mainwraper = ({Header,Text,linktext,Img,link,setStart}) => {
     return (
       
-                <div className="thirdwraper">
+                <div className="thirdwraper anim-slide-fade-in">
                     <div className="Logo">
                         {Img}
                     </div>
@@ -14,9 +14,10 @@ export  const Mainwraper = ({Header,Text,linktext,Img,link,setStart}) => {
                         <h2>{Text}</h2>
                     </div>
                     <div className="Button">
-                      <a onClick={() => setStart(false)} className="Link" >
+
+                    { linktext &&  <a onClick={() => setStart(false)} className="Link" >
                              {linktext}
-                      </a>
+                      </a>}
                     </div>
                 </div>
          
