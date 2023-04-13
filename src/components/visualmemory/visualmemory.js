@@ -19,7 +19,7 @@ const Visualmemory = () => {
     const [Stagecount, setStagecount] = useState(0)
     const [mainlevel, setmainlevel] = useState(3)
     const [leve, setLevel] = useState(3)
-    const [gameover,setGameover] = useState(false)
+    const [gameover, setGameover] = useState(false)
     const [nocube, setnocube] = useState(leve * leve)
     const [newwidth, setnewwidth] = useState((310 / 3) - 2)
 
@@ -145,10 +145,10 @@ const Visualmemory = () => {
                 }, 1000)
             }
         } else {
-            
-            
-           setGameover(true)
-         
+
+
+            setGameover(true)
+
 
         }
 
@@ -181,10 +181,10 @@ const Visualmemory = () => {
     const Sowcube = () => {
         console.log('mmm')
 
-
+        console.log(levelArry)
         return Object.keys(levelArry).map((x, y) => {
             const Item = levelArry[`${x}`]
-
+            console.log(levelArry[`${x}`])
             const classs = ` Cube ${!gamestart && Item.animate && "Animate"}`
             return (<div key={y} style={{ width: `${newwidth}px`, height: `${newwidth}px`, backgroundColor: Item.bacg == true ? "white" : value == Item.key ? "red" : "", opacity: Item.bacg == true ? "1" : value == Item.key ? "1" : "0.15" }} onClick={() => Cubeclikck(Item.key)} className={classs} >
                 {Item.key}
@@ -195,40 +195,47 @@ const Visualmemory = () => {
 
     }
 
-const Tryagain = () => {
-    setGameover(false)
-    setLevelArry([])
-    setAns([])
-    setNewobj({})
-    setchance(3)
-    setValue()
-    setCount(1)
-    setStagecount(0)
-    setmainlevel(3)
-    setLevel(3)
-    setnocube(3 * 3)
-    setnewwidth((310 / 3) - 2)
-}
+    const Tryagain = () => {
+        setStart(true)
+        setGameover(false)
+        setLevelArry([])
+        setGAmestart(false)
+        setAns([])
+        setNewobj({})
+        setchance(3)
+        setValue()
+        setCount(1)
+        setStagecount(0)
+        setmainlevel(3)
+        setLevel(3)
+        setnocube(3 * 3)
+        setnewwidth((310 / 3) - 2)
+    }
 
-const  SavebuttonScore =() => {
+    useEffect(() => {
+        if (!Start) {
+            Nomaker(9)
+        }
+    }, [Start])
+    const SavebuttonScore = () => {
 
-}
+    }
 
 
     return (
         <>
 
-            {Start && !gameover && 
+            {Start && !gameover &&
                 <Mainwraper setStart={setStart} Img={<AppsIcon />} linktext={"Start"} Text={"Memorize the pattern"} Header={"Visual  Memory Test"} />
             }
             {!Start && !gameover &&
                 <Cuebmaekr>
                     <div className='Mainboxofcube'>
-                        <Sowcube />
+                        {Sowcube()}
                     </div>
 
                 </Cuebmaekr>}
-                { gameover  &&  <div
+            {gameover && <div
                 style={{ backgroundColor: "rgb(43, 135, 209)" }}
                 className='Mainbox' >
                 <div className='Secondbox'>
@@ -237,7 +244,7 @@ const  SavebuttonScore =() => {
                     <div className='textbox'>
                         <span className='SecLevel'>
                             <span className='TEXt'>Level </span>
-                            <span style={{fontSize:"27px"}} >{leve}</span>
+                            <span style={{ fontSize: "27px" }} >{leve}</span>
                         </span>
                         <div className='textfirst'>
                             Reaction Time
@@ -265,6 +272,16 @@ const  SavebuttonScore =() => {
 
             </div>
             }
+            <div>
+                <div className='Abouttest'>
+                    <h1 style={{ textAlign: "start" }}>About the test</h1>
+                    <p style={{ textAlign: "start" }}>Every level, a number of tiles will flash white. Memorize them, and pick them again after the tiles are reset!</p>
+                    <p style={{ textAlign: "start" }}>Levels get progressively more difficult, to challenge your skills.</p>
+                    <p style={{ textAlign: "start" }}>If you miss 3 tiles on a level, you lose one life.</p>
+                    <p style={{ textAlign: "start" }}>You have three lives.</p>
+                    <p style={{ textAlign: "start" }}>Make it as far as you can!</p>
+                </div>
+            </div>
         </>
     )
 }

@@ -10,7 +10,11 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Key } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import GridOnIcon from '@mui/icons-material/GridOn';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
+import { fabClasses } from "@mui/material";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+
 function createData(name, calories, fat, carbs, protein) {
     return { name, calories, fat, carbs, protein };
 }
@@ -30,7 +34,7 @@ const makearoute = (key) => {
             return (
                 <div>
                     <Link to="/number-memory">
-                        <div><PlayCircleFilledWhiteIcon/> Play</div>
+                        <div><PlayCircleFilledWhiteIcon /> Play</div>
                     </Link>
                     <Link to="">
                         <div></div>
@@ -39,23 +43,23 @@ const makearoute = (key) => {
             )
         case "reactiontime":
             return (
-                <div>
+                <div style={{display:"flex"}}>
                     <Link to="/reactiontime">
-                    <div><PlayCircleFilledWhiteIcon/> Play</div>
+                        <div style={{marginRight:"10px"}}><PlayCircleFilledWhiteIcon /> Play</div>
                     </Link>
                     <Link to="">
-                        <div></div>
+                        <div><AccessTimeIcon/></div>
                     </Link>
                 </div>
             )
         case "sequencememory":
             return (
-                <div>
+                <div style={{display:"flex"}}>
                     <Link to="/sequence">
-                    <div><PlayCircleFilledWhiteIcon/> Play</div>
+                        <div><PlayCircleFilledWhiteIcon /> Play</div>
                     </Link>
                     <Link to="">
-                        <div></div>
+                        <div><GridOnIcon/></div>
                     </Link>
                 </div>
             )
@@ -65,7 +69,7 @@ const makearoute = (key) => {
             return (
                 <div>
                     <Link to="/verbal-memory">
-                    <div><PlayCircleFilledWhiteIcon/> Play</div>
+                        <div><PlayCircleFilledWhiteIcon /> Play</div>
                     </Link>
                     <Link to="">
                         <div></div>
@@ -77,7 +81,7 @@ const makearoute = (key) => {
             return (
                 <div>
                     <Link to="/memory">
-                    <div><PlayCircleFilledWhiteIcon/> Play</div>
+                        <div><PlayCircleFilledWhiteIcon /> Play</div>
                     </Link>
                     <Link to="">
                         <div></div>
@@ -88,7 +92,7 @@ const makearoute = (key) => {
             return (
                 <div>
                     <Link to="">
-                    <div><PlayCircleFilledWhiteIcon/> Play</div>
+                        <div><PlayCircleFilledWhiteIcon /> Play</div>
                     </Link>
                     <Link to="">
                         <div></div>
@@ -103,11 +107,19 @@ const Dashborad = () => {
     const State = useSelector(state => state)
     const [id, setid] = useState("")
     const [data, setdata] = useState([])
-    const[info,setifo] = useState({})
-
+    const [info, setifo] = useState({})
+    const [user, setUser] = useState(false)
     useEffect(() => {
         const data = []
+        const userid = JSON.parse(localStorage.getItem("user"));
 
+        if (userid) {
+            setUser(true)
+
+        } else {
+            setUser(false)
+
+        }
         Object.keys(State.productdata).forEach(key => {
             if (key !== "name" && key !== "id") {
                 const newObj = {};
@@ -119,10 +131,10 @@ const Dashborad = () => {
 
                 newObj.score = State.productdata[key];
                 data.push(newObj);
-            }else{
+            } else {
                 setifo({
-                    name:State.productdata["name"].toUpperCase(),
-                    id:State.productdata["id"]
+                    name: State.productdata["name"].toUpperCase(),
+                    id: State.productdata["id"]
                 })
             }
 
@@ -134,43 +146,51 @@ const Dashborad = () => {
 
     console.log(data)
     return (
-        <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",marginTop:"50px",marginBottom:"50px"}}>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "50px", marginBottom: "50px" }}>
+            <div style={{ color: "black", marginTop: "50px", fontSize: "30px", fontWeight: "bold", color: "#007bff" }}>
 
-            <div style={{color:"black",marginTop:"50px",fontSize:"30px",fontWeight:"bold",color:"#007bff"}}>
-                 { info.name}
+            </div>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+                <span style={{ color: "black", fontSize: "20px", fontWeight: "bold", textAlign: "start" }}>User Name</span>
+
+                <div style={{ color: "black", marginTop: "10px", fontSize: "30px", fontWeight: "bold", color: "#007bff" }}>
+                    {info.name}
+                </div>
+                {!user && <div style={{color:"black"}} class="link"><Link to={"/login"}>Log in</Link> or <Link to={"/signup"}>sign up</Link> to save your results</div>
+                }
             </div>
 
-                <Table sx={{ maxWidth: 500 }} size="larg" aria-label="a dense table">
-                    <TableHead>
-                        <TableRow>
+            <Table sx={{ maxWidth: 500 }} size="larg" aria-label="a dense table">
+                <TableHead>
+                    <TableRow>
                         <TableCell align="left">Test</TableCell>
 
-                            <TableCell align="left">Score</TableCell>
+                        <TableCell align="left">Score</TableCell>
 
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {data.map((row, y) => {
-                            return (<TableRow
-                                key={y}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {data.map((row, y) => {
+                        return (<TableRow
+                            key={y}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
 
-                                <TableCell align="left">{row.name} {row.Action}</TableCell>
+                            <TableCell align="left">{row.name} {row.Action}</TableCell>
 
-                                <TableCell style={{fontSize:"36px",fontWeight:"bold"}} align="left">{row.score || row.score === 0 ? row.score  : "?" }</TableCell>
-
-
-
-
-                            </TableRow>)
-                        }
+                            <TableCell style={{ fontSize: "36px", fontWeight: "bold" }} align="left">{row.score || row.score === 0 ? row.score : "?"}</TableCell>
 
 
 
-                        )}
-                    </TableBody>
-                </Table>
+
+                        </TableRow>)
+                    }
+
+
+
+                    )}
+                </TableBody>
+            </Table>
         </div>
 
     )

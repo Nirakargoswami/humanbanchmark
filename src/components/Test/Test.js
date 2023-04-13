@@ -1,22 +1,26 @@
 import React from "react"
 import "./test.css"
 import AcUnitIcon from '@mui/icons-material/AcUnit';
-import {Link} from "react-router-dom"
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import GridOnIcon from '@mui/icons-material/GridOn';
+import PinIcon from '@mui/icons-material/Pin';
 
+import {Link} from "react-router-dom"
+import Filter3Icon from '@mui/icons-material/Filter3';
 
 const Data = [
     {
         testname: "Reaction Time",
         testdes: "Test your visual reflexes.",
         link: "reactiontime",
-        svg: <AcUnitIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
+        svg: <AccessTimeIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
 
     },
     {
         testname: "Sequence Memory",
         testdes: "Remember an increasingly long pattern of button presses.",
         link: "sequence",
-        svg: <AcUnitIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
+        svg: <GridOnIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
 
 
     },
@@ -24,7 +28,7 @@ const Data = [
         testname: "Number Memory",
         testdes: "Remember the longest number you can.",
         link: "number-memory",
-        svg: <AcUnitIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
+        svg: <PinIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
 
     },
     {

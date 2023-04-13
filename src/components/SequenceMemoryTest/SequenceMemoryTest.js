@@ -5,6 +5,8 @@ import "./SequenceMemoryTest.css"
 import { Tryagin, Savebutton } from "../Button/Button"
 import { SeauenceScore } from "../../redux/actions/gamescore"
 import { useDispatch } from 'react-redux';
+import GridOnIcon from '@mui/icons-material/GridOn';
+
 import { Secondscreen } from "../../components/firstscreen/firstScrenn"
 const SequenceMemoryTest = (props) => {
     const [shwonaimation, setShowanimaton] = useState(false)
@@ -176,7 +178,7 @@ const SequenceMemoryTest = (props) => {
     return (
         <div>
             {start && !showanswer &&
-                <Mainwraper setStart={setStart} Img={<AppsIcon />} linktext={"Start"} Text={"Memorize the pattern"} Header={"Sequence Memory Test"} />
+                <Mainwraper setStart={setStart} Img={<GridOnIcon />} linktext={"Start"} Text={"Memorize the pattern"} Header={"Sequence Memory Test"} />
             }
             {showanswer && <div
                 style={{ backgroundColor: "rgb(43, 135, 209)" }}
@@ -187,7 +189,7 @@ const SequenceMemoryTest = (props) => {
                     <div className='textbox'>
                         <span className='SecLevel'>
                             <span className='TEXt'>Level </span>
-                            <span style={{fontSize:"27px"}} >{Level}</span>
+                            <span style={{ fontSize: "27px" }} >{Level}</span>
                         </span>
                         <div className='textfirst'>
                             Reaction Time
@@ -234,6 +236,12 @@ const SequenceMemoryTest = (props) => {
                         </div>
                     </div>
                 </div>}
+            <div  className='Abouttest'>
+                <h1 style={{ textAlign: "start" }}>About the test</h1>
+                <p style={{ textAlign: "start" }}>Memorize the sequence of buttons that light up, then press them in order.</p>
+                <p style={{ textAlign: "start" }}>Every time you finish the pattern, it gets longer.</p>
+                <p style={{ textAlign: "start" }}>Make a mistake, and the test is over.</p>
+            </div>
         </div>
 
     )

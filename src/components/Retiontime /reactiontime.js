@@ -7,7 +7,11 @@ import { Tryagin, Savebutton } from "../Button/Button"
 import AccessAlarmsIcon from '@mui/icons-material/AccessAlarms';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { useDispatch } from 'react-redux';
-import {Reactiontimescore} from "../../redux/actions/gamescore"
+import { Reactiontimescore } from "../../redux/actions/gamescore"
+import {Link} from "react-router-dom"
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
+const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400},{name: 'Page b', uv: 300, pv: 2400, amt: 2400},{name: 'Page c', uv: 400, pv: 2400, amt: 2400}];
 const Reactiontime = () => {
     const [start, setStart] = useState(true)
     const [green, setGreen] = useState(false)
@@ -86,12 +90,12 @@ const Reactiontime = () => {
         }
     }
 
-const SavebuttonScore = () => {
-    console.log(combinetime)
-dispatch(Reactiontimescore(combinetime))
+    const SavebuttonScore = () => {
+        console.log(combinetime)
+        dispatch(Reactiontimescore(combinetime))
 
 
-}
+    }
     useEffect(() => {
         if (start && level > 2) {
             setShowscore(true)
@@ -111,102 +115,127 @@ dispatch(Reactiontimescore(combinetime))
     console.log(shwosocre, level, combinetime)
 
     return (
-        <div ref={screen} onClick={() => Clik()} className='display anim-slide-fade-in'>
-            {
-                green &&
-                <div style={{ display: "flex", flexDirection: "column", marginTop: "20px" }}>
-                    <h1 className='Time'>
-                        Click as fast as you can
-                    </h1>
-
-                    <h2>CLick too contiue </h2>
-                </div>
-            }
-            {
-                clickfast &&
-                <div style={{ display: "flex", flexDirection: "column", marginTop: "20px" }}>
-                    <h1 className='Time'>
-                        Click Too soon
-                    </h1>
-
-                    <h3>Click too keep going </h3>
-                </div>
-            }
-            {
-                start && !clickfast && !time &&
-                <div style={{ display: "flex", flexDirection: "column", marginTop: "20px", padding: "10px" }}>
-                    <div className="Logo">
-                        <AcUnitIcon style={{ fontSize: "60px" }} />
-                    </div>
-                    <div style={{ opacity: 1, transition: "all 1s linear 0s", }} ><h1 style={{ fontSize: "6vh" }}>Reaction Time Test</h1></div>
-                    <h2 style={{ fontSize: "4vh" }}>When the red box turns green, click as quickly as you can.</h2>
-                    <h2 style={{ fontSize: "4vh" }} >
-                        Click Any where To start
-
-                    </h2>
-
-                </div>
-            }
-
-            {red &&
-
-                <div style={{ display: "flex", flexDirection: "column", marginTop: "20px" }}>
-                    <h1 className='Time'>
-                        Wait for green
-                    </h1>
-
-
-                </div>
-            }
-
-            {time && <div style={{ marginTop: "20px" }}>
-                <AccessAlarmsIcon className='Icon' />
-                <h1 className='Time' >
-                    {time}
-
-                </h1>
-
-                <h2>Click too keep going  </h2>
-            </div>
-            }
-
-            {shwosocre && <div className='Mainbox' >
-                <div className='Secondbox'>
-
-                    <AppsIcon className='Icon' />
-                    <div className='textbox'>
-                        <div className='textfirst'>
-                            Reaction Time
-                        </div>
-                        <h1 className='Scorenaem' >
-                            {combinetime}
+        <>
+            {!shwosocre && <div ref={screen} style={{ height: "500px", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "rgb(43, 135, 209)" }} onClick={() => Clik()} className=' anim-slide-fade-in'>
+                {
+                    green &&
+                    <div style={{ display: "flex", flexDirection: "column", marginTop: "20px" }}>
+                        <h1 className='Time'>
+                            Click as fast as you can
                         </h1>
+
+                        <h2>CLick too contiue </h2>
                     </div>
+                }
+                {
+                    clickfast && !shwosocre &&
+                    <div style={{ display: "flex", flexDirection: "column", marginTop: "20px" }}>
+                        <h1 className='Time'>
+                            Click Too soon
+                        </h1>
 
-                    <div className='textbox '>
-                        <p className='Discription'>
-                            Save your score to see how you compare.
+                        <h3>Click too keep going </h3>
+                    </div>
+                }
+                {
+                    start && !clickfast && !time &&
+                    <div style={{ display: "flex", flexDirection: "column", marginTop: "20px", padding: "10px" }}>
+                        <div className="Logo">
+                            <AccessTimeIcon style={{ fontSize: "60px" }} />
+                        </div>
+                        <div style={{ opacity: 1, transition: "all 1s linear 0s", }} ><h1 style={{ fontSize: "6vh" }}>Reaction Time Test</h1></div>
+                        <h2 style={{ fontSize: "4vh" }}>When the red box turns green, click as quickly as you can.</h2>
+                        <h2 style={{ fontSize: "4vh" }} >
+                            Click Any where To start
 
-                        </p>
-                        <div className='
-                        Flex'>
-                            <Savebutton Score={SavebuttonScore} />
-                            <Tryagin Tryagin={Tryagins} />
+                        </h2>
+
+                    </div>
+                }
+
+                {red &&
+
+                    <div style={{ display: "flex", flexDirection: "column", marginTop: "20px" }}>
+                        <h1 className='Time'>
+                            Wait for green
+                        </h1>
+
+
+                    </div>
+                }
+
+                {time && <div style={{ marginTop: "20px" }}>
+                    <AccessAlarmsIcon className='Icon' />
+                    <h1 className='Time' >
+                        {time}
+
+                    </h1>
+
+                    <h2>Click too keep going  </h2>
+                </div>
+                }
+            </div>}
+            <div>
+
+
+                {shwosocre && <div className='Mainbox display' >
+                    <div className='Secondbox'>
+
+                        <AppsIcon className='Icon' />
+                        <div className='textbox'>
+                            <div className='textfirst'>
+                                Reaction Time
+                            </div>
+                            <h1 className='Scorenaem' >
+                                {combinetime}
+                            </h1>
                         </div>
 
+                        <div className='textbox '>
+                            <p className='Discription'>
+                                Save your score to see how you compare.
+
+                            </p>
+                            <div className='
+                        Flex'>
+                                <Savebutton Score={SavebuttonScore} />
+                                <Tryagin Tryagin={Tryagins} />
+                            </div>
+
+                        </div>
                     </div>
+
                 </div>
 
+                }
+                <div>
+                    {/* <div>
+                        <LineChart width={400} height={300} data={data}>
+                            <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+                            <CartesianGrid stroke="#ccc" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                        </LineChart>
+                    </div> */}
+                    <div className='Abouttest'>
+                        <h2 >About the test</h2>
+                        <p style={{ textAlign: "start" }}>This is a simple tool to measure your reaction time.</p>
+                        <p style={{ textAlign: "start" }}>The average (median) reaction time is 273 milliseconds, according to <Link to={"/dashboard"} title="Reaction Time Statistics">the data</Link> collected so far.</p>
+                        <p style={{ textAlign: "start" }}>In addition to measuring your reaction time, this test is affected by the latency of your computer and monitor. Using a fast computer and low latency / high framerate monitor will improve your score.</p>
+                        <p style={{ textAlign: "start" }}>Scores in this test are faster than the  test, because you can react instantly without moving the cursor.</p>
+                        <p style={{ textAlign: "start" }}>This is discussed in further detail on the the <Link to={"/dashboard"} title="Reaction Time Statistics">statistics</Link> page. While an average human reaction time may fall between 200-250ms, your computer could be adding 10-50ms on top. Some modern TVs add as much as 150ms!</p>
+                        <p style={{ textAlign: "start" }}>Other tools: <b><a target="_blank" href="https://whatsmygpu.com/">What's My GPU?</a></b></p>
+                        <p style={{ textAlign: "start" }}>If you want, you can keep track of your scores, and see your full history of reaction times. <br></br>Just perform at least 5 clicks and then save.</p>
+                    </div>
+                </div>
             </div>
 
-            }
 
 
 
 
+        </>
 
-
-        </div>
     )
 }
 

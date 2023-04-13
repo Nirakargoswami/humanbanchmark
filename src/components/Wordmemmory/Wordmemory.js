@@ -4,7 +4,7 @@ import { Mainwraper } from "../inexpage/index"
 import AppsIcon from '@mui/icons-material/Apps';
 import { Tryagin, Savebutton } from "../Button/Button"
 import { useDispatch } from "react-redux";
-import {Verbalmemory} from "../../redux/actions/gamescore"
+import { Verbalmemory } from "../../redux/actions/gamescore"
 import "./Wordmemory.css"
 const Wordmemery = () => {
     const [checkword, setcheckword] = useState([])
@@ -12,7 +12,7 @@ const Wordmemery = () => {
     const [lives, setlives] = useState(5)
     const [start, setStart] = useState(true)
     const [word, setword] = useState()
- const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const Name = [
         "aardvark",
@@ -86,11 +86,11 @@ const Wordmemery = () => {
         }
     }, [lives])
     const Tryagain = () => {
-         setscore(0)
-         setlives(3)
-         setword("")
-         setcheckword([])
-         setStart(true)
+        setscore(0)
+        setlives(3)
+        setword("")
+        setcheckword([])
+        setStart(true)
     }
     const SavebuttonScore = () => {
         dispatch(Verbalmemory(score))
@@ -125,43 +125,52 @@ const Wordmemery = () => {
             }{
                 !word && !start &&
                 <><div
-                style={{ backgroundColor: "rgb(43, 135, 209)" }}
-                className='Mainbox' >
-                <div className='Secondbox'>
+                    style={{ backgroundColor: "rgb(43, 135, 209)" }}
+                    className='Mainbox' >
+                    <div className='Secondbox'>
 
-                    <AppsIcon className='Icon' />
-                    <div className='textbox'>
-                        <span className='SecLevel'>
-                            <span className='TEXt'>Score</span>
-                            <span style={{fontSize:"27px"}} >{score}</span>
-                        </span>
-                        <div className='textfirst'>
-                        Verbal Memory 
+                        <AppsIcon className='Icon' />
+                        <div className='textbox'>
+                            <span className='SecLevel'>
+                                <span className='TEXt'>Score</span>
+                                <span style={{ fontSize: "27px" }} >{score}</span>
+                            </span>
+                            <div className='textfirst'>
+                                Verbal Memory
+                            </div>
+
                         </div>
 
-                    </div>
+                        <div className='textbox '>
 
-                    <div className='textbox '>
+                            <p className='Discription'>
+                                Save your score to see how you compare
+                            </p>
 
-                        <p className='Discription'>
-                        Save your score to see how you compare
-                        </p>
-
-                        <div className='
+                            <div className='
                         Flex'>
 
-                            <Tryagin Tryagin={Tryagain} />
-                            <Savebutton Score={SavebuttonScore} />
+                                <Tryagin Tryagin={Tryagain} />
+                                <Savebutton Score={SavebuttonScore} />
+
+                            </div>
 
                         </div>
-
                     </div>
-                </div>
 
-            </div>
+                </div>
 
                 </>
             }
+            <div className="Abouttest">
+                
+                    <h1 style={{ textAlign: "start" }}>About the test</h1>
+                    <p style={{ textAlign: "start" }}>This test measures how many words you can keep in short term memory at once.</p>
+                    <p style={{ textAlign: "start" }}>The number of words you need to remember grows continually, until you can't keep them in your head anymore.</p>
+                    <p style={{ textAlign: "start" }}>Go as long as you can. You have 3 strikes until game over.</p>
+                    <p style={{ textAlign: "start" }}>Your score is how many turns you lasted.</p>
+                
+            </div>
         </div>
     )
 }
