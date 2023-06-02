@@ -116,7 +116,6 @@ function Signup() {
     // });
      registerWithEmailAndPassword(name,email,password).then((x) => {
       if(x.message){
-        console.log(x.message)
       }else{
         alert()
       }

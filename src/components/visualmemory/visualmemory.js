@@ -7,6 +7,7 @@ import SequenceMemoryTest from '../SequenceMemoryTest/SequenceMemoryTest'
 import Cuebmaekr from "../Cubecomponent/Cubecomponent"
 import { Mainwraper } from "../../components/inexpage/index"
 import { StartOutlined } from '@mui/icons-material';
+import Chart from "../Chart/Chart"
 const Visualmemory = () => {
     const [Start, setStart] = useState(true)
     const [levelArry, setLevelArry] = useState([])
@@ -31,7 +32,6 @@ const Visualmemory = () => {
     }
 
     const Nomaker = (x) => {
-        console.log(x)
         const MianArry = [...Array(x).keys()]
         const NewArryobj = [];
         MianArry.map((x) => {
@@ -77,36 +77,26 @@ const Visualmemory = () => {
 
 
     const Cubeclikck = (x) => {
-
         const ansarry = []
-
         if (!gamestart) {
             setGAmestart(true)
         }
         if (ans.includes(x)) {
-
             let obj = newobj[`${x}`]
             obj.bacg = true
             setNewobj(prevState => (
                 {
                     ...newobj,
                     ...prevState[`${x}`].bacg = true
-
                 }
             )
             )
             setCount(count + 1)
             ansarry.push(x)
-
-
             //   console.log(leve,count)
             if (count == leve) {
-
                 setGAmestart(false)
-
                 setTimeout(() => {
-
-
                     const MianArry = [...Array(nocube).keys()]
                     const NewArryobj = [];
                     MianArry.map((x) => {
@@ -116,32 +106,21 @@ const Visualmemory = () => {
                             bacg: false
                         }
                         newobj[`${x}`] = obj
-
-
                         NewArryobj.push(obj)
                     })
                     setLevelArry(NewArryobj)
-
                 }, 500)
 
 
                 setTimeout(() => {
-
-
                     setCount(1)
                     console.log("Nirakar")
                     if (Stagecount < 2) {
-                        console.log(Stagecount)
                         setStagecount(Stagecount + 1)
                         setLevel(leve + 2)
-
                     } else {
-                        console.log("Nirakar")
                         setmainlevel(mainlevel + 1)
-
-
                     }
-
                 }, 1000)
             }
         } else {
@@ -162,7 +141,6 @@ const Visualmemory = () => {
 
     useEffect(() => {
         if (Stagecount) {
-            console.log(mainlevel)
             setStagecount(0)
             setnewwidth((310 / mainlevel) - 2)
             setnocube(mainlevel * mainlevel)
@@ -179,9 +157,6 @@ const Visualmemory = () => {
 
 
     const Sowcube = () => {
-        console.log('mmm')
-
-        console.log(levelArry)
         return Object.keys(levelArry).map((x, y) => {
             const Item = levelArry[`${x}`]
             console.log(levelArry[`${x}`])
@@ -190,9 +165,6 @@ const Visualmemory = () => {
                 {Item.key}
             </div>)
         })
-
-
-
     }
 
     const Tryagain = () => {
@@ -274,6 +246,8 @@ const Visualmemory = () => {
             }
             <div>
                 <div className='Abouttest'>
+                    <Chart labels={['0ml', '50ml', '100ml', '150ml', '200ml', '250ml', '300ml', "350ml"]} data={[10, 20, 30, 40, 50, 40, 20, 10]} />
+
                     <h1 style={{ textAlign: "start" }}>About the test</h1>
                     <p style={{ textAlign: "start" }}>Every level, a number of tiles will flash white. Memorize them, and pick them again after the tiles are reset!</p>
                     <p style={{ textAlign: "start" }}>Levels get progressively more difficult, to challenge your skills.</p>

@@ -90,7 +90,6 @@ setusercreated(false)
 
     const data =  Getallscore(userid.uid)
     data.then((responce) => {
-      console.log(responce)
       dipatch(Scoredata(responce))
 
     }).catch(() => {

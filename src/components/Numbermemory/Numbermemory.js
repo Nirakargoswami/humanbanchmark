@@ -7,6 +7,7 @@ import { Savebutton } from "../Button/Button"
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom"
 import PinIcon from '@mui/icons-material/Pin';
+import Chart from "../Chart/Chart"
 import { Numbermemoryscore } from "../../redux/actions/gamescore"
 import "./Number.css"
 const Numbermemory = () => {
@@ -169,6 +170,8 @@ const Numbermemory = () => {
 
             </div>
             <div className="Abouttest">
+            <Chart labels={['0ml', '50ml', '100ml', '150ml', '200ml', '250ml','300ml',"350ml"]} data={[10, 20, 30,40,50,40,20,10]}  />
+
                 <div class="css-1oen1ps e19owgy73">
                     <h2 style={{ textAlign: "start" }}>About the test</h2>
                     <p style={{ textAlign: "start" }}>The average person can only remember 7 digit numbers reliably, but it's possible to do much better using mnemonic techniques. Some helpful links are provided below.</p>

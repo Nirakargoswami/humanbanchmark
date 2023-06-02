@@ -6,7 +6,7 @@ import { Tryagin, Savebutton } from "../Button/Button"
 import { SeauenceScore } from "../../redux/actions/gamescore"
 import { useDispatch } from 'react-redux';
 import GridOnIcon from '@mui/icons-material/GridOn';
-
+import Chart from "../Chart/Chart"
 import { Secondscreen } from "../../components/firstscreen/firstScrenn"
 const SequenceMemoryTest = (props) => {
     const [shwonaimation, setShowanimaton] = useState(false)
@@ -237,6 +237,8 @@ const SequenceMemoryTest = (props) => {
                     </div>
                 </div>}
             <div  className='Abouttest'>
+            <Chart labels={['0ml', '50ml', '100ml', '150ml', '200ml', '250ml','300ml',"350ml"]} data={[10, 20, 30,40,50,40,20,10]}  />
+
                 <h1 style={{ textAlign: "start" }}>About the test</h1>
                 <p style={{ textAlign: "start" }}>Memorize the sequence of buttons that light up, then press them in order.</p>
                 <p style={{ textAlign: "start" }}>Every time you finish the pattern, it gets longer.</p>

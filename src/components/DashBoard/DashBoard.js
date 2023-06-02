@@ -7,9 +7,11 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { Key } from "@mui/icons-material";
+import AbcIcon from '@mui/icons-material/Abc';
 import { Link } from "react-router-dom";
+import PinIcon from '@mui/icons-material/Pin';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+
 import GridOnIcon from '@mui/icons-material/GridOn';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import { fabClasses } from "@mui/material";
@@ -32,12 +34,12 @@ const makearoute = (key) => {
     switch (key) {
         case "numbermemory":
             return (
-                <div>
+                <div style={{display:"flex"}}>
                     <Link to="/number-memory">
-                        <div><PlayCircleFilledWhiteIcon /> Play</div>
+                        <div style={{marginRight:"10px"}}><PlayCircleFilledWhiteIcon /> Play</div>
                     </Link>
                     <Link to="">
-                        <div></div>
+                        <div> <PinIcon /></div>
                     </Link>
                 </div>
             )
@@ -59,7 +61,7 @@ const makearoute = (key) => {
                         <div><PlayCircleFilledWhiteIcon /> Play</div>
                     </Link>
                     <Link to="">
-                        <div><GridOnIcon/></div>
+                        <div style={{marginLeft:"10px"}}><GridOnIcon/></div>
                     </Link>
                 </div>
             )
@@ -67,24 +69,24 @@ const makearoute = (key) => {
 
 
             return (
-                <div>
+                <div style={{display:"flex"}}>
                     <Link to="/verbal-memory">
                         <div><PlayCircleFilledWhiteIcon /> Play</div>
                     </Link>
                     <Link to="">
-                        <div></div>
+                        <div style={{marginLeft:"10px"}}><AbcIcon/></div>
                     </Link>
                 </div>
             )
         case "visualmemory":
 
             return (
-                <div>
+                <div style={{display:"flex"}}>
                     <Link to="/memory">
                         <div><PlayCircleFilledWhiteIcon /> Play</div>
                     </Link>
                     <Link to="">
-                        <div></div>
+                        <div> <AcUnitIcon style={{marginLeft:"10px"}}></AcUnitIcon></div>
                     </Link>
                 </div>
             )

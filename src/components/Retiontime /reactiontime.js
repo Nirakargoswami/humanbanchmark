@@ -8,10 +8,11 @@ import AccessAlarmsIcon from '@mui/icons-material/AccessAlarms';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { useDispatch } from 'react-redux';
 import { Reactiontimescore } from "../../redux/actions/gamescore"
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
+import Chart from "../Chart/Chart"
+
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
-const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400},{name: 'Page b', uv: 300, pv: 2400, amt: 2400},{name: 'Page c', uv: 400, pv: 2400, amt: 2400}];
+const data = [{ name: 'Page A', uv: 400, pv: 2400, amt: 2400 }, { name: 'Page b', uv: 300, pv: 2400, amt: 2400 }, { name: 'Page c', uv: 400, pv: 2400, amt: 2400 }];
 const Reactiontime = () => {
     const [start, setStart] = useState(true)
     const [green, setGreen] = useState(false)
@@ -37,7 +38,26 @@ const Reactiontime = () => {
 
     }
 
+    const chartData = {
+        labels: [],
+        datasets: [
+            {
+                label: 'Reaction Time Line Chart',
+                data: [],
+                fill: false,
+                borderColor: 'rgba(75,192,192,1)',
+            },
+        ],
+    };
 
+    const chartOptions = {
+        scales: {
+            y: {
+                beginAtZero: true,
+            },
+        },
+    };
+  
     const Clik = () => {
         if (start && !green) {
             const rndInt = randomIntFromInterval(3, 5)
@@ -167,7 +187,7 @@ const Reactiontime = () => {
                 {time && <div style={{ marginTop: "20px" }}>
                     <AccessAlarmsIcon className='Icon' />
                     <h1 className='Time' >
-                        {time}
+                        {time} mls
 
                     </h1>
 
@@ -217,6 +237,8 @@ const Reactiontime = () => {
                             <YAxis />
                         </LineChart>
                     </div> */}
+
+                    <Chart labels={['0ml', '50ml', '100ml', '150ml', '200ml', '250ml','300ml',"350ml"]} data={[10, 20, 30,40,50,40,20,10]}  />
                     <div className='Abouttest'>
                         <h2 >About the test</h2>
                         <p style={{ textAlign: "start" }}>This is a simple tool to measure your reaction time.</p>

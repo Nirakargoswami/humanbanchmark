@@ -58,7 +58,6 @@ const WordsTriel = () => {
     
             setStart(true)
         }
-        console.log(no)
         if(no > 4){
             setNocount(0)
         }
