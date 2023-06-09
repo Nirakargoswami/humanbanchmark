@@ -29,13 +29,9 @@ export default function (state = initialState, action) {
   const userid = JSON.parse(localStorage.getItem("user"))
   console.log(state)
   const { type, payload } = action;
-  console.log(payload, type, userid)
   switch (type) {
     case SEQUENCE:
-
-
       Savedata(userid.uid, "sequencememory", payload)
-
       return {
         ...state,
         sequencememory: payload,
@@ -43,12 +39,9 @@ export default function (state = initialState, action) {
       };
     case NUMBER_MEMORY:
       Savedata(userid.uid, "numbermemory", payload)
-
-
       return {
         ...state,
         numbermemory: payload,
-
       };
     case SCORE_DATA:
       state.verbalmemory = payload.verbalmemory  + " points"
@@ -57,8 +50,6 @@ export default function (state = initialState, action) {
       state.numbermemory = payload.numbermemory + " points"
       state.sequencememory = payload.sequencememory + " points"
       state.name = payload.name
-  
-
       return {
         ...state,
       }

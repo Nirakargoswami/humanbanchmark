@@ -1,5 +1,6 @@
 import { REACTION_TIME,SEQUENCE,NUMBER_MEMORY,VERBAL_MEMORY,VISUAL_MEMORY,
     SCORE_DATA,
+    REACTION_TIME_RANK
 } from "./types";
 
 
@@ -39,4 +40,12 @@ const  Visulamemory = (score) => (
     payload: score,
 })
 
-export  {Scoredata,Reactiontimescore,SeauenceScore,Numbermemoryscore,Verbalmemory,Visulamemory}
+const Reactiotimerandk  = (gamename) => (
+ 
+    {
+        type : REACTION_TIME_RANK,
+        payload:gamename
+    }   
+)
+
+export  {Reactiotimerandk,Scoredata,Reactiontimescore,SeauenceScore,Numbermemoryscore,Verbalmemory,Visulamemory}

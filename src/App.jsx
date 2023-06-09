@@ -18,6 +18,7 @@ import MathGame from "./components/mathgaem/mathgaem";
 import GuessFlage from "./components/GuessFlage/GuessFlage";
 import Dashborad from "./components/DashBoard/DashBoard";
 import Login from "./components/login/Login";
+import Gameleaderbord from "./components/Gamebord/GameLeaderbord"
 import Signup from "./components/signup/Signup";
 import Wordmemery from "./components/Wordmemmory/Wordmemory";
 import { Getallscore } from "../src/Firebse/firebse";
@@ -75,6 +76,8 @@ function App() {
           <Route path="/number-memory" element={<Numbermemory />} />
           <Route path="/verbal-memory" element={<Wordmemery />} />
           <Route path="/memory" element={<Visualmemory />} />
+          <Route path="/gameleadorbord" element={<Gameleaderbord />} />
+
           <Route path="/Numbermemory" element={<Numbermemory />} />
         </Routes>
       </div>

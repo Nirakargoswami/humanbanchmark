@@ -169,8 +169,8 @@ const Numbermemory = () => {
                 }
 
             </div>
-            <div className="Abouttest">
-            <Chart labels={['0ml', '50ml', '100ml', '150ml', '200ml', '250ml','300ml',"350ml"]} data={[10, 20, 30,40,50,40,20,10]}  />
+            <div  className="Abouttest" style={{display:"flex",flexDirection:"c"}}>
+             <Chart labels={['0ml', '50ml', '100ml', '150ml', '200ml', '250ml', '300ml', "350ml"]} data={[10, 20, 30, 40, 50, 40, 20, 10]} />
 
                 <div class="css-1oen1ps e19owgy73">
                     <h2 style={{ textAlign: "start" }}>About the test</h2>

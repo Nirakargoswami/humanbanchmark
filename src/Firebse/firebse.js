@@ -167,6 +167,24 @@ const registerWithEmailAndPassword = async (displayName, email, password) => {
     }
 };
 
+
+const Getrankdata = async(name) => {
+    const userRef =  query(collection(db, "users"));
+    const querySnapshot = await getDocs(userRef);
+    const userDataArray = []; // Create an array to store the retrieved data
+
+if(querySnapshot.docs.length > 0 ){
+    querySnapshot.docs.forEach((doc) => {
+        const userData = doc.data();
+        console.log(userData)
+        userDataArray.push(userData); // Add the data to the array
+
+        // You can access specific fields like userData.fieldName
+      });
+}
+return userDataArray
+}
+
 const Savedata =async (id,updateitem ,score) => {
    
     const userRef =  query(collection(db, "users"), where("id", "==", id));
@@ -234,6 +252,7 @@ export {
     sendPasswordReset,
     Signout,
     Savedata,
+    Getrankdata,
     onAuthStateChanged,
     Getallscore
 };

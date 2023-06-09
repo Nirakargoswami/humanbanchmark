@@ -2,16 +2,20 @@ import react, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import { Getallscore } from "../../Firebse/firebse"
 import Table from '@mui/material/Table';
+import Button from "@mui/material/Button"
+import { Scoredata } from "../../redux/actions/gamescore";
+
+import { Link } from "react-router-dom"
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import AbcIcon from '@mui/icons-material/Abc';
-import { Link } from "react-router-dom";
 import PinIcon from '@mui/icons-material/Pin';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
-
+import { Reactiotimerandk } from "../../redux/actions/gamescore"
+import { Getrankdata } from "../../Firebse/firebse"
 import GridOnIcon from '@mui/icons-material/GridOn';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import { fabClasses } from "@mui/material";
@@ -30,13 +34,12 @@ const rows = [
 ];
 
 const makearoute = (key) => {
-    console.log(key)
     switch (key) {
         case "numbermemory":
             return (
-                <div style={{display:"flex"}}>
+                <div style={{ display: "flex" }}>
                     <Link to="/number-memory">
-                        <div style={{marginRight:"10px"}}><PlayCircleFilledWhiteIcon /> Play</div>
+                        <div style={{ marginRight: "10px" }}><PlayCircleFilledWhiteIcon /> Play</div>
                     </Link>
                     <Link to="">
                         <div> <PinIcon /></div>
@@ -45,23 +48,23 @@ const makearoute = (key) => {
             )
         case "reactiontime":
             return (
-                <div style={{display:"flex"}}>
+                <div style={{ display: "flex" }}>
                     <Link to="/reactiontime">
-                        <div style={{marginRight:"10px"}}><PlayCircleFilledWhiteIcon /> Play</div>
+                        <div style={{ marginRight: "10px" }}><PlayCircleFilledWhiteIcon /> Play</div>
                     </Link>
                     <Link to="">
-                        <div><AccessTimeIcon/></div>
+                        <div><AccessTimeIcon /></div>
                     </Link>
                 </div>
             )
         case "sequencememory":
             return (
-                <div style={{display:"flex"}}>
+                <div style={{ display: "flex" }}>
                     <Link to="/sequence">
                         <div><PlayCircleFilledWhiteIcon /> Play</div>
                     </Link>
                     <Link to="">
-                        <div style={{marginLeft:"10px"}}><GridOnIcon/></div>
+                        <div style={{ marginLeft: "10px" }}><GridOnIcon /></div>
                     </Link>
                 </div>
             )
@@ -69,24 +72,24 @@ const makearoute = (key) => {
 
 
             return (
-                <div style={{display:"flex"}}>
+                <div style={{ display: "flex" }}>
                     <Link to="/verbal-memory">
                         <div><PlayCircleFilledWhiteIcon /> Play</div>
                     </Link>
                     <Link to="">
-                        <div style={{marginLeft:"10px"}}><AbcIcon/></div>
+                        <div style={{ marginLeft: "10px" }}><AbcIcon /></div>
                     </Link>
                 </div>
             )
         case "visualmemory":
 
             return (
-                <div style={{display:"flex"}}>
+                <div style={{ display: "flex" }}>
                     <Link to="/memory">
                         <div><PlayCircleFilledWhiteIcon /> Play</div>
                     </Link>
                     <Link to="">
-                        <div> <AcUnitIcon style={{marginLeft:"10px"}}></AcUnitIcon></div>
+                        <div> <AcUnitIcon style={{ marginLeft: "10px" }}></AcUnitIcon></div>
                     </Link>
                 </div>
             )
@@ -111,7 +114,34 @@ const Dashborad = () => {
     const [data, setdata] = useState([])
     const [info, setifo] = useState({})
     const [user, setUser] = useState(false)
+    const dispatch = useDispatch()
+
+    console.log(State)
+
+    const getdata = async () => {
+        const userid = JSON.parse(localStorage.getItem("user"));
+        if (userid) {
+            const data = Getallscore(userid.uid);
+            data
+                .then((responce) => {
+                    console.log(responce);
+                    dispatch(Scoredata(responce));
+                })
+                .catch(() => { });
+            if (data) {
+            }
+        }
+    };
+
     useEffect(() => {
+        getdata();
+    }, []);
+
+
+
+
+    useEffect(() => {
+        console.log("dashboard")
         const data = []
         const userid = JSON.parse(localStorage.getItem("user"));
 
@@ -126,11 +156,7 @@ const Dashborad = () => {
             if (key !== "name" && key !== "id") {
                 const newObj = {};
                 newObj.name = key
-
                 newObj.Action = makearoute(key)
-
-
-
                 newObj.score = State.productdata[key];
                 data.push(newObj);
             } else {
@@ -146,7 +172,25 @@ const Dashborad = () => {
 
     }, [State])
 
-    console.log(data)
+    const Ranckdata = async (name) => {
+        const userid = JSON.parse(localStorage.getItem("user"));
+        if (userid) {
+            console.log("Abc")
+            const data = await Getrankdata()
+            console.log(data)
+            const Maindata = {
+                data: data,
+                gamename: name
+            }
+            dispatch(Reactiotimerandk(Maindata));
+        } else {
+            return
+        }
+
+
+    }
+
+
     return (
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "50px", marginBottom: "50px" }}>
             <div style={{ color: "black", marginTop: "50px", fontSize: "30px", fontWeight: "bold", color: "#007bff" }}>
@@ -158,7 +202,7 @@ const Dashborad = () => {
                 <div style={{ color: "black", marginTop: "10px", fontSize: "30px", fontWeight: "bold", color: "#007bff" }}>
                     {info.name}
                 </div>
-                {!user && <div style={{color:"black"}} class="link"><Link to={"/login"}>Log in</Link> or <Link to={"/signup"}>sign up</Link> to save your results</div>
+                {!user && <div style={{ color: "black" }} class="link"><Link to={"/login"}>Log in</Link> or <Link to={"/signup"}>sign up</Link> to save your results</div>
                 }
             </div>
 
@@ -166,9 +210,8 @@ const Dashborad = () => {
                 <TableHead>
                     <TableRow>
                         <TableCell align="left">Test</TableCell>
-
                         <TableCell align="left">Score</TableCell>
-
+                        <TableCell align="left">Leader Bord</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -177,13 +220,15 @@ const Dashborad = () => {
                             key={y}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-
                             <TableCell align="left">{row.name} {row.Action}</TableCell>
-
-                            <TableCell style={{ fontSize: "36px", fontWeight: "bold" }} align="left">{row.score || row.score === 0 ? row.score : "?"}</TableCell>
-
-
-
+                            <TableCell style={{ fontSize: "16px", fontWeight: "bold" }} align="left">{row.score || row.score === 0 ? row.score : "?"}</TableCell>
+                            <TableCell align="left">
+                                <Link to="/gameleadorbord">
+                                    <button onClick={() => Ranckdata(row.name)} className="css-de05nr" >
+                                        Score
+                                    </button>
+                                </Link>
+                            </TableCell>
 
                         </TableRow>)
                     }

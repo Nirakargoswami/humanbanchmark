@@ -23,9 +23,7 @@ const Visualmemory = () => {
     const [gameover, setGameover] = useState(false)
     const [nocube, setnocube] = useState(leve * leve)
     const [newwidth, setnewwidth] = useState((310 / 3) - 2)
-
-    const Noarry = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    console.log(nocube)
+    const [ansarry,setansarry] = useState([])
 
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
@@ -41,15 +39,11 @@ const Visualmemory = () => {
                 bacg: false
             }
             newobj[`${x}`] = obj
-
-
             NewArryobj.push(obj)
         })
-
         for (let i = 0; i < leve; i++) {
             const Rendno = randomIntFromInterval(0, (x) - 1)
             if (NewArryobj[`${Rendno}`].animate) {
-
                 i--
             } else {
 
@@ -57,7 +51,6 @@ const Visualmemory = () => {
 
                 NewArryobj[`${Rendno}`].animate = true
             }
-
             // if(mianarry.indexOf(Rendno) !== -1){
             //     i--
             // }else{
@@ -68,8 +61,6 @@ const Visualmemory = () => {
 
             // }
         }
-
-
         setLevelArry(NewArryobj)
 
     }
@@ -77,11 +68,11 @@ const Visualmemory = () => {
 
 
     const Cubeclikck = (x) => {
-        const ansarry = []
+console.log(ans)
         if (!gamestart) {
             setGAmestart(true)
         }
-        if (ans.includes(x)) {
+        if (ans.includes(x) && ansarry.includes(x) !== true ) {
             let obj = newobj[`${x}`]
             obj.bacg = true
             setNewobj(prevState => (
@@ -110,8 +101,6 @@ const Visualmemory = () => {
                     })
                     setLevelArry(NewArryobj)
                 }, 500)
-
-
                 setTimeout(() => {
                     setCount(1)
                     console.log("Nirakar")
@@ -122,17 +111,15 @@ const Visualmemory = () => {
                         setmainlevel(mainlevel + 1)
                     }
                 }, 1000)
+                setansarry([])
+                setAns([])
             }
+        } else if ( ansarry.includes(x)) {
+            return
         } else {
-
-
             setGameover(true)
-
-
+            setansarry([])
         }
-
-
-
     }
 
     useEffect((x) => {
@@ -159,7 +146,6 @@ const Visualmemory = () => {
     const Sowcube = () => {
         return Object.keys(levelArry).map((x, y) => {
             const Item = levelArry[`${x}`]
-            console.log(levelArry[`${x}`])
             const classs = ` Cube ${!gamestart && Item.animate && "Animate"}`
             return (<div key={y} style={{ width: `${newwidth}px`, height: `${newwidth}px`, backgroundColor: Item.bacg == true ? "white" : value == Item.key ? "red" : "", opacity: Item.bacg == true ? "1" : value == Item.key ? "1" : "0.15" }} onClick={() => Cubeclikck(Item.key)} className={classs} >
                 {Item.key}
@@ -182,6 +168,7 @@ const Visualmemory = () => {
         setLevel(3)
         setnocube(3 * 3)
         setnewwidth((310 / 3) - 2)
+        setansarry([])
     }
 
     useEffect(() => {
