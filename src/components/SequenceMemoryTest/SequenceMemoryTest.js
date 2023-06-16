@@ -9,6 +9,7 @@ import GridOnIcon from '@mui/icons-material/GridOn';
 import Chart from "../Chart/Chart"
 import { Secondscreen } from "../../components/firstscreen/firstScrenn"
 const SequenceMemoryTest = (props) => {
+
     const [shwonaimation, setShowanimaton] = useState(false)
     const [start, setStart] = useState(true)
     const [Count, setCount] = useState()
@@ -26,6 +27,8 @@ const SequenceMemoryTest = (props) => {
     const [showanswer, setshowanswer] = useState(false)
     const Noarry = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     const dispatch = useDispatch()
+
+
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
     }

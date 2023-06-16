@@ -178,7 +178,6 @@ if(querySnapshot.docs.length > 0 ){
         const userData = doc.data();
         console.log(userData)
         userDataArray.push(userData); // Add the data to the array
-
         // You can access specific fields like userData.fieldName
       });
 }

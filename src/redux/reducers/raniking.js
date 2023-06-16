@@ -21,14 +21,39 @@ const RankingDashbord = (state = initialState, action) => {
     switch (type) {
         case REACTION_TIME_RANK:
             const name = action.payload.gamename
-            const sortedArray = action.payload.data.sort((a, b) => b[name] - a[name]);
+            let Newgamename 
+            if(name === "numbermemory"){
+                Newgamename = "Number Memory"
+            }else if(name === "reactiontime"){
+                Newgamename = "Reaction Time"
+            }else if(name === "sequencememory"){
+                Newgamename = "Sequence Memory"
+            }else if(name == "verbalmemory" ){
+                Newgamename = "Verbal Memory"
+            }else if(name == "visualmemory"){
+                Newgamename = "Visual Memory"
+            }else if( name == "wordmemory"){
+                Newgamename = "Wordmemory"
+            }
+
+            
+            let sortedArray 
+            if(name == "reactiontime"){
+                 sortedArray = action.payload.data.sort((a, b) => b[name] + a[name]);
+
+            }else{
+                 sortedArray = action.payload.data.sort((a, b) => b[name] - a[name]);
+
+            }
             console.log(sortedArray)
             const resultArray = sortedArray.map((userData, y) => ({
                 name: userData.name,
                 score: userData[name],
-                Rank: y
+                Rank: y,
+                gamename: Newgamename
             }));
-            console.log(resultArray)
+            
+            console.log(resultArray, "fasdfafa")
             return {
                 ...state,
                 resultArray

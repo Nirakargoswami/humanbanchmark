@@ -6,5 +6,4 @@ import raniking from "./raniking"
 export default combineReducers({
     productdata,
     raniking
-    
 });

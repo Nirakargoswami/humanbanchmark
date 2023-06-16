@@ -10,10 +10,10 @@
     flex-wrap: wrap;
 }
 
-.css-uaat4j {
+.css-uaat4j{
    
     margin-bottom: 20px;
-    margin-right: 0px;
+    margin-right: 24px;
     display: block;
     box-shadow: 2px 13px 15px -13px rgba(0,0,0,0.75);
     width: 327px;
@@ -28,7 +28,7 @@
 .css-1ur49oz > * {
     margin-bottom: 20px;
 }
-@media (width:700) {
+@media (max-width:700px) {
     .RoteCon{
         flex-direction: row;
     }

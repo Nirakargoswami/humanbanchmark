@@ -18,7 +18,7 @@ const Firstscreen = () => {
 
                         </div>
                         <div className="css-1qvtbrk  css-1qvtbrk">
-                            <h1 >Human Benchmark</h1>
+                            <h1>Brain BenchMark</h1>
                             <h2>Measure your abilities with brain games and cognitive tests.</h2>
 
 

@@ -136,7 +136,8 @@ const Reactiontime = () => {
 
     return (
         <>
-            {!shwosocre && <div ref={screen} style={{ height: "500px", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "rgb(43, 135, 209)" }} onClick={() => Clik()} className=' anim-slide-fade-in'>
+            {!shwosocre && 
+            <div ref={screen} style={{ height: "500px", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "rgb(43, 135, 209)" }} onClick={() => Clik()} className=' anim-slide-fade-in'>
                 {
                     green &&
                     <div style={{ display: "flex", flexDirection: "column", marginTop: "20px" }}>
@@ -194,7 +195,8 @@ const Reactiontime = () => {
                     <h2>Click too keep going  </h2>
                 </div>
                 }
-            </div>}
+            </div>
+            }
             <div>
 
 
@@ -240,15 +242,35 @@ const Reactiontime = () => {
 
                     <Chart labels={['0ml', '50ml', '100ml', '150ml', '200ml', '250ml','300ml',"350ml"]} data={[10, 20, 30,40,50,40,20,10]}  />
                     <div className='Abouttest'>
-                        <h2 >About the test</h2>
-                        <p style={{ textAlign: "start" }}>This is a simple tool to measure your reaction time.</p>
-                        <p style={{ textAlign: "start" }}>The average (median) reaction time is 273 milliseconds, according to <Link to={"/dashboard"} title="Reaction Time Statistics">the data</Link> collected so far.</p>
-                        <p style={{ textAlign: "start" }}>In addition to measuring your reaction time, this test is affected by the latency of your computer and monitor. Using a fast computer and low latency / high framerate monitor will improve your score.</p>
-                        <p style={{ textAlign: "start" }}>Scores in this test are faster than the  test, because you can react instantly without moving the cursor.</p>
-                        <p style={{ textAlign: "start" }}>This is discussed in further detail on the the <Link to={"/dashboard"} title="Reaction Time Statistics">statistics</Link> page. While an average human reaction time may fall between 200-250ms, your computer could be adding 10-50ms on top. Some modern TVs add as much as 150ms!</p>
-                        <p style={{ textAlign: "start" }}>Other tools: <b><a target="_blank" href="https://whatsmygpu.com/">What's My GPU?</a></b></p>
-                        <p style={{ textAlign: "start" }}>If you want, you can keep track of your scores, and see your full history of reaction times. <br></br>Just perform at least 5 clicks and then save.</p>
-                    </div>
+    <h2>About the test</h2>
+    <p style={{ textAlign: "start" }}>
+        This is a simple tool to measure your reaction time.
+    </p>
+    <p style={{ textAlign: "start" }}>
+        The average (median) reaction time is 273 milliseconds, according to 
+        <Link to={"/dashboard"} title="Reaction Time Statistics">the data</Link> collected so far.
+    </p>
+    <p style={{ textAlign: "start" }}>
+        In addition to measuring your reaction time, this test is affected by the latency of your computer and monitor.
+        Using a fast computer and low latency / high framerate monitor will improve your score.
+    </p>
+    <p style={{ textAlign: "start" }}>
+        Scores in this test are faster than the aim trainer test, because you can react instantly without moving the cursor.
+    </p>
+    <p style={{ textAlign: "start" }}>
+        This is discussed in further detail on the 
+        <Link to={"/dashboard"} title="Reaction Time Statistics">statistics</Link> page.
+        While an average human reaction time may fall between 200-250ms, your computer could be adding 10-50ms on top.
+        Some modern TVs add as much as 150ms!
+    </p>
+    <p style={{ textAlign: "start" }}>
+        Other tools: <b><a target="_blank" href="https://whatsmygpu.com/">What's My GPU?</a></b>
+    </p>
+    <p style={{ textAlign: "start" }}>
+        If you want, you can keep track of your scores and see your full history of reaction times.
+        Just perform at least 5 clicks and then save.
+    </p>
+</div>
                 </div>
             </div>
 
