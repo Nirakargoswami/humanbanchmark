@@ -109,8 +109,8 @@ const Numbermemory = () => {
                             <h1 style={{ color: "white" }}>{Noshow}</h1>
                         </div>
 
-                        <div class="progress">
-                            <div class="progress-value"></div>
+                        <div className="progress">
+                            <div className="progress-value"></div>
                         </div>
                     </div>
 
@@ -120,7 +120,7 @@ const Numbermemory = () => {
                     <div className="column">
                         <div style={{ opacity: "1", transition: "all 1s linear 0s" }}>
                             <div style={{ fontSize: "40px" }}>Number</div>
-                            <div style={{ fontSize: "40px" }} class="label">  {no}</div>
+                            <div style={{ fontSize: "40px" }} className="label">  {no}</div>
 
                         </div>
                         <div>
@@ -140,7 +140,7 @@ const Numbermemory = () => {
                         </div>
                         <div>
 
-                            <button onClick={() => Tryagain()} class="css-qm6rs9 ">Try again </button>
+                            <button onClick={() => Tryagain()} className="css-qm6rs9 ">Try again </button>
                             <Savebutton Score={SavebuttonScore} />
 
                         </div>
@@ -172,7 +172,7 @@ const Numbermemory = () => {
             <div  className="Abouttest" style={{display:"flex",flexDirection:"c"}}>
              <Chart labels={['0ml', '50ml', '100ml', '150ml', '200ml', '250ml', '300ml', "350ml"]} data={[10, 20, 30, 40, 50, 40, 20, 10]} />
 
-                <div class="css-1oen1ps e19owgy73">
+                <div className="css-1oen1ps e19owgy73">
                     <h2 style={{ textAlign: "start" }}>About the test</h2>
                     <p style={{ textAlign: "start" }}>The average person can only remember 7 digit numbers reliably, but it's possible to do much better using mnemonic techniques. Some helpful links are provided below.</p>
                     <p style={{ textAlign: "start" }}><a href="https://en.wikipedia.org/wiki/Mnemonic_major_system">Mnemonic major system</a>
