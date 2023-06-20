@@ -140,9 +140,10 @@ const registerWithEmailAndPassword = async (displayName, email, password) => {
     try {
         const res = await createUserWithEmailAndPassword(auth, email, password,displayName);
         console.log(res)
-        localStorage.setItem("user", JSON.stringify(res.user))
+        // if(){
 
-        const docRef = await addDoc(collection(db, "users"), {
+        // }
+      await addDoc(collection(db, "users"), {
             id: res.user.uid,
           name: displayName,
           reactiontime: 0,
@@ -153,6 +154,7 @@ const registerWithEmailAndPassword = async (displayName, email, password) => {
            wordmemory:0,
         });
 
+        localStorage.setItem("user", JSON.stringify(res.user))
 
          
         setTimeout(() => {
@@ -198,8 +200,10 @@ if (querySnapshot.docs.length > 0) {
     await updateDoc(userRef, updateObj);
     
     console.log("Document successfully updated!");
+    return ("Document successfully updated!")
   } else {
     console.log("Document not found!");
+    return ("Document not found!")
   }
    }
 

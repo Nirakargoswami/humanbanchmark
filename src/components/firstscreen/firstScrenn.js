@@ -2,12 +2,13 @@ import React from "react"
 import "./firstscreen.css"
 import RouteContainer from "../../components/Test/Test"
 import AcUnitIcon from '@mui/icons-material/AcUnit';
-import { Link } from "react-router-dom"
+import Dashborad from "../DashBoard/DashBoard";
 
 const Firstscreen = () => {
     return (
         <div style={{ backgroundColor: "white" }}>
-            <div style={{ backgroundColor: "rgb(43, 135, 209)" }} className="12ibl39">
+            <Dashborad />
+            {/* <div style={{ backgroundColor: "rgb(43, 135, 209)" }} className="12ibl39">
                 <div className="css-42wpoy">
                     <div className="anim-slide-fade-in">
                         <div>
@@ -28,6 +29,9 @@ const Firstscreen = () => {
                         </div>
                     </div>
                 </div>
+            </div> */}
+            <div className="Gamenam">
+                Brain Game Test
             </div>
             <RouteContainer />
         </div>

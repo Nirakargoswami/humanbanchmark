@@ -58,3 +58,17 @@
     color: rgb(51, 51, 51) !important;
     text-decoration: none !important;
 }
+
+.Gamenam{
+    color: white;
+    display: flex;
+    height: 50px;
+    background: rgb(43, 135, 209);
+    width: 72%;
+    margin: auto;
+    align-items: center;
+    margin-bottom: 12px;
+    justify-content: center;
+    box-shadow: 2px 13px 15px -13px rgba(0,0,0,0.75);
+
+}

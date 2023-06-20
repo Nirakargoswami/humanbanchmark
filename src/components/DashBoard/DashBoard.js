@@ -1,14 +1,12 @@
-import react, { useEffect, useState } from "react"
+import  { useEffect, useState } from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import { Getallscore } from "../../Firebse/firebse"
 import Table from '@mui/material/Table';
-import Button from "@mui/material/Button"
 import { Scoredata } from "../../redux/actions/gamescore";
 
 import { Link } from "react-router-dom"
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import AbcIcon from '@mui/icons-material/Abc';
@@ -18,20 +16,11 @@ import { Reactiotimerandk } from "../../redux/actions/gamescore"
 import { Getrankdata } from "../../Firebse/firebse"
 import GridOnIcon from '@mui/icons-material/GridOn';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
-import { fabClasses } from "@mui/material";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-}
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+
+
 
 const makearoute = (key) => {
     switch (key) {
@@ -110,13 +99,11 @@ const makearoute = (key) => {
 
 const Dashborad = () => {
     const State = useSelector(state => state)
-    const [id, setid] = useState("")
     const [data, setdata] = useState([])
     const [info, setifo] = useState({})
     const [user, setUser] = useState(false)
     const dispatch = useDispatch()
 
-    console.log(State)
 
     const getdata = async () => {
         const userid = JSON.parse(localStorage.getItem("user"));
@@ -135,7 +122,7 @@ const Dashborad = () => {
 
     useEffect(() => {
         getdata();
-    }, []);
+    }, [ ]);
 
 
 
@@ -192,17 +179,18 @@ const Dashborad = () => {
 
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "50px", marginBottom: "50px" }}>
-            <div style={{ color: "black", marginTop: "50px", fontSize: "30px", fontWeight: "bold", color: "#007bff" }}>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "50px", marginBottom: "-2px" }}>
+            <div style={{ color: "black", marginTop: "16px", fontSize: "30px", fontWeight: "bold" }}>
 
             </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-                <span style={{ color: "black", fontSize: "20px", fontWeight: "bold", textAlign: "start" }}>User Name</span>
-
-                <div style={{ color: "black", marginTop: "10px", fontSize: "30px", fontWeight: "bold", color: "#007bff" }}>
+            <div style={{ display: "flex", flexDirection: "row",alignItems: "flex-start",marginLeft:"31px",width:"100%"}}>
+                <span style={{ color: "black", fontSize: "18px", fontWeight: "400", textAlign: "start" }}>User Name</span>
+                  <span style={{color:"black"}}>:</span>
+                <div style={{ color: "black", marginLeft: "12px", fontSize: "22px", fontWeight: "bold" }}>
                     {info.name}
                 </div>
-                {!user && <div style={{ color: "black" }} class="link"><Link to={"/login"}>Log in</Link> or <Link to={"/signup"}>sign up</Link> to save your results</div>
+                {!user &&
+                 <div style={{ color: "black" }} class="link"><Link to={"/login"}>Log in</Link> or <Link to={"/signup"}>sign up</Link> to save your results</div>
                 }
             </div>
 

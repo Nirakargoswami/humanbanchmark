@@ -80,7 +80,6 @@ const WordsTriel = () => {
           
         // }
         if (count == 0 && start) {
-            console.log("start")
             Arry.map((x) => {
                 if (x.no === count) {
                     const Exist = word.includes(value)
@@ -196,7 +195,6 @@ const WordsTriel = () => {
 
 
     const Backspace = () => {
-        console.log(count)
         Arry.map((x) => {
             if (x.no === count - 1) {
                 x.value = ""

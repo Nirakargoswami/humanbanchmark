@@ -1,5 +1,4 @@
 import {
-  PRODUCT_DATA, ADD_ITEM, REMOVE_ITEM,
   SEQUENCE,
   NUMBER_MEMORY,
   VERBAL_MEMORY,
@@ -8,7 +7,7 @@ import {
   SCORE_DATA
 } from "../actions/types";
 import { Savedata } from "../../Firebse/firebse"
-import { Co2Sharp } from "@mui/icons-material";
+
 
 
 
@@ -27,11 +26,9 @@ const initialState = {
 export default function (state = initialState, action) {
 
   const userid = JSON.parse(localStorage.getItem("user"))
-  console.log(state)
   const { type, payload } = action;
   switch (type) {
     case SEQUENCE:
-      Savedata(userid.uid, "sequencememory", payload)
       return {
         ...state,
         sequencememory: payload,

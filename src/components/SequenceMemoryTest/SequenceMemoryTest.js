@@ -5,10 +5,10 @@ import "./SequenceMemoryTest.css"
 import { Tryagin, Savebutton } from "../Button/Button"
 import { SeauenceScore } from "../../redux/actions/gamescore"
 import { useDispatch } from 'react-redux';
+import { Savedata } from "../../Firebse/firebse"
+import Alertmessge from "../Diloaugbox/Dialoubox"
 import GridOnIcon from '@mui/icons-material/GridOn';
-import Chart from "../Chart/Chart"
-import { Secondscreen } from "../../components/firstscreen/firstScrenn"
-const SequenceMemoryTest = (props) => {
+const SequenceMemoryTest = () => {
 
     const [shwonaimation, setShowanimaton] = useState(false)
     const [start, setStart] = useState(true)
@@ -22,6 +22,7 @@ const SequenceMemoryTest = (props) => {
     const [levelcount, setlevelcount] = useState(0)
     const [mainlevel, setmainlevel] = useState(6)
     const [mylevel, setmylevel] = useState(3)
+    const [open,setOpen] = useState(false)
     const [nocube, setnocube] = useState(mylevel * mylevel)
     const [newwidth, setnewwidth] = useState((310 / 3) - 2)
     const [showanswer, setshowanswer] = useState(false)
@@ -52,10 +53,8 @@ const SequenceMemoryTest = (props) => {
     // }
 
     const setmocup = () => {
-        console.log("added")
 
         const Firstcount = randomIntFromInterval(1, nocube - 1)
-        console.log(countarry)
         if (Firstcount == countarry[countarry.length - 1]) {
             setmocup()
         } else {
@@ -87,7 +86,6 @@ const SequenceMemoryTest = (props) => {
         const MianArry = [...Array(nocube).keys()]
 
         return MianArry.map((x) => {
-            console.log(countarry)
 
             return (<div key={x} style={{ width: `${newwidth}px`, height: `${newwidth}px`, backgroundColor: x === flashcount ? "white" : null, opacity: x === flashcount ? 1 : 0.15 }} onClick={() => Cubeclick(x)} className='Cube'>
                 {x}
@@ -115,6 +113,7 @@ const SequenceMemoryTest = (props) => {
 
         } else {
             setshowanswer(true)
+            SavebuttonScore()
         }
         if (doublecheck.length === countarry.length) {
             setShowanimaton(true)
@@ -165,19 +164,45 @@ const SequenceMemoryTest = (props) => {
     }
 
     const SavebuttonScore = () => {
-        dispatch(SeauenceScore(Level))
+        const userid = JSON.parse(localStorage.getItem("user"))
+        Savedata(userid.uid, "sequencememory", Level).then((x) => {
+            console.log(x)
+            if (x === "Document successfully updated!") {
+                dispatch(SeauenceScore(Level))
+                handleClickOpen()
+               
+            }
+        })
+
+
     }
 
+    useEffect(() => {
+        Tryaginbutton()
+    },[open])
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+    
+      const handleClose = () => {
+        setOpen(false);
+      };
     const Tiemlapse = () => {
 
         return (setlevelcount(1),
             setmylevel(mylevel + 1),
-            console.log(mylevel),
             setnewwidth((310 / (mylevel + 1)) - 2),
             setnocube((mylevel + 1) * (mylevel + 1)))
     }
     const classnaem = `Cubenames   ${shwonaimation && "animate"}`
 
+const Tryaginbutton = () => {
+    console.log("trygaigna button ")
+    return (
+        <Tryagin disable={open} Tryagin={Tryagain} />
+
+    )
+}
     return (
         <div>
             {start && !showanswer &&
@@ -187,6 +212,7 @@ const SequenceMemoryTest = (props) => {
                 style={{ backgroundColor: "rgb(43, 135, 209)" }}
                 className='Mainbox' >
                 <div className='Secondbox'>
+                    <Alertmessge message={"Your score hase been saved"} level={Level} handleClose={handleClose} open={open} />
 
                     <AppsIcon className='Icon' />
                     <div className='textbox'>
@@ -210,9 +236,7 @@ const SequenceMemoryTest = (props) => {
                         <div className='
                         Flex'>
 
-                            <Tryagin Tryagin={Tryagain} />
-                            <Savebutton Score={SavebuttonScore} />
-
+                          {Tryaginbutton()}
                         </div>
 
                     </div>
@@ -239,9 +263,7 @@ const SequenceMemoryTest = (props) => {
                         </div>
                     </div>
                 </div>}
-            <div  className='Abouttest'>
-            <Chart labels={['0ml', '50ml', '100ml', '150ml', '200ml', '250ml','300ml',"350ml"]} data={[10, 20, 30,40,50,40,20,10]}  />
-
+            <div className='Abouttest'>
                 <h1 style={{ textAlign: "start" }}>About the test</h1>
                 <p style={{ textAlign: "start" }}>Memorize the sequence of buttons that light up, then press them in order.</p>
                 <p style={{ textAlign: "start" }}>Every time you finish the pattern, it gets longer.</p>

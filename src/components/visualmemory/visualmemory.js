@@ -2,12 +2,8 @@ import React, { useState, useEffect } from 'react'
 import "./visualmemory.css"
 import AppsIcon from '@mui/icons-material/Apps';
 import { Tryagin, Savebutton } from "../Button/Button"
-
-import SequenceMemoryTest from '../SequenceMemoryTest/SequenceMemoryTest'
 import Cuebmaekr from "../Cubecomponent/Cubecomponent"
 import { Mainwraper } from "../../components/inexpage/index"
-import { StartOutlined } from '@mui/icons-material';
-import Chart from "../Chart/Chart"
 const Visualmemory = () => {
     const [Start, setStart] = useState(true)
     const [levelArry, setLevelArry] = useState([])
@@ -68,7 +64,6 @@ const Visualmemory = () => {
 
 
     const Cubeclikck = (x) => {
-console.log(ans)
         if (!gamestart) {
             setGAmestart(true)
         }
@@ -103,7 +98,6 @@ console.log(ans)
                 }, 500)
                 setTimeout(() => {
                     setCount(1)
-                    console.log("Nirakar")
                     if (Stagecount < 2) {
                         setStagecount(Stagecount + 1)
                         setLevel(leve + 2)
@@ -233,7 +227,6 @@ console.log(ans)
             }
             <div>
                 <div className='Abouttest'>
-                    <Chart labels={['0ml', '50ml', '100ml', '150ml', '200ml', '250ml', '300ml', "350ml"]} data={[10, 20, 30, 40, 50, 40, 20, 10]} />
 
                     <h1 style={{ textAlign: "start" }}>About the test</h1>
                     <p style={{ textAlign: "start" }}>Every level, a number of tiles will flash white. Memorize them, and pick them again after the tiles are reset!</p>

@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 
-import AppsIcon from '@mui/icons-material/Apps';
 import { Mainwraper } from "../inexpage/index"
 import { useRef } from 'react';
 import { Savebutton } from "../Button/Button"
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom"
 import PinIcon from '@mui/icons-material/Pin';
-import Chart from "../Chart/Chart"
 import { Numbermemoryscore } from "../../redux/actions/gamescore"
 import "./Number.css"
 const Numbermemory = () => {
@@ -43,7 +41,6 @@ const Numbermemory = () => {
         let No = ""
         for (let i = 0; i < level; i++) {
             const Rendno = randomIntFromInterval(0, 9)
-            console.log(Rendno)
             No = No + Rendno
 
         }
@@ -170,7 +167,6 @@ const Numbermemory = () => {
 
             </div>
             <div  className="Abouttest" style={{display:"flex",flexDirection:"c"}}>
-             <Chart labels={['0ml', '50ml', '100ml', '150ml', '200ml', '250ml', '300ml', "350ml"]} data={[10, 20, 30, 40, 50, 40, 20, 10]} />
 
                 <div className="css-1oen1ps e19owgy73">
                     <h2 style={{ textAlign: "start" }}>About the test</h2>

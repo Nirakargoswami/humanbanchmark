@@ -1,7 +1,6 @@
 import React from "react";
 import "./rankbox.css"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { style } from "@mui/system";
 const Simplebox = ({ item ,style}) => {
 
     return (
@@ -44,23 +43,22 @@ const Simplebox = ({ item ,style}) => {
 
 const Rankbox = ({ data }) => {
     const datas = data
-    console.log(datas)
     return (
         <>
             <div className="box">
                 <Simplebox item={data[1]} style={{
                     top:"25px",
-                    left:"5px"
+                   
 
                 }} />
                 <Simplebox item={data[0]} style={{
-                    top:"-8px"
+                    top:"0px"
                    
 
                 }} />
                 <Simplebox item={data[2]}style={{
                      top:"25px",
-                     left:"212px"
+                     
  
 
                 }}  />

@@ -3,7 +3,7 @@
     display: inline-block;
     border: none;
     border-radius: 3px;
-    transition:background 0.1s linear 0s;
+    transition: 0.1s linear 0s;
     font-weight: bold;
     cursor: pointer;
     font-size: inherit;
@@ -18,10 +18,10 @@
 
 .Tryagain{
     padding: 12px 30px;
-    background: rgba(255, 255, 255, 0.5);    display: inline-block;
+    display: inline-block;
     border: none;
     border-radius: 3px;
-    transition: background 0.1s linear 0s;
+    transition:  0.1s linear 0s;
     font-weight: bold;
     cursor: pointer;
     font-size: inherit;

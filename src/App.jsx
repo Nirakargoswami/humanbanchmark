@@ -1,22 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {  useEffect } from "react";
 import Reactiontime from "./components/Retiontime /reactiontime";
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
-  Link,
-  Form,
+
 } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import Dashborad from "./components/DashBoard/DashBoard";
+
+import {  useDispatch } from "react-redux";
 import Navbar from "./components/Navbar/Navbar";
 import "./App.css";
 import WordTriel from "./components/WordsTriel/WordsTriel";
 import SequenceMemoryTest from "./components/SequenceMemoryTest/SequenceMemoryTest";
 import Visualmemory from "./components/visualmemory/visualmemory";
 import Numbermemory from "./components/Numbermemory/Numbermemory";
-import MathGame from "./components/mathgaem/mathgaem";
-import GuessFlage from "./components/GuessFlage/GuessFlage";
-import Dashborad from "./components/DashBoard/DashBoard";
 import Login from "./components/login/Login";
 import Gameleaderbord from "./components/Gamebord/GameLeaderbord"
 import Signup from "./components/signup/Signup";
@@ -25,16 +22,10 @@ import { Getallscore } from "../src/Firebse/firebse";
 import { Scoredata } from "../src/redux/actions/gamescore";
 import { Firstscreen } from "./components/firstscreen/firstScrenn";
 function App() {
-  const State = useSelector((state) => state);
   const dipatch = useDispatch();
-  const [rows, setRows] = useState("");
-  const [headCells, setHeadCells] = useState("");
-  const [shwonaimation, setAnmation] = useState(false);
-  const childCompRef = useRef();
 
-  const stopdoanimation = () => {
-    setAnmation(!shwonaimation);
-  };
+
+
 
   const getdata = async () => {
     const userid = JSON.parse(localStorage.getItem("user"));
@@ -42,7 +33,7 @@ function App() {
       const data = Getallscore(userid.uid);
       data
         .then((responce) => {
-          console.log(responce);
+         
           dipatch(Scoredata(responce));
         })
         .catch(() => {});
@@ -53,7 +44,7 @@ function App() {
 
   useEffect(() => {
     getdata();
-  }, []);
+  },[ ]);
 
   return (
     <>

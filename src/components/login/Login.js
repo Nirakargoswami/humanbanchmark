@@ -1,76 +1,65 @@
-import { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from "react-router-dom"
+import {  useState } from 'react';
+import { Link } from "react-router-dom"
 import './login.css'
 import {Scoredata} from "../../redux/actions/gamescore"
 
-import { signInWithGoogle, logInWithEmailAndPassword, auth } from "../../Firebse/firebse"
+import { signInWithGoogle, logInWithEmailAndPassword } from "../../Firebse/firebse"
 import {Getallscore} from "../../Firebse/firebse"
 import {  useDispatch } from "react-redux";
 
 
-function Login(props) {
-  let { referal } = useParams();
-  const navigate = useNavigate()
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
-  const [validEmail, setvalidEmail] = useState(true)
-  const [validPassword, setvalidPassword] = useState(true)
+  // const [validEmail, setvalidEmail] = useState(true)
+  // const [validPassword, setvalidPassword] = useState(true)
  const [usercreated,setusercreated] = useState(false)
-  const isAuthenticated = auth
   const dipatch= useDispatch()
 
-  //   useEffect(() => {
-  //     auth.onAuthStateChanged(user => {
-  //  if(user){
-  //   window.location.href = "../"
-  //  }
-  //     })
-  //   },[isAuthenticated])
 
 
 
 
+  // function Emailvalidation() {
+  //   var filter = /^([a-zA-Z0-9_+\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  //   if (!filter.test(email)) {
+  //     setvalidEmail(false)
+  //   } else {
+  //     setvalidEmail(true)
+  //   }
+  // }
 
-  function Emailvalidation() {
-    var filter = /^([a-zA-Z0-9_+\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if (!filter.test(email)) {
-      setvalidEmail(false)
-    } else {
-      setvalidEmail(true)
-    }
-  }
+  // function Passwordvalidation() {
+  //   if (password.length < 8 || password.length > 14) {
+  //     setvalidPassword(false)
+  //   } else {
+  //     setvalidPassword(true)
+  //   }
+  // }
 
-  function Passwordvalidation() {
-    if (password.length < 8 || password.length > 14) {
-      setvalidPassword(false)
-    } else {
-      setvalidPassword(true)
-    }
-  }
+  // function validation() {
+  //   let valid = true
+  //   var filter = /^([a-zA-Z0-9_+\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-  function validation() {
-    let valid = true
-    var filter = /^([a-zA-Z0-9_+\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-
-    if (!filter.test(email)) {
-      setvalidEmail(false)
-      valid = false
-    } else {
-      setvalidEmail(true)
-    }
-    if (password.length < 8 || password.length > 14) {
-      setvalidPassword(false)
-      valid = false
-    } else {
-      setvalidPassword(true)
-    }
-    return valid
-  }
+  //   if (!filter.test(email)) {
+  //     setvalidEmail(false)
+  //     valid = false
+  //   } else {
+  //     setvalidEmail(true)
+  //   }
+  //   if (password.length < 8 || password.length > 14) {
+  //     setvalidPassword(false)
+  //     valid = false
+  //   } else {
+  //     setvalidPassword(true)
+  //   }
+  //   return valid
+  // }
 
 
   async function  handleLogin () {
    
-   const  x =  await logInWithEmailAndPassword(email, password)
+  await logInWithEmailAndPassword(email, password)
    .then((x) => {
     if(x.logged){
       setusercreated("Loged in successfully")
@@ -101,11 +90,9 @@ setusercreated(false)
 
   const Goolelogin = () => {
     signInWithGoogle().then((x) => {
-      console.log(x)
         if(x.loged){
           getdata()
         }else{
-          console.log(x.message)
         }
     })
 
@@ -157,11 +144,11 @@ setusercreated(false)
 
                   // style={{border :!validEmail ? "1px solid red" : "" }}
                   />
-                  {
+                  {/* {
                     !validEmail ? <label className="lable">
                       Please enter valid email
                     </label> : ""
-                  }
+                  } */}
 
                 </div>
                 <div className="mb-2">
@@ -173,18 +160,18 @@ setusercreated(false)
                   </label>
                   <input
                     value={password}
-                    style={{ border: !validPassword ? "1px solid red" : "" }}
+                    // style={{ border: !validPassword ? "1px solid red" : "" }}
 
                     type="password"
                     name='password'
                     onChange={e => setpassword(e.target.value)}
                     className="Emailinput"
                   />
-                  {
+                  {/* {
                     !validPassword ? <label className="lable">
                       Please enter valid password
                     </label> : ""
-                  }
+                  } */}
                 </div>
                 <Link
                   to="/"

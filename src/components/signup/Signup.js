@@ -1,24 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from "react-router-dom"
+import React, {  useState } from 'react';
+import { Link } from "react-router-dom"
 import './signup.css'
 import {registerWithEmailAndPassword,auth} from "../../Firebse/firebse"
 import { useAuthState } from "react-firebase-hooks/auth";
 
 function Signup() {
 
-  const navigate = useNavigate()
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [validName, setvalidName] = useState(true)
+  // const [validName, setvalidName] = useState(true)
   const [validEmail, setvalidEmail] = useState(true)
   const [validPassword, setvalidPassword] = useState(true)
   const [validConfirmPassword, setvalidConfirmPassword] = useState(true)
   const [toogle, settoogle] = useState(false)
   const [submit,setSubmit] = useState(false)
-  const [isAuthenticated, loading, error] = useAuthState(auth);
+  // const [isAuthenticated, loading, error] = useAuthState(auth);
 
   const Toogle = () => {
     settoogle(!toogle)
@@ -45,6 +43,7 @@ function Signup() {
       setvalidEmail(true)
     }
   }
+  
   function Passwordvalidation(password) {
     var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,15}$/;
     if (!paswd.test(password)) {
@@ -58,30 +57,30 @@ function Signup() {
     //   setvalidPassword(true)
     // }
   }
-  function ConfirmPasswordvalidation(e) {
-    if (e != password) {
-      setvalidConfirmPassword(false)
-    } else {
-      setvalidConfirmPassword(true)
-    }
-  }
-  function validation() {
+  // function ConfirmPasswordvalidation(e) {
+  //   if (e != password) {
+  //     setvalidConfirmPassword(false)
+  //   } else {
+  //     setvalidConfirmPassword(true)
+  //   }
+  // }
+  // function validation() {
     
-    let valid = true
-    var filter = /^([a-zA-Z0-9_+\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  //   let valid = true
+  //   var filter = /^([a-zA-Z0-9_+\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-    if (!filter.test(email)) {
-      setvalidEmail(false)
-      valid = false
-    } else {
-      setvalidEmail(true)
-    }
-    var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
-    if (!paswd.test(password)) {
-      setvalidPassword(false)
-    } else {
-      setvalidPassword(true)
-    }
+  //   if (!filter.test(email)) {
+  //     setvalidEmail(false)
+  //     valid = false
+  //   } else {
+  //     setvalidEmail(true)
+  //   }
+  //   var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+  //   if (!paswd.test(password)) {
+  //     setvalidPassword(false)
+  //   } else {
+  //     setvalidPassword(true)
+  //   }
     // if (confirmPassword != password) {
     //   setvalidConfirmPassword(false)
     //   valid = false
@@ -94,11 +93,11 @@ function Signup() {
     // } else {
     //   setvalidName(true)
     // }
-    if(!toogle){
-      valid = false
-    }
-    return valid
-  }
+  //   if(!toogle){
+  //     valid = false
+  //   }
+  //   return valid
+  // }
   function handleSignIn() {
     console.log("workaon")
     setSubmit(true)

@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Mainwraper } from "../inexpage/index"
 import AppsIcon from '@mui/icons-material/Apps';
@@ -15,32 +14,54 @@ const Wordmemery = () => {
     const dispatch = useDispatch()
 
     const Name = [
-        "aardvark",
-        "abacus",
-        "abbey",
-        "abdomen",
-        "ability",
-        "abnormality",
-        "abolishment",
-        "abortion",
 
 
     ]
 
-    useEffect(() => {
+    const newword = async() => {
+        const Rendno = randomIntFromInterval(0, Name.length - 1)
+        const url = 'https://random-words5.p.rapidapi.com/getMultipleRandom?count=1';
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': 'e61b2de358msh99ba90c9508cc7dp1d3015jsn262edc08d8e1',
+                'X-RapidAPI-Host': 'random-words5.p.rapidapi.com'
+            }
+        };
+
+        try {
+            const response = await fetch(url, options);
+            const result = await response.text();
+            setword(result)
+          
+        } catch (error) {
+        }
+    }
+
+const firstwordarry = () => {
+    for(let i = 0 ; i<6;i++){
+        newword()
+    }
+}
+
+useEffect(() => {
+    firstwordarry()
+},[])
+    useEffect(
+        () => {
         if (!start) {
             const Rendno = randomIntFromInterval(0, Name.length - 1)
-
             setword(Name[Rendno])
-
+            
         }
+        
     }, [start])
+
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
     const Newword = () => {
-        console.log(word, checkword)
         const Rendno = randomIntFromInterval(0, Name.length - 1)
         const Newword = Name[Rendno]
         if (checkword.length === 0) {
@@ -49,11 +70,11 @@ const Wordmemery = () => {
             setscore(score + 1)
         }
         else {
-            console.log(word, checkword.indexOf(word), checkword)
             setlives(lives - 1)
 
         }
         setword(Newword)
+        newword()
         setcheckword(prevState => [...prevState, word]);
 
     }
@@ -61,22 +82,21 @@ const Wordmemery = () => {
 
 
     const Seenword = () => {
-        console.log(word, checkword)
         const Rendno = randomIntFromInterval(0, Name.length - 1)
         const Newword = Name[Rendno]
+      
         if (checkword.length === 0) {
             setlives(lives - 1)
         } else if (checkword.indexOf(word) !== -1) {
             setscore(score + 1)
         }
         else {
-            console.log(word, checkword.indexOf(word), checkword)
             setlives(lives - 1)
 
         }
         setword(Newword)
+        newword()
         setcheckword(prevState => [...prevState, word]);
-
     }
 
     useEffect(() => {
@@ -163,13 +183,13 @@ const Wordmemery = () => {
                 </>
             }
             <div className="Abouttest">
-                
-                    <h1 style={{ textAlign: "start" }}>About the test</h1>
-                    <p style={{ textAlign: "start" }}>This test measures how many words you can keep in short term memory at once.</p>
-                    <p style={{ textAlign: "start" }}>The number of words you need to remember grows continually, until you can't keep them in your head anymore.</p>
-                    <p style={{ textAlign: "start" }}>Go as long as you can. You have 3 strikes until game over.</p>
-                    <p style={{ textAlign: "start" }}>Your score is how many turns you lasted.</p>
-                
+
+                <h1 style={{ textAlign: "start" }}>About the test</h1>
+                <p style={{ textAlign: "start" }}>This test measures how many words you can keep in short term memory at once.</p>
+                <p style={{ textAlign: "start" }}>The number of words you need to remember grows continually, until you can't keep them in your head anymore.</p>
+                <p style={{ textAlign: "start" }}>Go as long as you can. You have 3 strikes until game over.</p>
+                <p style={{ textAlign: "start" }}>Your score is how many turns you lasted.</p>
+
             </div>
         </div>
     )

@@ -1,7 +1,6 @@
 import {
     REACTION_TIME_RANK
 } from "../actions/types";
-import { Getrankdata } from "../../Firebse/firebse"
 
 
 
@@ -14,10 +13,7 @@ const initialState = {
 
 const RankingDashbord = (state = initialState, action) => {
 
-
-    const { type, payload } = action;
-    console.log(payload, type)
-
+    const { type } = action;
     switch (type) {
         case REACTION_TIME_RANK:
             const name = action.payload.gamename
@@ -28,11 +24,11 @@ const RankingDashbord = (state = initialState, action) => {
                 Newgamename = "Reaction Time"
             }else if(name === "sequencememory"){
                 Newgamename = "Sequence Memory"
-            }else if(name == "verbalmemory" ){
+            }else if(name === "verbalmemory" ){
                 Newgamename = "Verbal Memory"
-            }else if(name == "visualmemory"){
+            }else if(name === "visualmemory"){
                 Newgamename = "Visual Memory"
-            }else if( name == "wordmemory"){
+            }else if( name === "wordmemory"){
                 Newgamename = "Wordmemory"
             }
 
@@ -45,7 +41,6 @@ const RankingDashbord = (state = initialState, action) => {
                  sortedArray = action.payload.data.sort((a, b) => b[name] - a[name]);
 
             }
-            console.log(sortedArray)
             const resultArray = sortedArray.map((userData, y) => ({
                 name: userData.name,
                 score: userData[name],
@@ -53,7 +48,6 @@ const RankingDashbord = (state = initialState, action) => {
                 gamename: Newgamename
             }));
             
-            console.log(resultArray, "fasdfafa")
             return {
                 ...state,
                 resultArray

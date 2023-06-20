@@ -7,14 +7,13 @@ import PinIcon from '@mui/icons-material/Pin';
 import AbcIcon from '@mui/icons-material/Abc';
 
 import {Link} from "react-router-dom"
-import Filter3Icon from '@mui/icons-material/Filter3';
 
 const Data = [
     {
-        testname: "Reaction Time",
-        testdes: "Test your visual reflexes.",
-        link: "reactiontime",
-        svg: <AccessTimeIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
+        testname: "Number Memory",
+        testdes: "Remember the longest number you can.",
+        link: "number-memory",
+        svg: <PinIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
 
     },
     {
@@ -25,11 +24,15 @@ const Data = [
 
 
     },
+   
+   
     {
-        testname: "Number Memory",
-        testdes: "Remember the longest number you can.",
-        link: "number-memory",
-        svg: <PinIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
+        testname: "Visual Memory",
+        testdes: "Remember an increasingly large board of squares.",
+        link: "memory",
+        svg: <AcUnitIcon
+            style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }}
+        />
 
     },
     {
@@ -40,12 +43,10 @@ const Data = [
 
     },
     {
-        testname: "Visual Memory",
-        testdes: "Remember an increasingly large board of squares.",
-        link: "memory",
-        svg: <AcUnitIcon
-            style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }}
-        />
+        testname: "Reaction Time",
+        testdes: "Test your visual reflexes.",
+        link: "reactiontime",
+        svg: <AccessTimeIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
 
     },
 
