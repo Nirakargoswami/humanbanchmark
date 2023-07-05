@@ -29,7 +29,7 @@ const Gameleaderbord = () => {
 
 
     const Makeatable = () => {
-
+console.log(gamedata)
         return (
 
             gamedata && gamedata.length > 0 && gamedata.map((row, y) => {

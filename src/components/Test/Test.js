@@ -6,7 +6,7 @@ import GridOnIcon from '@mui/icons-material/GridOn';
 import PinIcon from '@mui/icons-material/Pin';
 import AbcIcon from '@mui/icons-material/Abc';
 
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const Data = [
     {
@@ -24,8 +24,8 @@ const Data = [
 
 
     },
-   
-   
+
+
     {
         testname: "Visual Memory",
         testdes: "Remember an increasingly large board of squares.",
@@ -35,13 +35,13 @@ const Data = [
         />
 
     },
-    {
-        testname: "Verbal Memory",
-        testdes: "Keep as many words in short term memory as possible.",
-        link: "verbal-memory",
-        svg: <AbcIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
+    // {
+    //     testname: "Verbal Memory",
+    //     testdes: "Keep as many words in short term memory as possible.",
+    //     link: "verbal-memory",
+    //     svg: <AbcIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
 
-    },
+    // },
     {
         testname: "Reaction Time",
         testdes: "Test your visual reflexes.",
@@ -55,21 +55,32 @@ const Data = [
 
 const RouteContainer = () => {
     return (
-        
+
         <div className="RoteCon">
-        
+
+
             {Data.map((x) => {
                 return (
-                    
-                    <Link to={`${x.link}`} className="css-uaat4j css-1ur49oz" style={{ cursor: "pointer", textAlign: "center", position: "relative" }}>
-                    {x.svg}
-                    <h3>{x.testname}</h3>
-                    <p>{x.testdes}</p>
-               
-                </Link>
+                    <>
+                        <Link to={`${x.link}`} className="css-uaat4j css-1ur49oz" style={{ cursor: "pointer", textAlign: "center", position: "relative" }}>
+
+                            <div className="Cuponbox" >
+                                <div>
+                                    1500
+                                </div>
+                                <div>
+                                    Coin
+                                </div>
+                            </div>
+                            {x.svg}
+                            <h3>{x.testname}</h3>
+                            <p>{x.testdes}</p>
+
+                        </Link>
+                    </>
                 )
             })}
-            
+
         </div>
     )
 }

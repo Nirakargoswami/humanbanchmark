@@ -1,4 +1,4 @@
-.RoteCon{
+.RoteCon {
     flex-direction: row;
     display: flex;
     align-items: center;
@@ -8,14 +8,15 @@
     margin-bottom: 20px;
     padding: 10px;
     flex-wrap: wrap;
+    position: relative;
 }
 
-.css-uaat4j{
-   
+.css-uaat4j {
+
     margin-bottom: 20px;
     margin-right: 24px;
     display: block;
-    box-shadow: 2px 13px 15px -13px rgba(0,0,0,0.75);
+    box-shadow: 2px 13px 15px -13px rgba(0, 0, 0, 0.75);
     width: 327px;
     /* flex: 1 1; */
     line-height: 1;
@@ -25,16 +26,42 @@
     color: rgb(51, 51, 51) !important;
     text-decoration: none !important;
 }
-.css-1ur49oz > * {
+
+.css-1ur49oz>* {
     margin-bottom: 20px;
 }
+
 @media (max-width:700px) {
-    .RoteCon{
+    .RoteCon {
         flex-direction: row;
     }
-    .css-uaat4j{
+
+    .css-uaat4j {
         margin-right: 0px;
 
     }
-    
+
+}
+
+
+.Cuponbox {
+    color: white;
+    display: flex;
+    position: absolute;
+    padding: 5px;
+    border-radius: 7px;
+    right: -10px;
+    height: 30px;
+    background: rgb(43, 135, 209);
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: end;
+    margin: auto;
+    align-items: center;
+    margin-bottom: 12px;
+    justify-content: center;
+    box-shadow: 2px 13px 15px -13px rgba(0, 0, 0, 0.75);
+}
+.Cuponbox div{
+    font-size: 12px;
 }

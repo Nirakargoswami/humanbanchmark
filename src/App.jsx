@@ -3,6 +3,7 @@ import Reactiontime from "./components/Retiontime /reactiontime";
 import {
   Routes,
   Route,
+  useParams
 
 } from "react-router-dom";
 import Dashborad from "./components/DashBoard/DashBoard";
@@ -22,6 +23,7 @@ import { Getallscore } from "../src/Firebse/firebse";
 import { Scoredata } from "../src/redux/actions/gamescore";
 import { Firstscreen } from "./components/firstscreen/firstScrenn";
 function App() {
+  
   const dipatch = useDispatch();
 
 
@@ -52,7 +54,7 @@ function App() {
       <div className="Maionpage">
         <div className="secondwraper"></div>
         <Routes>
-          <Route path="/" element={<Firstscreen />} />
+          <Route path="/:userId?" element={<Firstscreen />} />
 
           <Route path="/reactiontime" element={<Reactiontime />} />
           <Route path="/login" element={<Login />} />
@@ -65,7 +67,7 @@ function App() {
 
           <Route path="/sequence" element={<SequenceMemoryTest />} />
           <Route path="/number-memory" element={<Numbermemory />} />
-          <Route path="/verbal-memory" element={<Wordmemery />} />
+          {/* <Route path="/verbal-memory" element={<Wordmemery />} /> */}
           <Route path="/memory" element={<Visualmemory />} />
           <Route path="/gameleadorbord" element={<Gameleaderbord />} />
 

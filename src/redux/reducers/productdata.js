@@ -27,6 +27,7 @@ export default function (state = initialState, action) {
 
   const userid = JSON.parse(localStorage.getItem("user"))
   const { type, payload } = action;
+  console.log(payload)
   switch (type) {
     case SEQUENCE:
       return {
@@ -41,11 +42,10 @@ export default function (state = initialState, action) {
         numbermemory: payload,
       };
     case SCORE_DATA:
-      state.verbalmemory = payload.verbalmemory  + " points"
-      state.visualmemory = payload.visualmemory + " points"
-      state.reactiontime = payload.reactiontime + " ml"
-      state.numbermemory = payload.numbermemory + " points"
-      state.sequencememory = payload.sequencememory + " points"
+      state.visualmemory = payload.visualmemory.score + " points"
+      state.reactiontime = payload.reactiontime.score + " ml"
+      state.numbermemory = payload.numbermemory.score + " points"
+      state.sequencememory = payload.sequencememory.score + " points"
       state.name = payload.name
       return {
         ...state,

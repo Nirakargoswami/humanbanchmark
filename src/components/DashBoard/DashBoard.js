@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import { Getallscore } from "../../Firebse/firebse"
 import Table from '@mui/material/Table';
@@ -57,19 +57,19 @@ const makearoute = (key) => {
                     </Link>
                 </div>
             )
-        case "verbalmemory":
+        // case "verbalmemory":
 
 
-            return (
-                <div style={{ display: "flex" }}>
-                    <Link to="/verbal-memory">
-                        <div><PlayCircleFilledWhiteIcon /> Play</div>
-                    </Link>
-                    <Link to="">
-                        <div style={{ marginLeft: "10px" }}><AbcIcon /></div>
-                    </Link>
-                </div>
-            )
+        //     return (
+        //         <div style={{ display: "flex" }}>
+        //             <Link to="/verbal-memory">
+        //                 <div><PlayCircleFilledWhiteIcon /> Play</div>
+        //             </Link>
+        //             <Link to="">
+        //                 <div style={{ marginLeft: "10px" }}><AbcIcon /></div>
+        //             </Link>
+        //         </div>
+        //     )
         case "visualmemory":
 
             return (
@@ -122,7 +122,7 @@ const Dashborad = () => {
 
     useEffect(() => {
         getdata();
-    }, [ ]);
+    }, []);
 
 
 
@@ -179,18 +179,22 @@ const Dashborad = () => {
 
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "50px", marginBottom: "-2px" }}>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "10px", marginBottom: "-2px" }}>
             <div style={{ color: "black", marginTop: "16px", fontSize: "30px", fontWeight: "bold" }}>
 
             </div>
-            <div style={{ display: "flex", flexDirection: "row",alignItems: "flex-start",marginLeft:"31px",width:"100%"}}>
-                <span style={{ color: "black", fontSize: "18px", fontWeight: "400", textAlign: "start" }}>User Name</span>
-                  <span style={{color:"black"}}>:</span>
-                <div style={{ color: "black", marginLeft: "12px", fontSize: "22px", fontWeight: "bold" }}>
-                    {info.name}
-                </div>
-                {!user &&
-                 <div style={{ color: "black" }} class="link"><Link to={"/login"}>Log in</Link> or <Link to={"/signup"}>sign up</Link> to save your results</div>
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", marginLeft: "31px", width: "100%" }}>
+                {
+                    user ?
+                        <>
+                            <span style={{ color: "black", fontSize: "18px", fontWeight: "400", textAlign: "start" }}>User Name</span>
+                            <span style={{ color: "black" }}>:</span>
+                            <div style={{ color: "black", marginLeft: "12px", fontSize: "22px", fontWeight: "bold" }}>
+                                {info.name}
+                            </div>
+                        </>
+                        :
+                        <div style={{ color: "black", textAlign: "start" }} class="link"><Link to={"/login"}>Log in</Link> or <Link to={"/signup"}>sign up</Link> to save your results</div>
                 }
             </div>
 

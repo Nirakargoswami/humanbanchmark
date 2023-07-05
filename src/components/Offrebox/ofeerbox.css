@@ -1,0 +1,33 @@
+
+.boxcolor {
+    background: rgb(43, 135, 209) !important;
+    box-shadow: 2px 13px 15px -13px rgba(0,0,0,0.75);
+color: white !important;
+margin-top: 20px !important;
+    position: relative;
+    
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+  }
+  @keyframes examples {
+ 
+    50%  { 
+     opacity: 1;
+    left: 20px;
+    }
+
+    100% {
+   right: 30px;
+     
+    }
+  }
+  
+  /* @keyframes example {
+    0%   { left:0px; top:0px;}
+   
+    25%  {left:5px; top:0px;}
+    75%  { right:5px; top:0px;}
+    0%  { right:0px; top:0px;}
+   
+  } */
