@@ -13,11 +13,11 @@ import { Savedata } from "../../Firebse/firebse"
 
 const initialState = {
   dashboad: {
-    reactiontime: "",
-    sequencememory: "",
     numbermemory: "",
+    sequencememory: "",
     visualmemory: "",
-    verbalmemory: "",
+    reactiontime: "",
+    // verbalmemory: "",
   },
 }
 
