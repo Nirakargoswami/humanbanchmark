@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState ,useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,26 +9,30 @@ import AcUnitIcon from '@mui/icons-material/AcUnitOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+
 import "./Navbar.css";
-import {onAuthStateChanged,Signout,auth}  from "../../Firebse/firebse"
+import { onAuthStateChanged, Signout, auth } from "../../Firebse/firebse"
 const Navbar = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const [user, setUser] = useState(null);
+    const params = useParams();
+
+    const userid = JSON.parse(localStorage.getItem("user"));
 
     useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, userAuth => {
-        if (userAuth) {
-          // User is logged in
-          setUser(userAuth);
-        } else {
-          // User is logged out
-          setUser(null);
-        }
-      });
-  
-      return unsubscribe;
+        const unsubscribe = onAuthStateChanged(auth, userAuth => {
+            if (userAuth) {
+                // User is logged in
+                setUser(userAuth);
+            } else {
+                // User is logged out
+                setUser(null);
+            }
+        });
+
+        return unsubscribe;
     }, []);
 
     const handleMenu = (event) => {
@@ -38,15 +42,15 @@ const Navbar = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    
-const Logout = () => {
-    Signout()
-}
+
+    const Logout = () => {
+        Signout()
+    }
     // useEffect(() => {
     //     const unsubscribe = auth.onAuthStateChanged(user => {
     //       setUser(user);
     //     })})
-    
+
 
     return (
         <div>
@@ -105,21 +109,19 @@ const Logout = () => {
 
                                 </MenuItem>
                             </Link>
-                           {user ?
-                           <Link  className="css-i4vpdl">
+                            {
 
-                           <MenuItem onClick={() => Logout()}>
-                               Logout
-                           </MenuItem>
-                       </Link> :
-                           <Link to={"/login"} className="css-i4vpdl">
-       
-                                <MenuItem onClick={handleClose}>
-                                    Login
-                                </MenuItem>
-                            </Link>
-                            
                             }
+                         {  
+                       userid && !userid.idlogin && 
+                         <div>
+                            <Link className="css-i4vpdl">
+
+                                    <MenuItem onClick={() => Logout()}>
+                                        Logout
+                                    </MenuItem>
+                                </Link>
+                            </div>}
 
                         </Menu>
                     </div>

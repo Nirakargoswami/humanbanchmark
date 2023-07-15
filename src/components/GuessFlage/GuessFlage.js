@@ -44,7 +44,6 @@ const GuessFlage = () => {
     const Data = arr.slice(startIndex, startIndex + 5);
 
     if (Data.length < 5) {
-      console.log(Data.length)
       const Newdata = shuffleArray(Flagedata)
       getRandom5(Newdata)
     } else {
@@ -57,8 +56,6 @@ const GuessFlage = () => {
   useEffect(() => {
     const Newarydeta = []
     flage && flage.map((x) => {
-      console.log("flage")
-      console.log(x)
       const url = 'https://restcountries.com/v3.1/name/' + x
       fetch(url)
         .then(res => res.json())
@@ -113,11 +110,8 @@ const GuessFlage = () => {
 
     const data = getRandom5(Flagedata)
     if (data.length < 5) {
-      console.log(data.length)
       const data = getRandom5(Flagedata)
     } else {
-      console.log(data.length, "lenth")
-
       setflage(data)
     }
 
@@ -129,12 +123,8 @@ const GuessFlage = () => {
 
   useEffect(() => {
     if (flage) {
-      console.log(value)
       if (value > 3) {
-
         const No = randomIntFromInterval(0, 5)
-        console.log("clear")
-
         clearInterval(id)
         setTimeout(() => {
           const ans = flagedata[No]
@@ -152,9 +142,6 @@ const GuessFlage = () => {
 
 
   const Flagemachine = () => {
-    console.log("value")
-
-    console.log(value)
     return (
       <div className="Flagebox" >
 
@@ -165,26 +152,16 @@ const GuessFlage = () => {
   }
 
   const ans = (x, y) => {
-    console.log(x)
-    console.log(ansvlaue)
     if (x == stopgame.name) {
       setansvlaue(y)
       setlevel(level + 1)
-      console.log(stopgame.name)
-
-
-
       const Time = setInterval(() => {
         const data = getRandom5(Flagedata)
         if (data.length < 5) {
-          console.log(data.length)
           const data = getRandom5(Flagedata)
         } else {
-          console.log(data.length, "lenth")
-
           setflage(data)
         }
-        console.log("2000")
         setGmestart(true)
         setQuizestart(false)
         setstopgame(false)
@@ -207,7 +184,6 @@ const GuessFlage = () => {
 
   useEffect(() => {
     if (ansvlaue) {
-      console.log("ansvalue")
       Clases()
     }
 
@@ -215,10 +191,7 @@ const GuessFlage = () => {
 
 
   const Clases = () => {
-    console.log("run")
-
     return (flagedata.map((x, y) => {
-
       return (<>
 
         <div style={{ border: ansvlaue == y && Quizestart ? "2px solid green" : Quizestart && ansvlaue !== y ? "2px solid red" : "2px solid black" }} onClick={() => ((ans(x.name, y)), setQuizestart(true))} className="Question btn">
@@ -229,8 +202,6 @@ const GuessFlage = () => {
 
     }))
   }
-
-  console.log(Gmestart, stopgame)
 
   return (
     <div className="Quezmianbox">

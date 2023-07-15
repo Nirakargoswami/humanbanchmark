@@ -1,29 +1,86 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import "./firstscreen.css"
 import RouteContainer from "../../components/Test/Test"
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import Dashborad from "../DashBoard/DashBoard";
 import Offerbox from "../Offrebox/Offerbox"
+import { Getallscore } from "../../Firebse/firebse";
+import { Scoredata } from "../../redux/actions/gamescore";
 import {Creatuser} from "../../Firebse/firebse"
+import {  useDispatch } from "react-redux";
+
 import {
     
     useParams
   
   } from "react-router-dom";
 const Firstscreen = () => {
+    const [id,setid] = useState()
     const params = useParams();
     const [open, setOpen] = React.useState(true);
 
 
-    useEffect(() => {
+    // const userid = JSON.parse(localStorage.getItem("user"));
+    const currentDate = new Date();
+
+    // Reset the time to 0:00 (midnight)
+    currentDate.setHours(0, 0, 0, 0);
+    
+    // Get the current time in a 24-hour format
+    const currentTime = currentDate.getHours() * 60 + currentDate.getMinutes();
+    
+    // Reset the time to 0 after 24 hours
+    if (currentTime >= 1440) {
+      currentDate.setHours(0, 0, 0, 0);
+    }
+    
+    // Show the current time (in minutes) in a 24-hour format
+  
+
+
+    // const getdata = async () => {
+    //   console.log(params.userId)
+    //   console.log( !params.userId   )
+    //   if((userid &&  userid.uid === null || undefined || "") && !params.userId ){
+    //       const user = {
+    //         uid : null,
+    //         idlogin:false,
+    //         name : null
+
+
+    //         }
+    //     localStorage.setItem("user", JSON.stringify(user))
+         
+    //   }else if ((params.userId ==  null || undefined || "") && !userid.uid){
+    //     const user = {
+    //         uid : null,
+    //         idlogin:false,
+    //         name : null
+    //         }
+    //     localStorage.setItem("user", JSON.stringify(user))
+    //   }else if (params.userId){
+       
+    //    const Created = await Creatuser(params.userId)
+    //    console.log(Created)
+    //    if(Created){
+    //     console.log(Created)
+
+    //    return  showDshborad()
+    //    }
+       
+    //   }
+    
+     
       
+    // };
+
+    useEffect(() => {
+        
+        // Distrubutrcoin()
         setTimeout(() => {
             setOpen(false)
         }, 3000);
-        console.log(params)
-        if(params.userId){
-            Creatuser(params.userId)
-        }
+     
     },[])
     
     const handleClickOpen = () => {
@@ -166,8 +223,7 @@ const Firstscreen = () => {
     return (
         <div style={{ backgroundColor: "white"  ,paddingBottom:"30px"}}>
             <Offerbox handleClose={handleClose} handleClickOpen={handleClickOpen} open={open}/>
-            
-            <Dashborad />
+            <Dashborad/>
 
 
             {/* <div style={{ backgroundColor: "rgb(43, 135, 209)" }} className="12ibl39">
@@ -194,6 +250,7 @@ const Firstscreen = () => {
             </div> */}
             <div className="Gamenam">
                 Brain Game Test
+                {currentDate.getHours() * 60 + currentDate.getMinutes()}
             </div>
             <RouteContainer  />
         </div>

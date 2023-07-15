@@ -4,7 +4,9 @@ import { Mainwraper } from "../inexpage/index"
 import { useRef } from 'react';
 import { Savebutton } from "../Button/Button"
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { Savedata } from "../../Firebse/firebse"
+import Alertmessge from "../Diloaugbox/Dialoubox"
 import PinIcon from '@mui/icons-material/Pin';
 import { Numbermemoryscore } from "../../redux/actions/gamescore"
 import "./Number.css"
@@ -14,6 +16,8 @@ const Numbermemory = () => {
     const [level, setLevel] = useState(1)
     const [no, setNo] = useState()
     const [Noshow, setNoshow] = useState()
+    const [Scueess,setScueess] = useState(true)
+    const [open,setOpen] = useState(false)
     const [showanswer, setshowanswer] = useState(false)
     const inputRef = useRef(null);
     const [eroro, seteroro] = useState("")
@@ -29,6 +33,7 @@ const Numbermemory = () => {
         if (no == value) {
             setLevel(level + 1)
         } else {
+            SavebuttonScore()
             setshowanswer(true)
         }
 
@@ -78,11 +83,8 @@ const Numbermemory = () => {
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
-    const SavebuttonScore = () => {
-        dispatch(Numbermemoryscore(level - 1))
-    }
+   
     const Tryagain = () => {
-
 
         setStart(true)
         setVAlue("")
@@ -90,10 +92,40 @@ const Numbermemory = () => {
         setNo()
         setNoshow()
         setshowanswer(false)
+
     }
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+    
+      const handleClose = () => {
+        setOpen(false);
+      };
+
+    const SavebuttonScore = () => {
+        const userid = JSON.parse(localStorage.getItem("user"))
+        if(userid){
+            Savedata(userid.uid, "numbermemory", (level - 1)).then((x) => {
+                if (x === "Document successfully updated!") {
+                    dispatch(Numbermemoryscore(level - 1))
+                    handleClickOpen()
+                   
+                }
+            })
+        }
+        if(!userid){
+                 setScueess(false)
+                 handleClickOpen()  
+        }
+    }
+
+
+
     return (
         <>
             <div className="Nodisplay anim-slide-fade-in">
+            <Alertmessge message={ Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={level} handleClose={handleClose} open={open} />
+
                 {start &&
                     <Mainwraper setStart={setStart} Img={<PinIcon />} linktext={"Start"} Text={"The average person can remember 7 numbers at once. Can you do more?"} Header={"Number Memory"} />
                 }
@@ -138,7 +170,7 @@ const Numbermemory = () => {
                         <div>
 
                             <button onClick={() => Tryagain()} className="css-qm6rs9 ">Try again </button>
-                            <Savebutton Score={SavebuttonScore} />
+                            {/* <Savebutton Score={SavebuttonScore} /> */}
 
                         </div>
 

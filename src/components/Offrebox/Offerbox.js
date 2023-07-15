@@ -12,7 +12,7 @@ export default function AlertDialog({ open, handleClose, handleClickOpen }) {
     return (
         <div >
             <Button className='boxcolor' variant="outlined" onClick={handleClickOpen} >
-                Chance To win 35000 Bonus coin
+                Chance To win 10000 Bonus coin
             </Button>
             <Dialog
                 open={open}
@@ -21,7 +21,7 @@ export default function AlertDialog({ open, handleClose, handleClickOpen }) {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    Chance To win 35000 Bonus coins
+                    Chance To win 2500 Bonus coins in Every Game
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">

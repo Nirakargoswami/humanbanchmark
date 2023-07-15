@@ -22,7 +22,6 @@ export const Savebutton = ({Score}) => {
 }
 
 export const Tryagin = ({Tryagin,disable}) => {
-    console.log(disable)
     return (
         
             <button disabled={disable} style={{backgroundColor: disable ?  "rgba(255, 255, 255, 0.5)" : "rgb(255, 209, 84)" }} onClick={() => Tryagin()} className="Tryagain" >

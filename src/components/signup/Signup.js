@@ -99,7 +99,6 @@ function Signup() {
   //   return valid
   // }
   function handleSignIn() {
-    console.log("workaon")
     setSubmit(true)
     // let valid = validation()
     // if (!valid) {

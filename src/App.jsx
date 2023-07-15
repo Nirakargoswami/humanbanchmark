@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import Dashborad from "./components/DashBoard/DashBoard";
 
-import {  useDispatch } from "react-redux";
 import Navbar from "./components/Navbar/Navbar";
 import "./App.css";
 import WordTriel from "./components/WordsTriel/WordsTriel";
@@ -24,29 +23,7 @@ import { Scoredata } from "../src/redux/actions/gamescore";
 import { Firstscreen } from "./components/firstscreen/firstScrenn";
 function App() {
   
-  const dipatch = useDispatch();
-
-
-
-
-  const getdata = async () => {
-    const userid = JSON.parse(localStorage.getItem("user"));
-    if (userid) {
-      const data = Getallscore(userid.uid);
-      data
-        .then((responce) => {
-         
-          dipatch(Scoredata(responce));
-        })
-        .catch(() => {});
-      if (data) {
-      }
-    }
-  };
-
-  useEffect(() => {
-    getdata();
-  },[ ]);
+ 
 
   return (
     <>

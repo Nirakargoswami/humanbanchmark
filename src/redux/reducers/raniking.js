@@ -44,7 +44,6 @@ const RankingDashbord = (state = initialState, action) => {
 
             }
 
-            console.log(sortedArray)
 
             const resultArray = sortedArray.map((userData, y) => ({
                 name: userData.name,

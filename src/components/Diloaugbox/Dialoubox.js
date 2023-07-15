@@ -14,9 +14,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   });
 
 const Alertmessge = ({message,open,handleClose,level}) =>  {
-
-
-
   return (
     <div style={{color:"black"}}>
      
@@ -28,14 +25,15 @@ const Alertmessge = ({message,open,handleClose,level}) =>  {
         aria-describedby="alert-dialog-slide-description"
       >
          <DialogActions>
-          <Button style={{marginBottom:"0px",marginTop:"0px",padding:"2px 0px 4px 0px"}} onClick={handleClose}>
-            <CloseIcon/>
-          </Button>
+         
         </DialogActions>
-        <DialogTitle style={{fontSize:"17px",padding:"0px 23px"}}>{message}: <span style={{color:"#1976d2",fontSize:"20px"}}>{level}</span></DialogTitle>
+        <DialogTitle style={{fontSize:"16px",padding:"5px 23px"}}>{message}: <span style={{color:"#1976d2",fontSize:"16px"}}>{level}</span></DialogTitle>
         <DialogContent>
         see your score on Dashboard
         </DialogContent>
+        <Button style={{display:"flex",justifyContent:"end",marginRight:"7px"}} onClick={handleClose}>
+            <CloseIcon/>
+          </Button>
        
       </Dialog>
     </div>

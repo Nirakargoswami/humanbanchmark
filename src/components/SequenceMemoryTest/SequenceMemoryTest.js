@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { Savedata } from "../../Firebse/firebse"
 import Alertmessge from "../Diloaugbox/Dialoubox"
 import GridOnIcon from '@mui/icons-material/GridOn';
+
 const SequenceMemoryTest = () => {
 
     const [shwonaimation, setShowanimaton] = useState(false)
@@ -26,6 +27,7 @@ const SequenceMemoryTest = () => {
     const [nocube, setnocube] = useState(mylevel * mylevel)
     const [newwidth, setnewwidth] = useState((310 / 3) - 2)
     const [showanswer, setshowanswer] = useState(false)
+    const [Scueess,setScueess] = useState(true)
     const Noarry = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     const dispatch = useDispatch()
 
@@ -165,21 +167,25 @@ const SequenceMemoryTest = () => {
 
     const SavebuttonScore = () => {
         const userid = JSON.parse(localStorage.getItem("user"))
-        Savedata(userid.uid, "sequencememory", Level).then((x) => {
-            console.log(x)
-            if (x === "Document successfully updated!") {
-                dispatch(SeauenceScore(Level))
-                handleClickOpen()
-               
-            }
-        })
-
-
+        if(userid){
+            Savedata(userid.uid, "sequencememory", (Level - 1)).then((x) => {
+                if (x === "Document successfully updated!") {
+                    dispatch(SeauenceScore(Level - 1))
+                    handleClickOpen()
+                   
+                }
+            })
+        }
+        if(!userid){
+                 setScueess(false)
+                 handleClickOpen()  
+        }
     }
 
     useEffect(() => {
         Tryaginbutton()
     },[open])
+
     const handleClickOpen = () => {
         setOpen(true);
       };
@@ -197,7 +203,6 @@ const SequenceMemoryTest = () => {
     const classnaem = `Cubenames   ${shwonaimation && "animate"}`
 
 const Tryaginbutton = () => {
-    console.log("trygaigna button ")
     return (
         <Tryagin disable={open} Tryagin={Tryagain} />
 
@@ -212,7 +217,7 @@ const Tryaginbutton = () => {
                 style={{ backgroundColor: "rgb(43, 135, 209)" }}
                 className='Mainbox' >
                 <div className='Secondbox'>
-                    <Alertmessge message={"Your score hase been saved"} level={Level} handleClose={handleClose} open={open} />
+                    <Alertmessge message={ Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={Level} handleClose={handleClose} open={open} />
 
                     <AppsIcon className='Icon' />
                     <div className='textbox'>
@@ -221,17 +226,14 @@ const Tryaginbutton = () => {
                             <span style={{ fontSize: "27px" }} >{Level}</span>
                         </span>
                         <div className='textfirst'>
-                            Reaction Time
+                            Sequence Memory 
                         </div>
 
                     </div>
 
                     <div className='textbox '>
 
-                        <p className='Discription'>
-                            Save your score to see how you compare.
-
-                        </p>
+                        
 
                         <div className='
                         Flex'>
@@ -253,7 +255,7 @@ const Tryaginbutton = () => {
                             <span >{Level}</span>
                         </span>
                         <div className={classnaem}>
-                            <div className='Cubesec'>
+                            <div style={{marginBottom:"37px"}} className='Cubesec'>
 
                                 {
                                     Sowcube()

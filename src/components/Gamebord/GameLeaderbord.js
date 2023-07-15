@@ -10,18 +10,17 @@ import Rankbox from "../Rankbox/RankBox";
 
 const Gameleaderbord = () => {
     const [gamedata, setGamedata] = useState([])
+    const [gamename,setGamename] = useState("")
     const State = useSelector(state => state)
 
     useEffect(() => {
         const userid = JSON.parse(localStorage.getItem("user"));
-        console.log(userid)
         if (userid) {
             setGamedata(State.raniking.resultArray)
             Makeatable()
         } else {
             return
         }
-
     }, [State])
 
 
@@ -29,7 +28,6 @@ const Gameleaderbord = () => {
 
 
     const Makeatable = () => {
-console.log(gamedata)
         return (
 
             gamedata && gamedata.length > 0 && gamedata.map((row, y) => {
@@ -44,7 +42,9 @@ console.log(gamedata)
                     <TableCell style={{color:"rgb(0, 123, 255)"}} align="center">
                         {row.score}
                     </TableCell>
-
+                    <TableCell style={{color:"rgb(0, 123, 255)"}} align="center">
+                        {row.coin}
+                    </TableCell>
 
                 </TableRow>)
             }
@@ -56,10 +56,7 @@ console.log(gamedata)
     }
 
     const RankBox = () => {
-    
-
-       console.log("dasdaDasdaDdadaD")
-        return (
+            return (
             gamedata && gamedata.length > 0 && <Rankbox data={gamedata} />
         )
     }
@@ -77,6 +74,7 @@ console.log(gamedata)
                                 <TableCell align="center">Rank</TableCell>
                                 <TableCell align="center">Name </TableCell>
                                 <TableCell align="center">Score</TableCell>
+                                <TableCell align="center">Coin</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

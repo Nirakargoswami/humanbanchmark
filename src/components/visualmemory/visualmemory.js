@@ -3,6 +3,11 @@ import "./visualmemory.css"
 import AppsIcon from '@mui/icons-material/Apps';
 import { Tryagin, Savebutton } from "../Button/Button"
 import Cuebmaekr from "../Cubecomponent/Cubecomponent"
+import Alertmessge from "../Diloaugbox/Dialoubox"
+import { useDispatch } from 'react-redux';
+import { Verbalmemory } from "../../redux/actions/gamescore"
+import { Savedata } from "../../Firebse/firebse"
+
 import { Mainwraper } from "../../components/inexpage/index"
 const Visualmemory = () => {
     const [Start, setStart] = useState(true)
@@ -19,11 +24,14 @@ const Visualmemory = () => {
     const [gameover, setGameover] = useState(false)
     const [nocube, setnocube] = useState(leve * leve)
     const [newwidth, setnewwidth] = useState((310 / 3) - 2)
-    const [ansarry,setansarry] = useState([])
+    const [ansarry, setansarry] = useState([])
+    const [Scueess, setScueess] = useState(true)
+    const [open, setOpen] = useState(false)
 
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
+    const dispatch = useDispatch()
 
     const Nomaker = (x) => {
         const MianArry = [...Array(x).keys()]
@@ -67,7 +75,7 @@ const Visualmemory = () => {
         if (!gamestart) {
             setGAmestart(true)
         }
-        if (ans.includes(x) && ansarry.includes(x) !== true ) {
+        if (ans.includes(x) && ansarry.includes(x) !== true) {
             let obj = newobj[`${x}`]
             obj.bacg = true
             setNewobj(prevState => (
@@ -108,13 +116,40 @@ const Visualmemory = () => {
                 setansarry([])
                 setAns([])
             }
-        } else if ( ansarry.includes(x)) {
+        } else if (ansarry.includes(x)) {
             return
         } else {
             setGameover(true)
+
             setansarry([])
+            SavebuttonScore()
         }
     }
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const SavebuttonScore = () => {
+        const userid = JSON.parse(localStorage.getItem("user"))
+        if (userid) {
+            Savedata(userid.uid, "visualmemory", (leve - 1)).then((x) => {
+                if (x === "Document successfully updated!") {
+                    dispatch(Verbalmemory(leve - 2))
+                    handleClickOpen()
+
+                }
+            })
+        }
+        if (!userid) {
+            setScueess(false)
+            handleClickOpen()
+        }
+    }
+
+
 
     useEffect((x) => {
         Nomaker(nocube)
@@ -170,9 +205,8 @@ const Visualmemory = () => {
             Nomaker(9)
         }
     }, [Start])
-    const SavebuttonScore = () => {
 
-    }
+
 
 
     return (
@@ -183,7 +217,12 @@ const Visualmemory = () => {
             }
             {!Start && !gameover &&
                 <Cuebmaekr>
+                      <span className='SecLevel'>
+                            <span className='TEXt'>Level </span>
+                            <span style={{ fontSize: "27px" }} >{(leve - 2)}</span>
+                        </span>
                     <div className='Mainboxofcube'>
+                      
                         {Sowcube()}
                     </div>
 
@@ -192,6 +231,7 @@ const Visualmemory = () => {
                 style={{ backgroundColor: "rgb(43, 135, 209)" }}
                 className='Mainbox' >
                 <div className='Secondbox'>
+                    <Alertmessge message={Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={leve} handleClose={handleClose} open={open} />
 
                     <AppsIcon className='Icon' />
                     <div className='textbox'>
@@ -216,7 +256,7 @@ const Visualmemory = () => {
                         Flex'>
 
                             <Tryagin Tryagin={Tryagain} />
-                            <Savebutton Score={SavebuttonScore} />
+                            {/* <Savebutton Score={SavebuttonScore} /> */}
 
                         </div>
 

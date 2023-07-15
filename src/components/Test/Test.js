@@ -66,7 +66,7 @@ const RouteContainer = () => {
 
                             <div className="Cuponbox" >
                                 <div>
-                                    1500
+                                    2500
                                 </div>
                                 <div>
                                     Coin
