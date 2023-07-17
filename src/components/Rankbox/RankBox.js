@@ -17,7 +17,7 @@ const Simplebox = ({ item, style }) => {
 
                 </div>
                 <div  >
-                    <h5 style={{ fontSize: "17px", margin: "0px" }} className="Rankname">Rank</h5>
+                    <h5 style={{ fontSize: "17px", margin: "0px" }} className="Rankname">No</h5>
 
                     <h4 style={{ fontSize: "26px", margin: "0px" }} className="Rankname">
                         {item.Rank + 1}
@@ -26,7 +26,9 @@ const Simplebox = ({ item, style }) => {
                 </div>
                 <div>
                     <h4 style={{ fontSize: "17px", margin: "0px" }} className="Rankname">
-                        {item.name}
+                           
+                      
+                        {(item.name. substring(0, 6)+ "..")}
 
                     </h4>
                 </div>
@@ -35,6 +37,7 @@ const Simplebox = ({ item, style }) => {
 
                     <h4 style={{ fontSize: "17px", margin: "0px" }} className="Rankname">{item.score}</h4>
                 </div>
+                
 
             </div>
         </>
@@ -42,6 +45,7 @@ const Simplebox = ({ item, style }) => {
 }
 
 const Rankbox = ({ data }) => {
+    // console.log(data)
     const datas = data
     return (
         <>
@@ -68,6 +72,8 @@ const Rankbox = ({ data }) => {
                 Game
                 <br/>
                 {data[0].gamename}
+                <br/>
+                Previous Day Result :   {data[0].date}
             </div>
         </>
     )

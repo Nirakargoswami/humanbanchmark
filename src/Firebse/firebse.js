@@ -51,6 +51,7 @@ const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
 const Creatuser = async (id, name) => {
+  // console.log(name)
   const q = query(collection(db, "users"), where("id", "==", id));
   const querySnapshot = await getDocs(q);
   let user
@@ -58,13 +59,13 @@ const Creatuser = async (id, name) => {
   if (querySnapshot.size === 0) {
      user = {
       uid: id,
-      name: name ? name : "Player",
+      name: name  ? name :id ,
      idlogin  : true 
 
     }
     const docRef = await addDoc(collection(db, "users"), {
       id: id,
-      name: name ? name : "Player",
+      name: name  ? name :id ,
 
       reactiontime: {
         score: 0,
@@ -91,13 +92,10 @@ const Creatuser = async (id, name) => {
       
   
   } else {
-    const data = querySnapshot.docs[0].data()
-    user = {
-      uid: data.id,
-      name: data.name ? name : "Player",
-      idlogin  : true 
+    
+    return true
 
-    }
+
     
   }
   localStorage.setItem("user", JSON.stringify(user))
@@ -258,15 +256,17 @@ const Getrankdata = async (name) => {
   const currentDate = new Date();
 
   const previousDate = new Date(currentDate.getTime() - (24 * 60 * 60 * 1000)); // Subtract one day (24 hours) from the current date
-
+let date
   const formattedPreviousDate = previousDate.toLocaleDateString();
   const competitionResultsRef = collection(db, 'competition_results');
 const queryRef = query(competitionResultsRef, where('date', '==', formattedPreviousDate));
   const querySnapshot = await getDocs(queryRef);
+  
   const userDataArray = []; // Create an array to store the retrieved data
   querySnapshot.docs.forEach((doc) => {
 
     const userData = doc.data();
+    date =  userData.date
     const timestamp = userData.date; // Assuming the timestamp field is named "date"
        userData.users.map((x) => {
       userDataArray.push(x);
@@ -275,7 +275,11 @@ const queryRef = query(competitionResultsRef, where('date', '==', formattedPrevi
     // You can access specific fields like userData.fieldName
   });
 
-  return userDataArray;
+const Maindata = {
+  date : date ,
+  DataArrry : userDataArray
+}
+  return Maindata;
 }
 
 const Savedata = async (id, updateitem, score) => {
@@ -307,6 +311,7 @@ const Getallscore = async (id) => {
     return Data
 
   } else {
+    return ("User Does Not found")
   }
 }
 
@@ -367,8 +372,8 @@ const Signout = () => {
 //         - a[x].score
 //       );
 //     } else if (x === "reactiontime") {
-//       reactiontime = data.sort((a, b) => b[x].score
-//         + a[x].score
+//       reactiontime = data.sort((a, b) => a[x].score
+//         - b[x].score
 //       );
 //     } else if (x === "sequencememory") {
 //       sequencememory = data.sort((a, b) => b[x].score
@@ -429,10 +434,10 @@ const Signout = () => {
 
 //   const getcatorgay = Catotgary()
 //   console.log(getcatorgay, ":::L")
-//   let F1 = 300
-//   let F2 = 200
-//   let F3 = 100
-//   let F4 = 1000
+//   let F1 = 500
+//   let F2 = 300
+//   let F3 = 200
+//   let F4 = 1500
 
 //   const VAlue = (value, Arry) => {
 //     return Math.round(value / (Arry.length === 0 ? 0 : Arry.length))
@@ -518,18 +523,18 @@ const Signout = () => {
 //   const Redesign = (Resiisobj,Arry) => {
 //     console.log(Resiisobj)
 //     let Constatnat = 0
-//     if (Resiisobj["Frist1"] > 300) {
-//       Constatnat = (Resiisobj["Frist1"] - 300) + Constatnat
+//     if (Resiisobj["Frist1"] > 500) {
+//       Constatnat = (Resiisobj["Frist1"] - 500) + Constatnat
 
-//       Resiisobj.Frist1 = 300
+//       Resiisobj.Frist1 = 500
 //     }
-//     else if (Resiisobj["Frist2"] > 200) {
-//       Constatnat = Constatnat + (Resiisobj["Frist2"] - 200)
-//       Resiisobj.Frist2 = 200
+//     else if (Resiisobj["Frist2"] > 300) {
+//       Constatnat = Constatnat + (Resiisobj["Frist2"] - 300)
+//       Resiisobj.Frist2 = 300
 //     }
-//     else if (Resiisobj["Frist3"] > 100) {
-//       Constatnat = Constatnat + (Resiisobj["Frist3"] - 100)
-//       Resiisobj.Frist3 = 100
+//     else if (Resiisobj["Frist3"] > 200) {
+//       Constatnat = Constatnat + (Resiisobj["Frist3"] - 200)
+//       Resiisobj.Frist3 = 200
 //     }
 //     console.log(Constatnat)
 //     Resiisobj.Frist4 = VAlue(((Constatnat + (Resiisobj.Frist4 * Arry[3].length))), Arry[3])

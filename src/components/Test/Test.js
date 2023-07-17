@@ -10,14 +10,14 @@ import { Link } from "react-router-dom"
 
 const Data = [
     {
-        testname: "Number Memory",
+        testname: "NUMBER MEMORY",
         testdes: "Remember the longest number you can.",
         link: "number-memory",
         svg: <PinIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
 
     },
     {
-        testname: "Sequence Memory",
+        testname: "SEQUENCE MEMORY",
         testdes: "Remember an increasingly long pattern of button presses.",
         link: "sequence",
         svg: <GridOnIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
@@ -27,7 +27,7 @@ const Data = [
 
 
     {
-        testname: "Visual Memory",
+        testname: "VISUAl MEMORY",
         testdes: "Remember an increasingly large board of squares.",
         link: "memory",
         svg: <AcUnitIcon
@@ -43,7 +43,7 @@ const Data = [
 
     // },
     {
-        testname: "Reaction Time",
+        testname: "REACTION TIME",
         testdes: "Test your visual reflexes.",
         link: "reactiontime",
         svg: <AccessTimeIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
@@ -73,7 +73,7 @@ const RouteContainer = () => {
                                 </div>
                             </div>
                             {x.svg}
-                            <h3>{x.testname}</h3>
+                            <h4>{x.testname}</h4>
                             <p>{x.testdes}</p>
 
                         </Link>

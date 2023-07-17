@@ -124,7 +124,7 @@ const Numbermemory = () => {
     return (
         <>
             <div className="Nodisplay anim-slide-fade-in">
-            <Alertmessge message={ Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={level} handleClose={handleClose} open={open} />
+            <Alertmessge message={ Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={level - 1} handleClose={handleClose} open={open} />
 
                 {start &&
                     <Mainwraper setStart={setStart} Img={<PinIcon />} linktext={"Start"} Text={"The average person can remember 7 numbers at once. Can you do more?"} Header={"Number Memory"} />

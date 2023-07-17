@@ -177,7 +177,7 @@ const Visualmemory = () => {
             const Item = levelArry[`${x}`]
             const classs = ` Cube ${!gamestart && Item.animate && "Animate"}`
             return (<div key={y} style={{ width: `${newwidth}px`, height: `${newwidth}px`, backgroundColor: Item.bacg == true ? "white" : value == Item.key ? "red" : "", opacity: Item.bacg == true ? "1" : value == Item.key ? "1" : "0.15" }} onClick={() => Cubeclikck(Item.key)} className={classs} >
-                {Item.key}
+             
             </div>)
         })
     }
@@ -231,7 +231,7 @@ const Visualmemory = () => {
                 style={{ backgroundColor: "rgb(43, 135, 209)" }}
                 className='Mainbox' >
                 <div className='Secondbox'>
-                    <Alertmessge message={Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={leve} handleClose={handleClose} open={open} />
+                    <Alertmessge message={Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={leve - 1} handleClose={handleClose} open={open} />
 
                     <AppsIcon className='Icon' />
                     <div className='textbox'>
@@ -244,6 +244,7 @@ const Visualmemory = () => {
                         </div>
 
                     </div>
+
 
                     <div className='textbox '>
 

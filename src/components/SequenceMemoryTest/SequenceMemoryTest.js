@@ -90,7 +90,7 @@ const SequenceMemoryTest = () => {
         return MianArry.map((x) => {
 
             return (<div key={x} style={{ width: `${newwidth}px`, height: `${newwidth}px`, backgroundColor: x === flashcount ? "white" : null, opacity: x === flashcount ? 1 : 0.15 }} onClick={() => Cubeclick(x)} className='Cube'>
-                {x}
+               
             </div>)
 
         })
@@ -217,7 +217,7 @@ const Tryaginbutton = () => {
                 style={{ backgroundColor: "rgb(43, 135, 209)" }}
                 className='Mainbox' >
                 <div className='Secondbox'>
-                    <Alertmessge message={ Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={Level} handleClose={handleClose} open={open} />
+                    <Alertmessge message={ Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={Level - 1} handleClose={handleClose} open={open} />
 
                     <AppsIcon className='Icon' />
                     <div className='textbox'>

@@ -298,15 +298,17 @@ function Signup() {
                 </div>
               </form>
 
-              <p className="mt-5 text-xs font-light text-center" style={{ color: "white" }}>
+              <p className="mt-2 text-xs font-light text-center" style={{ color: "white" }}>
                 {" "}
                 have an account?{" "}
-                <button className="Loginbutton" style={{ color: "white" }}>
+             
                  
-                  <Link to={"/login"}>
+                  <Link to="/login" >
                     Login
                   </Link>
-                </button>
+                       
+              
+              
               </p>
             </div>
           

@@ -1,11 +1,11 @@
-import {  useState } from 'react';
+import { useState } from 'react';
 import { Link } from "react-router-dom"
 import './login.css'
-import {Scoredata} from "../../redux/actions/gamescore"
+import { Scoredata } from "../../redux/actions/gamescore"
 
 import { signInWithGoogle, logInWithEmailAndPassword } from "../../Firebse/firebse"
-import {Getallscore} from "../../Firebse/firebse"
-import {  useDispatch } from "react-redux";
+import { Getallscore } from "../../Firebse/firebse"
+import { useDispatch } from "react-redux";
 
 
 function Login() {
@@ -13,8 +13,8 @@ function Login() {
   const [password, setpassword] = useState("");
   // const [validEmail, setvalidEmail] = useState(true)
   // const [validPassword, setvalidPassword] = useState(true)
- const [usercreated,setusercreated] = useState(false)
-  const dipatch= useDispatch()
+  const [usercreated, setusercreated] = useState(false)
+  const dipatch = useDispatch()
 
 
 
@@ -57,43 +57,43 @@ function Login() {
   // }
 
 
-  async function  handleLogin () {
-   
-  await logInWithEmailAndPassword(email, password)
-   .then((x) => {
-    if(x.logged){
-      setusercreated("Loged in successfully")
-    }else{
-      setusercreated(x.message)
+  async function handleLogin() {
 
-    }
-    setTimeout(() => {
-setusercreated(false)
-    },2000)
-   })
+    await logInWithEmailAndPassword(email, password)
+      .then((x) => {
+        if (x.logged) {
+          setusercreated("Loged in successfully")
+        } else {
+          setusercreated(x.message)
+
+        }
+        setTimeout(() => {
+          setusercreated(false)
+        }, 2000)
+      })
 
   }
-  
-  const getdata = async() => {
+
+  const getdata = async () => {
     const userid = JSON.parse(localStorage.getItem("user"))
 
-    const data =  Getallscore(userid.uid)
+    const data = Getallscore(userid.uid)
     data.then((responce) => {
       dipatch(Scoredata(responce))
 
     }).catch(() => {
 
     })
-    if(data){
+    if (data) {
     }
   }
 
   const Goolelogin = () => {
     signInWithGoogle().then((x) => {
-        if(x.loged){
-          getdata()
-        }else{
-        }
+      if (x.loged) {
+        getdata()
+      } else {
+      }
     })
 
   }
@@ -112,8 +112,8 @@ setusercreated(false)
         <div className='login_div'>
 
           <div className='loginbox'>
-         
-          {usercreated ?
+
+            {usercreated ?
               <h1 style={{ color: "rgb(43, 135, 209)" }} className="Logintext">
                 <span style={{ color: "white" }} ></span>
               </h1>
@@ -126,7 +126,38 @@ setusercreated(false)
                 <span style={{ color: "white" }} > Brain Banchmark</span> Login
               </h1>
               <form className="mt-6">
-                <div className="mb-2">
+                <div className='social_logins'>
+                  <button
+                    type='button'
+                    className="Loginbutton">
+                    <div onClick={() => Goolelogin()}>
+                      Login with Google
+                    </div>
+                  </button>
+
+
+                  {/* <GoogleLogin
+                   
+                      clientId="873843703961-55jm6idv8jbnifp956prdtjr5as6alhl.apps.googleusercontent.com"
+                      buttonText="Login With Google"
+                      onSuccess={responseGoogle}
+                      onFailure={responseGoogle}
+                      cookiePolicy={'single_host_origin'}
+                      className="googlebutton"
+
+                   
+                    /> */}
+                </div>
+                <Link
+                  className="text-xs hover:underline">
+                  <span  style={{ color: "rgb(43, 135, 209)" ,fontSize:"24px"}}  > or</span>
+
+                  <br />
+                  <span style={{ color: "white" }} >Login With Email and Password</span>
+
+
+                </Link>
+                <div className="mb-2 mt-3">
                   <label
 
                     className="Emailtext"
@@ -173,12 +204,7 @@ setusercreated(false)
                     </label> : ""
                   } */}
                 </div>
-                <Link
-                  to="/"
-                  className="text-xs hover:underline"
-                >
-                  Forget Password?
-                </Link>
+
                 <div className="mt-2">
                   <button
                     onClick={e => { e.preventDefault(); handleLogin() }}
@@ -197,28 +223,7 @@ setusercreated(false)
                     /> */}
 
                   </div>
-                  <div className='social_logins'>
-                    <button
-                      type='button'
-                      className="Loginbutton">
-                      <div onClick={() => Goolelogin()}>
-                        Login with goole
-                      </div>
-                    </button>
 
-
-                    {/* <GoogleLogin
-                   
-                      clientId="873843703961-55jm6idv8jbnifp956prdtjr5as6alhl.apps.googleusercontent.com"
-                      buttonText="Login With Google"
-                      onSuccess={responseGoogle}
-                      onFailure={responseGoogle}
-                      cookiePolicy={'single_host_origin'}
-                      className="googlebutton"
-
-                   
-                    /> */}
-                  </div>
                 </div>
               </form>
 

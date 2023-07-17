@@ -38,7 +38,7 @@ const Gameleaderbord = () => {
                     <TableCell align="center">
                         {row.Rank + 1}
                     </TableCell>
-                    <TableCell align="center">{row.name} </TableCell>
+                    <TableCell align="center">{(row.name.substring(0, 6)+ "..")} </TableCell>
                     <TableCell style={{color:"rgb(0, 123, 255)"}} align="center">
                         {row.score}
                     </TableCell>
@@ -71,7 +71,7 @@ const Gameleaderbord = () => {
                     <Table sx={{ maxWidth: 500 ,marginTop:"20px"}} size="larg" aria-label="a dense table">
                         <TableHead className="Tablehead" >
                             <TableRow>
-                                <TableCell align="center">Rank</TableCell>
+                                <TableCell align="center">No</TableCell>
                                 <TableCell align="center">Name </TableCell>
                                 <TableCell align="center">Score</TableCell>
                                 <TableCell align="center">Coin</TableCell>

@@ -33,12 +33,19 @@ const RankingDashbord = (state = initialState, action) => {
         
             let sortedArray 
             if(name == "reactiontime"){
-                 sortedArray = action.payload.data.sort((a, b) => b[name].score
-                 + a[name].score
+               const   sortedNewarry  = action.payload.data.DataArrry.sort((a, b) => a[name].score
+                 - b[name].score
                  );
+                 sortedArray =  sortedNewarry.filter((x) => {
+                   
+                    if(  Number(x.numbermemory.score) !== 0){
+                        console.log(x.numbermemory.score)
+                        return x 
+                    }
+                 } )
 
             }else{
-                 sortedArray = action.payload.data.sort((a, b) => b[name].score
+                 sortedArray = action.payload.data.DataArrry.sort((a, b) => b[name].score
                  - a[name].score
                  );
 
@@ -50,7 +57,7 @@ const RankingDashbord = (state = initialState, action) => {
                 score: userData[name].score,
                 Rank: y,
                 coin:userData[name].coin,
-                
+                date:action.payload.data.date,
                 gamename: Newgamename
             }));
             
