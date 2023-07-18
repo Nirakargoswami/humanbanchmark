@@ -85,20 +85,22 @@ const Creatuser = async (id, name) => {
         coin: 0
       },
     
-    }).then((x) => {
-    });
+    })
+
+    localStorage.setItem("user", JSON.stringify(user))
+    return "Document Created"
 
     
       
   
   } else {
-    
-    return true
+     return "Document Does not Created"
+
 
 
     
   }
-  localStorage.setItem("user", JSON.stringify(user))
+ 
 
   return true 
 }
