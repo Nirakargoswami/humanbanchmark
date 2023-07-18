@@ -120,7 +120,17 @@ const Dashborad = () => {
                 dispatch(Scoredata(data));
                 setLoding(false)
             }else if (data === "User Does Not found"){
-                await Creatuser(id)
+              const Result =   await Creatuser(id)
+                  if(Result == "Document Created"){
+                    const data = await Getallscore(id);
+                    if (data !== "User Does Not found") {
+                        dispatch(Scoredata(data));
+                        setLoding(false)
+                    }
+                  }else{
+                    setLoding(false)
+           
+                  }
                 setLoding(false)
             }
         } else {
@@ -152,10 +162,11 @@ const Dashborad = () => {
             localStorage.setItem("user", JSON.stringify(user))
         } else if (params.userId) {
 
+           const Result =  getdata(params.userId)
 
             const Created = await Creatuser(params.userId)
             if(Created){
-                getdata(params.userId)
+                
                 setLoding(false)
             }else{
                 setLoding(false)
@@ -165,6 +176,7 @@ const Dashborad = () => {
         }else if( userid && userid.uid ){
     
             getdata(params.userId ? params.userId : userid && userid.uid);
+            setLoding(false)
            }
 
       
