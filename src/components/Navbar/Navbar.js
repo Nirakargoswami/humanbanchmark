@@ -60,12 +60,12 @@ const Navbar = () => {
                         <AcUnitIcon style={{ fontSize: "30px" }} />
                     </div>
                     <Link to={"/"} className="css-i4vpdl">
-                        <div style={{ marginLeft: "10px", fontSize: "18px", color: "black" }} variant="h6" color="inherit" className='css-i4vpdl' component="div">
+                        <div style={{padding:"9px 3px ", fontSize: "18px", color: "black" }} variant="h6" color="inherit" className='css-i4vpdl  css-de05nr' component="div">
                             Brain BenchMark
                         </div>
                     </Link>
                     <Link to={"/dashboard"} className="css-i4vpdl">
-                        <div style={{ marginLeft: "10px", fontSize: "18px", color: "black" }} variant="h6" color="inherit" className='css-i4vpdl' component="div">
+                        <div  style={{ padding:"9px 3px ", fontSize: "18px", color: "black" }} variant="h6" color="inherit" className='ml-2 css-i4vpdl css-de05nr' component="div">
                             Dashboard
                         </div>
                     </Link>

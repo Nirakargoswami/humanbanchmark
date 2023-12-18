@@ -107,145 +107,148 @@ function Login() {
     <>
 
 
-      <div className="relative flex flex-col  min-h-screen overflow-hidden main_div">
+   
+<div  style={{height:"582px"}}  className="relative flex flex-col  min-h-screen overflow-hidden main_div">
 
-        <div className='login_div'>
+<div className='login_div'>
 
-          <div className='loginbox'>
+  <div className='loginbox'>
 
-            {usercreated ?
-              <h1 style={{ color: "rgb(43, 135, 209)" }} className="Logintext">
-                <span style={{ color: "white" }} ></span>
-              </h1>
-              :
+    {usercreated ?
+      <h1 style={{ color: "rgb(43, 135, 209)" }} className="Logintext">
+        <span style={{ color: "white" }} ></span>
+      </h1>
+      :
 
-              null
-            }
-            <div className="w-full padding m-auto bg-white rounded-md shadow-md lg:max-w-xl main_div2 shadow-sm login_card">
-              <h1 style={{ color: "rgb(43, 135, 209)" }} className="Logintext">
-                <span style={{ color: "white" }} > Brain Banchmark</span> Login
-              </h1>
-              <form className="mt-6">
-                <div className='social_logins'>
-                  <button
-                    type='button'
-                    className="Loginbutton">
-                    <div onClick={() => Goolelogin()}>
-                      Login with Google
-                    </div>
-                  </button>
-
-
-                  {/* <GoogleLogin
-                   
-                      clientId="873843703961-55jm6idv8jbnifp956prdtjr5as6alhl.apps.googleusercontent.com"
-                      buttonText="Login With Google"
-                      onSuccess={responseGoogle}
-                      onFailure={responseGoogle}
-                      cookiePolicy={'single_host_origin'}
-                      className="googlebutton"
-
-                   
-                    /> */}
-                </div>
-                <Link
-                  className="text-xs hover:underline">
-                  <span  style={{ color: "rgb(43, 135, 209)" ,fontSize:"24px"}}  > or</span>
-
-                  <br />
-                  <span style={{ color: "white" }} >Login With Email and Password</span>
-
-
-                </Link>
-                <div className="mb-2 mt-3">
-                  <label
-
-                    className="Emailtext"
-                  >
-                    Email
-                  </label>
-                  <input
-                    value={email && email}
-                    type="email"
-
-                    name='email'
-                    autoComplete='on'
-                    onChange={e => Setemial(e)}
-                    className="Emailinput"
-
-                  // style={{border :!validEmail ? "1px solid red" : "" }}
-                  />
-                  {/* {
-                    !validEmail ? <label className="lable">
-                      Please enter valid email
-                    </label> : ""
-                  } */}
-
-                </div>
-                <div className="mb-2">
-                  <label
-
-                    className="Emailtext"
-                  >
-                    Password
-                  </label>
-                  <input
-                    value={password}
-                    // style={{ border: !validPassword ? "1px solid red" : "" }}
-
-                    type="password"
-                    name='password'
-                    onChange={e => setpassword(e.target.value)}
-                    className="Emailinput"
-                  />
-                  {/* {
-                    !validPassword ? <label className="lable">
-                      Please enter valid password
-                    </label> : ""
-                  } */}
-                </div>
-
-                <div className="mt-2">
-                  <button
-                    onClick={e => { e.preventDefault(); handleLogin() }}
-                    className="Loginbutton">
-                    Login
-                  </button>
-                  <div className='social_login'>
-                    {/* <FacebookLogin
-                      textButton='Login With Facebook'
-                      appId="348712449773241"
-                      autoLoad={false}
-                      fields="name,email,picture"
-                      callback={responseFacebook}
-                      cssClass="Facebookbutto"
-                      icon={<FaFacebookF className='facebokicon' />}
-                    /> */}
-
-                  </div>
-
-                </div>
-              </form>
-
-              <p className="mt-8 text-xs font-light text-center" style={{ color: "white" }}>
-                {" "}
-                Don't have an account?{" "}
-                <Link
-                  to="/signup"
-                  className="text-xs hover:underline"
-                >                    Sign Up
-                </Link>
-              </p>
+      null
+    }
+    <div className="w-full padding m-auto bg-white rounded-md shadow-md lg:max-w-xl main_div2 shadow-sm login_card">
+      <h1 style={{ color: "rgb(43, 135, 209)",marginTop:"10px" }} className="Logintext">
+        <span style={{ color: "white" }} > Brain Banchmark</span> 
+       Login
+      </h1>
+      <form>
+        <div className='social_logins'>
+          <button
+            type='button'
+            style={{marginBottom:"0px"}}
+            className="Loginbutton">
+            <div onClick={() => Goolelogin()}>
+              Login with Google
             </div>
+          </button>
+
+
+          {/* <GoogleLogin
+           
+              clientId="873843703961-55jm6idv8jbnifp956prdtjr5as6alhl.apps.googleusercontent.com"
+              buttonText="Login With Google"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+              className="googlebutton"
+
+           
+            /> */}
+        </div>
+        <div  style={{ color: "rgb(43, 135, 209)" ,fontSize:"24px"}}  > or</div>
+
+        <Link
+          className="text-xs hover:underline">
+
+          <span style={{ color: "white" }} >Login With Email and Password</span>
+
+
+        </Link>
+        <div className="mb-2 mt-3">
+          <label
+
+            className="Emailtext"
+          >
+            Email
+          </label>
+          <input
+            value={email && email}
+            type="email"
+
+            name='email'
+            autoComplete='on'
+            onChange={e => Setemial(e)}
+            className="Emailinput"
+
+          // style={{border :!validEmail ? "1px solid red" : "" }}
+          />
+          {/* {
+            !validEmail ? <label className="lable">
+              Please enter valid email
+            </label> : ""
+          } */}
+
+        </div>
+        <div className="mb-2">
+          <label
+
+            className="Emailtext"
+          >
+            Password
+          </label>
+          <input
+            value={password}
+            // style={{ border: !validPassword ? "1px solid red" : "" }}
+
+            type="password"
+            name='password'
+            onChange={e => setpassword(e.target.value)}
+            className="Emailinput"
+          />
+          {/* {
+            !validPassword ? <label className="lable">
+              Please enter valid password
+            </label> : ""
+          } */}
+        </div>
+
+        <div className="mt-2">
+          <button
+            onClick={e => { e.preventDefault(); handleLogin() }}
+            className="Loginbutton">
+            Login
+          </button>
+          <div className='social_login'>
+            {/* <FacebookLogin
+              textButton='Login With Facebook'
+              appId="348712449773241"
+              autoLoad={false}
+              fields="name,email,picture"
+              callback={responseFacebook}
+              cssClass="Facebookbutto"
+              icon={<FaFacebookF className='facebokicon' />}
+            /> */}
 
           </div>
 
         </div>
-        {/* <div className='login_second_banner_ad'>
-            <ins data-revive-zoneid="2" data-revive-id="00885bcd5807a6fdf17d7982d17956a2"></ins> 
-            <img src='https://via.placeholder.com/600x100?text=600x100+Full +Banner' />
-         </div> */}
-      </div>
+      </form>
+
+      <p className="mt-8 text-xs font-light text-center" style={{ color: "white" }}>
+        {" "}
+        Don't have an account?{" "}
+        <Link
+          to="/signup"
+          className="text-xs hover:underline"
+        >                    Sign Up
+        </Link>
+      </p>
+    </div>
+
+  </div>
+
+</div>
+{/* <div className='login_second_banner_ad'>
+    <ins data-revive-zoneid="2" data-revive-id="00885bcd5807a6fdf17d7982d17956a2"></ins> 
+    <img src='https://via.placeholder.com/600x100?text=600x100+Full +Banner' />
+ </div> */}
+</div>
     </>
   );
 }

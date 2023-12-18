@@ -21,7 +21,11 @@ const  SeauenceScore = (score) => (
     type: SEQUENCE,
     payload: score,
 })
-
+const  Chimptest = (score) => (
+    {
+    type: SEQUENCE,
+    payload: score,
+})
 const  Numbermemoryscore = (score) => (
     {
     type: NUMBER_MEMORY,
@@ -48,4 +52,4 @@ const Reactiotimerandk  = (gamename) => (
     }   
 )
 
-export  {Reactiotimerandk,Scoredata,Reactiontimescore,SeauenceScore,Numbermemoryscore,Verbalmemory,Visulamemory}
+export  {Reactiotimerandk,Scoredata,Reactiontimescore,SeauenceScore,Numbermemoryscore,Verbalmemory,Visulamemory,Chimptest}

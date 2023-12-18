@@ -10,6 +10,7 @@ import Dashborad from "./components/DashBoard/DashBoard";
 
 import Navbar from "./components/Navbar/Navbar";
 import "./App.css";
+import ChimpTest from "./components/Chimptest/Chimptest"
 import WordTriel from "./components/WordsTriel/WordsTriel";
 import SequenceMemoryTest from "./components/SequenceMemoryTest/SequenceMemoryTest";
 import Visualmemory from "./components/visualmemory/visualmemory";
@@ -38,6 +39,7 @@ function App() {
           <Route path="/login" element={<Login />} />
 
           <Route path="/wordmemomry" element={<WordTriel />} />
+          <Route path="/chimpTest" element={<ChimpTest />} />
 
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashborad />} />

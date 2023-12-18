@@ -1,0 +1,24 @@
+.css-19b5rdt {
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    border-radius: 10px;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    font-size: 50px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    line-height: 1;
+}
+.SmallCube{
+    font-size: 50px;
+    text-align: center;
+    line-height: 1;
+    cursor: pointer;
+    color: white;
+    user-select: none;
+}
