@@ -49,22 +49,25 @@ const Data = [
         svg: <AccessTimeIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
 
     },
+    {
+        testname: "Chimp Test",
+        testdes: "Are you smarter than a chimpanzee?",
+        link: "chimpTest",
+        svg: <GridOnIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
+
+    },
 
 
 ]
 
 const RouteContainer = () => {
     return (
-
         <div className="RoteCon">
-
-
             {Data.map((x) => {
                 return (
                     <>
                         <Link to={`${x.link}`} className="css-uaat4j css-1ur49oz" style={{ cursor: "pointer", textAlign: "center", position: "relative" }}>
-
-                            <div className="Cuponbox" >
+                             <div className="Cuponbox" >
                                 <div>
                                     2500
                                 </div>

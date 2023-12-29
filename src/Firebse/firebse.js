@@ -33,12 +33,15 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyC9_5dTMJAwvA0RhqSbppnz-0um_IIHztI",
   authDomain: "wordle-99fb9.firebaseapp.com",
+  databaseURL: "https://wordle-99fb9-default-rtdb.firebaseio.com",
   projectId: "wordle-99fb9",
   storageBucket: "wordle-99fb9.appspot.com",
   messagingSenderId: "543055598072",
-  appId: "1:543055598072:web:83f1a768a753adc068460d",
-  measurementId: "G-B33XG7DQLP"
+  appId: "1:543055598072:web:e95f21e8554a006568460d",
+  measurementId: "G-XLGRCQWH6V"
 };
+
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -55,17 +58,17 @@ const Creatuser = async (id, name) => {
   const q = query(collection(db, "users"), where("id", "==", id));
   const querySnapshot = await getDocs(q);
   let user
- 
+
   if (querySnapshot.size === 0) {
-     user = {
+    user = {
       uid: id,
-      name: name  ? name :id ,
-     idlogin  : true 
+      name: name ? name : id,
+      idlogin: true
 
     }
     const docRef = await addDoc(collection(db, "users"), {
       id: id,
-      name: name  ? name :id ,
+      name: name ? name : id,
 
       reactiontime: {
         score: 0,
@@ -84,44 +87,50 @@ const Creatuser = async (id, name) => {
         score: 0,
         coin: 0
       },
-    
+
     })
 
     localStorage.setItem("user", JSON.stringify(user))
     return "Document Created"
 
-    
-      
-  
+
+
+
   } else {
-     return "Document Does not Created"
+    return "Document Does not Created"
 
 
 
-    
+
   }
- 
 
-  return true 
+
+  return true
 }
-
+window.addEventListener('message', (event) => {
+  if (event.data === 'closePopup') {
+    // Close the popup
+    window.close();
+  }
+});
 const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
+    console.log(res)
     let user = res.user;
     var userId = user.uid;
-   
+
 
     const q = query(collection(db, "users"), where("id", "==", userId));
-
+    console.log(q)
     const querySnapshot = await getDocs(q);
-
+    console.log(querySnapshot)
     if (querySnapshot.size === 0) {
 
-      const docRef = await addDoc(collection(db, "users"), {
+      await addDoc(collection(db, "users"), {
         id: res.user.uid,
         name: user.displayName,
-      idlogin : false ,
+        idlogin: false,
         reactiontime: {
           score: 0,
           coin: 0
@@ -134,43 +143,42 @@ const signInWithGoogle = async () => {
           score: 0,
           coin: 0
         },
-      
+
         visualmemory:
         {
           score: 0,
           coin: 0
         },
-       
-      });
 
-  
+      });
       return {
         loged: true
       }
     } else {
       const Newuser = {
-        uid : user.uid,
-        name : user.displayName,
-        idlogin : false
-       }
+        uid: user.uid,
+        name: user.displayName,
+        idlogin: false
+      }
       localStorage.setItem("user", JSON.stringify(Newuser))
-
-    
-    }
-    user.idlogin  =  false 
  
+
+    }
+    user.idlogin = false
+    window.opener.postMessage('closePopup', '*');
   } catch (err) {
+    console.log(err)
     return err
   }
- 
- 
+
+
 
 };
 
 const logInWithEmailAndPassword = async (email, password) => {
   try {
     const result = await signInWithEmailAndPassword(auth, email, password);
-
+    console.log(result)
     const q = query(collection(db, "users"), where("id", "==", result.user.uid));
     const querySnapshot = await getDocs(q);
 
@@ -180,7 +188,7 @@ const logInWithEmailAndPassword = async (email, password) => {
         const User = {
           id: data.uid,
           name: data.name,
-          idlogin  : false 
+          idlogin: false
 
         }
         localStorage.setItem("user", JSON.stringify(User))
@@ -200,8 +208,10 @@ const logInWithEmailAndPassword = async (email, password) => {
 };
 
 const registerWithEmailAndPassword = async (displayName, email, password) => {
+  console.log(displayName, email, password)
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password, displayName);
+    console.log(res)
     // if(){
 
     // }
@@ -236,7 +246,8 @@ const registerWithEmailAndPassword = async (displayName, email, password) => {
         },
       }
     );
-    res.user.idlogin   =  false 
+    console.log(res)
+    res.user.idlogin = false
 
     localStorage.setItem("user", JSON.stringify(res.user))
 
@@ -253,34 +264,36 @@ const registerWithEmailAndPassword = async (displayName, email, password) => {
   }
 };
 
-
+function closePopup() {
+  window.close();
+}
 const Getrankdata = async (name) => {
   const currentDate = new Date();
 
   const previousDate = new Date(currentDate.getTime() - (24 * 60 * 60 * 1000)); // Subtract one day (24 hours) from the current date
-let date
+  let date
   const formattedPreviousDate = previousDate.toLocaleDateString();
   const competitionResultsRef = collection(db, 'competition_results');
-const queryRef = query(competitionResultsRef, where('date', '==', formattedPreviousDate));
+  const queryRef = query(competitionResultsRef, where('date', '==', formattedPreviousDate));
   const querySnapshot = await getDocs(queryRef);
-  
+
   const userDataArray = []; // Create an array to store the retrieved data
   querySnapshot.docs.forEach((doc) => {
 
     const userData = doc.data();
-    date =  userData.date
+    date = userData.date
     const timestamp = userData.date; // Assuming the timestamp field is named "date"
-       userData.users.map((x) => {
+    userData.users.map((x) => {
       userDataArray.push(x);
     })
-     // Add the data to the array
+    // Add the data to the array
     // You can access specific fields like userData.fieldName
   });
 
-const Maindata = {
-  date : date ,
-  DataArrry : userDataArray
-}
+  const Maindata = {
+    date: date,
+    DataArrry: userDataArray
+  }
   return Maindata;
 }
 
@@ -412,7 +425,7 @@ const Signout = () => {
 //       let count = 0
 //         let max = point[X][0][X].score
 //       point[X].map((x, y) => {
-        
+
 //         if (count !== 3) {
 //            if (x[X].score == max) {
 //             Soretd[count].push({ id: x.id, score: x[X].score, coin: x[X].coin ,gameName : X ,name : x.name })
@@ -420,10 +433,10 @@ const Signout = () => {
 //             max = x[X].score
 //             Soretd[count + 1].push({ id: x.id, score: x[X].score, coin: x[X].coin ,gameName : X ,name : x.name })
 //             count =  count + 1
-           
+
 //           }
 //         } else {
-    
+
 //           Soretd[3].push({ id: x.id, score: x[X].score, coin: x[X].coin ,gameName : X ,name : x.name })
 //         }
 
@@ -465,7 +478,7 @@ const Signout = () => {
 //         const remain = (F4 - (reduce * Arry[3].length))
 //         console.log(remain)
 //         F4 = (reduce * Arry[3].length)
-  
+
 
 //         const Constatnat = remain / (Arry[0].length + Arry[1].length + Arry[2].length)
 
@@ -544,7 +557,7 @@ const Signout = () => {
 
 //   }
 
-  
+
 // const Lastdistrubutiion  =() => {
 //   const Last = [];
 //   getcatorgay.forEach((x,y) => {
@@ -565,7 +578,7 @@ const Signout = () => {
 //         z.coin = value
 //         console.log(z) 
 //       })
-       
+
 //     })
 //   })
 //   return Last
@@ -578,7 +591,7 @@ const Signout = () => {
 //   const get = getcatorgay.forEach((x) => {
 //    return   [...x] 
 //      })
-     
+
 // }
 // const extractedArray = getcatorgay.map(subArray => {
 //   const Minarry = []
@@ -594,7 +607,7 @@ const Signout = () => {
 
 // users.map((x) => {
 //   const  id = x.id 
- 
+
 //   extractedArray.map((Z) => {
 //     Z.map((Y) => {
 //      if( Y.id == id){
@@ -635,16 +648,16 @@ const Signout = () => {
 
 // SaveCoinData()
 
-  
+
 //   //
 
- 
+
 
 
 
 
 //   // Calculate total coins to be distributed
-  
+
 
 //   // Create a new document with the current date as the ID
 // const currentDate = new Date();

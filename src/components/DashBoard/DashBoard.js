@@ -37,7 +37,7 @@ const Dashborad = () => {
     const userid = JSON.parse(localStorage.getItem("user"));
 
     const makearoute = (key) => {
-console.log(key)
+
         switch (key) {
             case "numbermemory":
                 return (

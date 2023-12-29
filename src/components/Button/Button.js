@@ -30,3 +30,4 @@ export const Tryagin = ({Tryagin,disable}) => {
         
     )
 }
+

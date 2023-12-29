@@ -7,64 +7,74 @@ import { useDispatch } from 'react-redux';
 import { Savedata } from "../../Firebse/firebse"
 import Alertmessge from "../Diloaugbox/Dialoubox"
 import GridOnIcon from '@mui/icons-material/GridOn';
+import { SettingsInputComponentOutlined } from "@mui/icons-material";
+import AppsIcon from '@mui/icons-material/Apps';
 
 
 const ChimpTest = () => {
     const [start, setStart] = useState(true)
     const [tilePositions, setTilePositions] = useState([]);
-
+    const [GameStared, setGamestarted] = useState(false)
+    const [level, setLevel] = useState(1)
+    const [cubeno, setCubeno] = useState(5)
+    const [Strick, setStrick] = useState(3)
+    const [count, setcount] = useState(1)
+    const [Countine, setCountine] = useState(false)
+    const [No,setNo] = useState()
+let generateTilePositions
     const [windowDimensions, setWindowDimensions] = useState({
         width: window.innerWidth,
     });
 
     const areaHeight = 500;
-    const tileWidth = 50;
-    const tileHeight = 50;
+    const tileWidth = 80;
+    const tileHeight = 80;
 
 
     useEffect(() => {
-        const generateRandomPosition = () => {
+        const generateRandomPosition = (i) => {
+            i++
             const x = Math.floor(Math.random() * ((windowDimensions.width - 50) - tileWidth));
             const y = Math.floor(Math.random() * (areaHeight - tileHeight));
-            return { x, y };
-          };
-      
+            return { x, y, i };
+        };
 
-        const checkOverlap = (newTile,positionss) => {
+
+        const checkOverlap = (newTile, positionss) => {
             return positionss.every(
-              (existingTile) =>
-                newTile.x + tileWidth < existingTile.x ||
-                newTile.x > existingTile.x + tileWidth ||
-                newTile.y + tileHeight < existingTile.y ||
-                newTile.y > existingTile.y + tileHeight
+                (existingTile) =>
+                    newTile.x + tileWidth < existingTile.x ||
+                    newTile.x > existingTile.x + tileWidth ||
+                    newTile.y + tileHeight < existingTile.y ||
+                    newTile.y > existingTile.y + tileHeight
             );
-          };
+        };
 
-        const generateTilePositions = () => {
+         generateTilePositions = () => {
             const positions = [];
-      
-            for (let i = 0; i < 5; i++) {
-              let newTile;
-              let overlapAttempts = 0;
-      
-              do {
-                newTile = generateRandomPosition();
-                overlapAttempts++;
-      
-                // If it's taking too many attempts to find a non-overlapping position, break the loop
-                if (overlapAttempts > 100) {
-                  console.error("Could not find non-overlapping positions for all tiles.");
-                  break;
-                }
-              } while (!checkOverlap(newTile,positions));
-      
-              positions.push(newTile);
+
+            for (let i = 0; i < cubeno; i++) {
+                let newTile;
+                let overlapAttempts = 0;
+
+                do {
+                    newTile = generateRandomPosition(i);
+                    overlapAttempts++;
+
+                    // If it's taking too many attempts to find a non-overlapping position, break the loop
+                    if (overlapAttempts > 100) {
+                        console.error("Could not find non-overlapping positions for all tiles.");
+                        break;
+                    }
+                } while (!checkOverlap(newTile, positions));
+
+                positions.push(newTile);
             }
-      
+
             setTilePositions(positions);
-          };
+        };
         generateTilePositions();
-    }, []);
+    }, [cubeno]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -84,12 +94,99 @@ const ChimpTest = () => {
 
     console.log(windowDimensions)
 
-const  check = () => {
-    
-}
+    const check = (no) => {
+        console.log(no, count)
+        if (no == count) {
+
+            const newTilePositions = tilePositions.filter((x) => x.i !== no)
+            console.log(tilePositions)
+            setTilePositions(newTilePositions)
+            setcount(count + 1)
+
+        }else{
+            setNo(no)
+            setStrick(Strick - 1)
+           
+            setCountine(true)
+        }
+        if (level !== 0) {
+            setGamestarted(true)
+
+        }
+
+
+    }
+
+    useEffect(() => {
+        if (tilePositions.length === 0 && !start && count !== 1) {
+            console.log("count")
+            setCountine(true)
+        }
+    }, [count])
+
+
+    const Showcube = () => {
+
+        console.log(tilePositions)
+        return tilePositions && tilePositions.map((position, index) => {
+            return (
+                <div
+                    onClick={() => check(position.i)}
+                    style={{
+                        backgroundColor: GameStared && "white",
+                        position: 'absolute',
+                        left: position.x,
+                        top: position.y,
+                    }}
+                    key={index}
+                    className="css-19b5rdt"
+
+                >
+                    <div className="SmallCube">
+                        {position.i}
+                    </div>
+                    {/*  */}
+                </div>
+
+            )
+        }
 
 
 
+        )
+    }
+
+    const Continue = () => {
+        if(No){
+            setNo(null)
+             
+            setCountine(false)
+           setGamestarted(false)
+           generateTilePositions()
+
+        }else{
+            setCountine(false)
+            setLevel(level + 1)
+            setcount(1)
+            setGamestarted(false)
+            setCubeno(cubeno + 2)
+            
+        }
+      
+    }
+
+    useEffect(() => {
+      if(Strick == 0 ){
+        setCubeno(5)
+        setCountine(false)
+        setLevel(1)
+        setGamestarted(false)
+        setNo(null)
+        setStrick(3)
+        setcount(1)
+          setStart(true)
+      }
+    },[Strick])
 
     return (
 
@@ -99,32 +196,60 @@ const  check = () => {
             }
 
             <div>
-                
-                 {!start &&
+
+                {!start && !Countine &&
                     <div
                         style={{ backgroundColor: "rgb(43, 135, 209)" }}
                         className='Mainbox'>
 
-                        {tilePositions && tilePositions.map((position, index) => (
-                            <div
-                            style={{
-                                position: 'absolute',
-                                left: position.x,
-                                top: position.y,
-                            }}
-                                key={index}
-                                className="css-19b5rdt"
-                               
-                            >
-                               <div onClick={() => check(index + 1)} className="SmallCube">
-                               {index + 1}
-                               </div>
-                                {/*  */}
-                            </div>
-                        ))}
+                        {Showcube()}
                     </div>
 
 
+                }
+                {Countine && !start &&
+                    <div
+                        style={{ backgroundColor: "rgb(43, 135, 209)" }}
+                        className='Mainbox' >
+                        <div className='Secondbox'>
+
+                            <AppsIcon className='Icon' />
+                            <div className='textbox'>
+                                <span className='SecLevel'>
+                                    {No ? <span className='TEXt'>{No}</span>
+                                        :
+                                        <>
+                                            <span className='TEXt'>Level </span>
+                                            <span style={{ fontSize: "27px" }} >{level}</span>
+                                        </>
+                                    }
+                                </span>
+                                <div className='textfirst'>
+                                    Lives
+                                </div>
+                                <div className='textfirst'>
+                                    3 out of {Strick}
+                                </div>
+                                <div className='textfirst'>
+                                    Chim ChimpTest
+                                </div>
+
+                            </div>
+
+                            <div className='textbox '>
+
+
+
+                                <div className='Flex'>
+                                    <button style={{ backgroundColor: "rgb(255, 209, 84)" }} onClick={() => Continue()} className="Tryagain Link" >
+                                        Countine
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
                 }
             </div>
         </div>

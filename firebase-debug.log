@@ -1,0 +1,71 @@
+[debug] [2023-12-29T11:57:47.912Z] ----------------------------------------------------------------------
+[debug] [2023-12-29T11:57:47.914Z] Command:       /usr/local/bin/node /usr/local/bin/firebase init
+[debug] [2023-12-29T11:57:47.915Z] CLI Version:   12.4.8
+[debug] [2023-12-29T11:57:47.915Z] Platform:      darwin
+[debug] [2023-12-29T11:57:47.916Z] Node Version:  v18.12.1
+[debug] [2023-12-29T11:57:47.917Z] Time:          Fri Dec 29 2023 17:27:47 GMT+0530 (India Standard Time)
+[debug] [2023-12-29T11:57:47.917Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-29T11:57:48.025Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-29T11:57:48.026Z] > authorizing via signed-in user (goswaminirakar65@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/admin/Desktop/humanbanchmark
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-12-29T11:58:28.285Z] Using project from CLI flag: wordle-99fb9
+[debug] [2023-12-29T11:58:28.287Z] > refreshing access token with scopes: []
+[debug] [2023-12-29T11:58:28.290Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-12-29T11:58:28.291Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-12-29T11:58:31.724Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-12-29T11:58:31.724Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-12-29T11:58:31.740Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/wordle-99fb9 [none]
+[debug] [2023-12-29T11:58:32.683Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/wordle-99fb9 200
+[debug] [2023-12-29T11:58:32.683Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/wordle-99fb9 {"projectId":"wordle-99fb9","projectNumber":"543055598072","displayName":"brain Banch Mark","name":"projects/wordle-99fb9","resources":{"hostingSite":"wordle-99fb9","realtimeDatabaseInstance":"wordle-99fb9-default-rtdb","storageBucket":"wordle-99fb9.appspot.com","locationId":"asia-south1"},"state":"ACTIVE","etag":"1_070e31f5-9fb2-4d1f-9590-2b44b29bffb2"}
+[info] i  Using project wordle-99fb9 (brain Banch Mark) 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2023-12-29T11:58:44.651Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2023-12-29T11:58:44.972Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
+[debug] [2023-12-29T11:58:44.973Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"10.7.1","browserURL":"https://www.gstatic.com/firebasejs/10.7.1/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/10.7.1/firebase.tgz"},"live":{"version":"10.7","browserURL":"https://www.gstatic.com/firebasejs/live/10.7/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/10.7/firebase.tgz"},"components":{"analytics":"https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js","app-check":"https://www.gstatic.com/firebasejs/10.7.1/firebase-app-check.js","auth":"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js","auth/cordova":"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth/cordova.js","functions":"https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js","firestore":"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js","firestore/lite":"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore/lite.js","installations":"https://www.gstatic.com/firebasejs/10.7.1/firebase-installations.js","storage":"https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/10.7.1/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/10.7.1/firebase-remote-config.js","messaging":"https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js","messaging/sw":"https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging/sw.js","database":"https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js","firestore.memory":"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.memory.js"}}
+[info] ✔  Wrote y/index.html 
+[info] 
+[info] i  Detected a .git folder at /Users/admin/Desktop/humanbanchmark 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=924308260&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
+[debug] [2023-12-29T11:58:54.727Z] >>> [apiv2][query] POST https://github.com/login/oauth/access_token [none]
+[debug] [2023-12-29T11:58:54.728Z] >>> [apiv2][body] POST https://github.com/login/oauth/access_token [stream]
+[debug] [2023-12-29T11:58:55.161Z] <<< [apiv2][status] POST https://github.com/login/oauth/access_token 200
+[debug] [2023-12-29T11:58:55.162Z] <<< [apiv2][body] POST https://github.com/login/oauth/access_token {"access_token":"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","token_type":"bearer","scope":"read:user,repo"}
+[debug] [2023-12-29T11:58:55.233Z] >>> [apiv2][query] GET https://api.github.com/user [none]
+[debug] [2023-12-29T11:58:55.729Z] <<< [apiv2][status] GET https://api.github.com/user 200
+[debug] [2023-12-29T11:58:55.729Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"Nirakargoswami","id":43098666,"node_id":"MDQ6VXNlcjQzMDk4NjY2","avatar_url":"https://avatars.githubusercontent.com/u/43098666?v=4","gravatar_id":"","url":"https://api.github.com/users/Nirakargoswami","html_url":"https://github.com/Nirakargoswami","followers_url":"https://api.github.com/users/Nirakargoswami/followers","following_url":"https://api.github.com/users/Nirakargoswami/following{/other_user}","gists_url":"https://api.github.com/users/Nirakargoswami/gists{/gist_id}","starred_url":"https://api.github.com/users/Nirakargoswami/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/Nirakargoswami/subscriptions","organizations_url":"https://api.github.com/users/Nirakargoswami/orgs","repos_url":"https://api.github.com/users/Nirakargoswami/repos","events_url":"https://api.github.com/users/Nirakargoswami/events{/privacy}","received_events_url":"https://api.github.com/users/Nirakargoswami/received_events","type":"User","site_admin":false,"name":null,"company":null,"blog":"","location":null,"email":null,"hireable":null,"bio":null,"twitter_username":null,"public_repos":21,"public_gists":0,"followers":0,"following":0,"created_at":"2018-09-08T19:49:27Z","updated_at":"2023-12-29T11:58:52Z","private_gists":0,"total_private_repos":7,"owned_private_repos":7,"disk_usage":74495,"collaborators":2,"two_factor_authentication":false,"plan":{"name":"free","space":976562499,"collaborators":0,"private_repos":10000}}
+[info] 
+[info] ✔  Success! Logged into GitHub as Nirakargoswami 
+[info] 
