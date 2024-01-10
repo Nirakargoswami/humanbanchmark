@@ -30,15 +30,15 @@ import {
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = {
-  apiKey: "AIzaSyC9_5dTMJAwvA0RhqSbppnz-0um_IIHztI",
-  authDomain: "wordle-99fb9.firebaseapp.com",
-  databaseURL: "https://wordle-99fb9-default-rtdb.firebaseio.com",
-  projectId: "wordle-99fb9",
-  storageBucket: "wordle-99fb9.appspot.com",
-  messagingSenderId: "543055598072",
-  appId: "1:543055598072:web:e95f21e8554a006568460d",
-  measurementId: "G-XLGRCQWH6V"
+  apiKey: "AIzaSyDp5TbozPcBghq-kYVEDrcjrzJVkt89EjU",
+  authDomain: "webapphumanbenchmark.firebaseapp.com",
+  projectId: "webapphumanbenchmark",
+  storageBucket: "webapphumanbenchmark.appspot.com",
+  messagingSenderId: "299889907253",
+  appId: "1:299889907253:web:cccf14a59cd9441e5e837c",
+  measurementId: "G-R1TTVNMHFW"
 };
 
 
