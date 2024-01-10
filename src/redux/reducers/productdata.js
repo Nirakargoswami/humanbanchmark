@@ -16,6 +16,7 @@ const initialState = {
     sequencememory: "",
     visualmemory: "",
     reactiontime: "",
+    chimptest:""
     // verbalmemory: "",
   },
 }
@@ -26,6 +27,7 @@ export default function (state = initialState, action) {
 
   const userid = JSON.parse(localStorage.getItem("user"))
   const { type, payload } = action;
+
   switch (type) {
     case SEQUENCE:
       return {
@@ -43,6 +45,8 @@ export default function (state = initialState, action) {
       state.reactiontime = payload.reactiontime.score + " mls"
       state.numbermemory = payload.numbermemory.score + " points"
       state.sequencememory = payload.sequencememory.score + " points"
+      state.chimptest = payload.chimptest.score + " points"
+
       state.name = payload.name
       return {
         ...state,

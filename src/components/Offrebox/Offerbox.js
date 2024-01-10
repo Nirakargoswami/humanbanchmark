@@ -11,10 +11,10 @@ export default function AlertDialog({ open, handleClose, handleClickOpen }) {
 
     return (
         <div >
-            <Button className='boxcolor' variant="outlined" onClick={handleClickOpen} >
+            {/* <Button className='boxcolor' variant="outlined" onClick={handleClickOpen} >
                 Chance To win 10000 Bonus coin
-            </Button>
-            <Dialog
+            </Button> */}
+            {/* <Dialog
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
@@ -34,7 +34,7 @@ export default function AlertDialog({ open, handleClose, handleClickOpen }) {
                         Close
                     </Button>
                 </DialogActions>
-            </Dialog>
+            </Dialog> */}
         </div>
     );
 }

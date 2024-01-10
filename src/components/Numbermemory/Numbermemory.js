@@ -16,8 +16,8 @@ const Numbermemory = () => {
     const [level, setLevel] = useState(1)
     const [no, setNo] = useState()
     const [Noshow, setNoshow] = useState()
-    const [Scueess,setScueess] = useState(true)
-    const [open,setOpen] = useState(false)
+    const [Scueess, setScueess] = useState(true)
+    const [open, setOpen] = useState(false)
     const [showanswer, setshowanswer] = useState(false)
     const inputRef = useRef(null);
     const [eroro, seteroro] = useState("")
@@ -83,7 +83,7 @@ const Numbermemory = () => {
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
-   
+
     const Tryagain = () => {
 
         setStart(true)
@@ -96,26 +96,26 @@ const Numbermemory = () => {
     }
     const handleClickOpen = () => {
         setOpen(true);
-      };
-    
-      const handleClose = () => {
+    };
+
+    const handleClose = () => {
         setOpen(false);
-      };
+    };
 
     const SavebuttonScore = () => {
         const userid = JSON.parse(localStorage.getItem("user"))
-        if(userid){
+        if (userid) {
             Savedata(userid.uid, "numbermemory", (level - 1)).then((x) => {
                 if (x === "Document successfully updated!") {
                     dispatch(Numbermemoryscore(level - 1))
                     handleClickOpen()
-                   
+
                 }
             })
         }
-        if(!userid){
-                 setScueess(false)
-                 handleClickOpen()  
+        if (!userid) {
+            setScueess(false)
+            handleClickOpen()
         }
     }
 
@@ -124,7 +124,7 @@ const Numbermemory = () => {
     return (
         <>
             <div className="Nodisplay anim-slide-fade-in">
-            <Alertmessge message={ Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={level - 1} handleClose={handleClose} open={open} />
+                <Alertmessge message={Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={level - 1} handleClose={handleClose} open={open} />
 
                 {start &&
                     <Mainwraper setStart={setStart} Img={<PinIcon />} linktext={"Start"} Text={"The average person can remember 7 numbers at once. Can you do more?"} Header={"Number Memory"} />
@@ -135,7 +135,7 @@ const Numbermemory = () => {
 
                     <div className="column">
                         <div >
-                            <h1 style={{ color: "white" }}>{Noshow}</h1>
+                            <h1 style={{ color: "white", wordWrap: "break-word", wordBreak: "break-all" }}>{Noshow}</h1>
                         </div>
 
                         <div className="progress">
@@ -149,13 +149,13 @@ const Numbermemory = () => {
                     <div className="column">
                         <div style={{ opacity: "1", transition: "all 1s linear 0s" }}>
                             <div style={{ fontSize: "40px" }}>Number</div>
-                            <div style={{ fontSize: "40px" }} className="label">  {no}</div>
+                            <div style={{ fontSize: "40px", wordWrap: "break-word", wordBreak: "break-all" }} className="label">  {no}</div>
 
                         </div>
                         <div>
                             <div style={{ fontSize: "40px" }} >Your answer</div>
                             <div >
-                                <p style={{ textDecoration: 'line-through', fontSize: "40px", color: 'black' }}>{value}</p>
+                                <p style={{ textDecoration: 'line-through', fontSize: "40px", color: 'black', wordWrap: "break-word" }}>{value}</p>
                             </div>
 
                         </div>
@@ -188,7 +188,7 @@ const Numbermemory = () => {
                         <span>Press enter to submit</span>
 
                         <div>
-                            <input type="text" ref={inputRef} style={{ color: "white" }} className="css-18qa6we" onChange={(e) => setVAlue(e.target.value)} />
+                            <input type="text" ref={inputRef} style={{ color: "white" }} className="css-18qa6we" onChange={(e) => setVAlue(e.target.value.trim())} />
                         </div>
 
                         <button style={{ marginTop: "20px" }} className="css-de05nr" onClick={Checkvalue}>
@@ -198,7 +198,7 @@ const Numbermemory = () => {
                 }
 
             </div>
-            <div  className="Abouttest" style={{display:"flex",flexDirection:"c"}}>
+            <div className="Abouttest" style={{ display: "flex", flexDirection: "c" }}>
 
                 <div className="css-1oen1ps e19owgy73">
                     <h2 style={{ textAlign: "start" }}>About the test</h2>

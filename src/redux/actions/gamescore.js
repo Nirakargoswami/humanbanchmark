@@ -1,5 +1,6 @@
 import { REACTION_TIME,SEQUENCE,NUMBER_MEMORY,VERBAL_MEMORY,VISUAL_MEMORY,
     SCORE_DATA,
+    CHIMP_TEST,
     REACTION_TIME_RANK
 } from "./types";
 
@@ -23,7 +24,7 @@ const  SeauenceScore = (score) => (
 })
 const  Chimptest = (score) => (
     {
-    type: SEQUENCE,
+    type: CHIMP_TEST,
     payload: score,
 })
 const  Numbermemoryscore = (score) => (

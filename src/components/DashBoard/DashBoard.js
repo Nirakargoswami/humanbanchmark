@@ -42,39 +42,40 @@ const Dashborad = () => {
             case "numbermemory":
                 return (
                     <div style={{ display: "flex" }}>
-                        <Link to="/gameleadorbord">
+                        {/* <Link to="/gameleadorbord">
                             <button style={{padding:"4px 9px"}}  onClick={() => Ranckdata(key)} className="css-de05nr" >
                                 Rank
                             </button>
-                        </Link>
-                        <Link to="">
-                            <div> <PinIcon /></div>
-                        </Link>
+                        </Link> */}
+                         <Link to="">
+                         <PinIcon />
+                         </Link>
+                        
                     </div>
                 )
             case "reactiontime":
                 return (
                     <div style={{ display: "flex" }}>
-                        <Link to="/gameleadorbord">
+                        {/* <Link to="/gameleadorbord">
                             <button style={{padding:"4px 9px"}}  onClick={() => Ranckdata(key)} className="css-de05nr" >
                                 Rank
                             </button>
-                        </Link>
+                        </Link> */}
                         <Link to="">
-                            <div><AccessTimeIcon /></div>
+                            <AccessTimeIcon />
                         </Link>
                     </div>
                 )
             case "sequencememory":
                 return (
                     <div style={{ display: "flex" }}>
-                        <Link to="/gameleadorbord">
+                        {/* <Link to="/gameleadorbord">
                             <button style={{padding:"4px 9px"}}  onClick={() => Ranckdata(key)} className="css-de05nr" >
                                 Rank
                             </button>
-                        </Link>
+                        </Link> */}
                         <Link to="">
-                            <div style={{ marginLeft: "10px" }}><GridOnIcon /></div>
+                            <GridOnIcon />
                         </Link>
                     </div>
                 )
@@ -95,15 +96,15 @@ const Dashborad = () => {
 
                 return (
                     <div style={{ display: "flex" }}>
-                        <Link to="/memory">
+                        {/* <Link to="/memory">
                             <Link to="/gameleadorbord">
                                 <button style={{padding:"4px 9px"}} onClick={() => Ranckdata(key)} className="css-de05nr" >
                                     Rank
                                 </button>
                             </Link>
-                        </Link>
+                        </Link> */}
                         <Link to="">
-                            <div> <AcUnitIcon style={{ marginLeft: "10px" }}></AcUnitIcon></div>
+                           <AcUnitIcon ></AcUnitIcon>
                         </Link>
                     </div>
                 )
@@ -166,7 +167,7 @@ const Dashborad = () => {
     }, []);
 
 
-
+console.log(State.productdata)
 
     useEffect(() => {
         const data = []
@@ -218,31 +219,33 @@ const Dashborad = () => {
                 {
                     loading ?
                         <CircularIndeterminate />
-                        : <Table sx={{ maxWidth: 500 }} size="larg" aria-label="a dense table">
+                        : <Table sx={{ maxWidth: 500 }} style={{marginTop:"12px"}} size="larg" aria-label="a dense table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell align="left">Test</TableCell>
-                                    <TableCell align="left">Score</TableCell>
-                                    <TableCell align="left">Leaderboard <br />
+                                    <TableCell align="left" style={{color:"rgb(43, 135, 209)"}}>Games</TableCell>
+                                    <TableCell align="center" style={{color:"rgb(43, 135, 209)"}} >Score</TableCell>
 
-                                    </TableCell>
+
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {data && data.map((row, y) => {
-                                    return (<TableRow
+                                    return (
+                                    <TableRow
                                         key={y}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
-                                        <TableCell style={{ fontWeight: "bold" }}>{row.name.toUpperCase()} {row.Action}</TableCell>
-                                        <TableCell style={{ fontSize: "16px", fontWeight: "bold" }} >{row.score || row.score === 0 ? row.score : "?"}</TableCell>
-                                        <TableCell>
-                                            <Link to={`/${(row.name == "sequencememory" ) ? "sequence" : (row.name == "visualmemory" ) ? "memory" :  row.name   }`}>
-                                                <Button  style={{padding:"6px 22px"}} className="boxcolor" >
-                                                    Play
-                                                </Button>
-                                            </Link>
+                                        <TableCell style={{ fontWeight: "bold",fontSize:"1rem" }}>{row.name.toUpperCase()} {row.Action}</TableCell>
+                                        <TableCell style={{ fontSize: "16px", fontWeight: "bold",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center" }} >
+                                            <div>
+                                            {row.score || row.score === 0 ? row.score : "?"}
+                                            </div>
+                                            <Button style={{ padding: "2px 13px" }} className="boxcolor" >
+                                                Play
+                                            </Button>
+
                                         </TableCell>
+
 
                                     </TableRow>)
                                 }
@@ -267,14 +270,14 @@ const Dashborad = () => {
             <div style={{ color: "black", marginBottom: "16px", fontSize: "30px", fontWeight: "bold" }}>
 
             </div>
-            <div style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", marginLeft: "31px", width: "100%" }}>
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", marginLeft: "31px", width: "100%",marginTop:"12px" }}>
                 {
                     user ?
                         <>
-                            <span style={{ color: "black", fontSize: "19px", fontWeight: "400", textAlign: "start" }}>User Name</span>
+                            <span style={{ color: "black", fontSize: "18px", fontWeight: "400", textAlign: "start" }}>User Name</span>
                             <span style={{ color: "black" }}>:</span>
-                            <div style={{ color: "black", marginLeft: "12px", fontSize: "18px", fontWeight: "bold" }}>
-                                {(info.name && info.name.substring(0, 10) + "..")}
+                            <div style={{ color: "black", marginLeft: "12px", fontSize: "15px", fontWeight: "bold" ,marginTop:"4px"}}>
+                                {(info.name && info.name)}
                             </div>
 
                         </>

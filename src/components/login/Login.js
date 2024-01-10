@@ -152,19 +152,9 @@ function Login() {
             /> */}
         </div>
         <div  style={{ color: "rgb(43, 135, 209)" ,fontSize:"24px"}}  > or</div>
-
-        <Link
-          className="text-xs hover:underline">
-
-          <span style={{ color: "white" }} >Login With Email and Password</span>
-
-
-        </Link>
+         <span style={{ color: "white" }} >Login With Email and Password</span>
         <div className="mb-2 mt-3">
-          <label
-
-            className="Emailtext"
-          >
+          <label className="Emailtext">
             Email
           </label>
           <input

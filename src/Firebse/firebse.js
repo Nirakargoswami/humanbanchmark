@@ -87,6 +87,11 @@ const Creatuser = async (id, name) => {
         score: 0,
         coin: 0
       },
+      chimptest:
+      {
+        score: 0,
+        coin: 0
+      },
 
     })
 
@@ -135,6 +140,7 @@ const signInWithGoogle = async () => {
           score: 0,
           coin: 0
         },
+        
         numbermemory: {
           score: 0,
           coin: 0
@@ -145,6 +151,11 @@ const signInWithGoogle = async () => {
         },
 
         visualmemory:
+        {
+          score: 0,
+          coin: 0
+        },
+        chimptest:
         {
           score: 0,
           coin: 0
@@ -241,6 +252,11 @@ const registerWithEmailAndPassword = async (displayName, email, password) => {
           coin: 0
         },
         wordmemory: {
+          score: 0,
+          coin: 0
+        },
+        chimptest:
+        {
           score: 0,
           coin: 0
         },

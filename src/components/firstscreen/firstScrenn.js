@@ -78,10 +78,10 @@ const Firstscreen = () => {
 
     return (
         <div style={{ backgroundColor: "white"  ,paddingBottom:"30px"}}>
-            <Offerbox handleClose={handleClose} handleClickOpen={handleClickOpen} open={open}/>
+            {/* <Offerbox handleClose={handleClose} handleClickOpen={handleClickOpen} open={open}/>
 
 
-            <Dashborad/>
+            <Dashborad/> */}
 
 
             {/* <div style={{ backgroundColor: "rgb(43, 135, 209)" }} className="12ibl39">

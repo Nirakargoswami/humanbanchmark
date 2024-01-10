@@ -63,11 +63,12 @@
     color: white;
     display: flex;
     height: 50px;
+    box-shadow: 2px 13px 15px -13px rgba(0, 0, 0, 0.75);
     background: rgb(43, 135, 209);
-    width: 72%;
+    width: 87%;
     margin: auto;
     align-items: center;
     margin-bottom: 12px;
     justify-content: center;
-
+    margin-top: 62px;
 }

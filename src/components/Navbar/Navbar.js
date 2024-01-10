@@ -60,18 +60,20 @@ const Navbar = () => {
                         <AcUnitIcon style={{ fontSize: "30px" }} />
                     </div>
                     <Link to={"/"} className="css-i4vpdl">
-                        <div style={{padding:"9px 3px ", fontSize: "18px", color: "black" }} variant="h6" color="inherit" className='css-i4vpdl  css-de05nr' component="div">
-                            Brain BenchMark
+                        <div style={{ padding: "0px 5px ", fontSize: "15px", color: "black" }} variant="h6" color="inherit" className='css-i4vpdl  css-de05nr' component="div">
+                            Brain
+                            BenchMark
                         </div>
                     </Link>
                     <Link to={"/dashboard"} className="css-i4vpdl">
-                        <div  style={{ padding:"9px 3px ", fontSize: "18px", color: "black" }} variant="h6" color="inherit" className='ml-2 css-i4vpdl css-de05nr' component="div">
+                        <div style={{ padding: "9px 3px ", fontSize: "18px", color: "black" }} variant="h6" color="inherit" className='mr-2 ml-1 css-i4vpdl css-de05nr' component="div">
                             Dashboard
                         </div>
                     </Link>
 
                     <div style={{ marginLeft: "auto" }}>
                         <IconButton
+                        style={{padding:"4px"}}
                             aria-label="menu"
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
@@ -81,6 +83,7 @@ const Navbar = () => {
                             <MenuIcon />
                         </IconButton>
                         <Menu
+
                             id="menu-appbar"
                             anchorEl={anchorEl}
                             anchorOrigin={{
@@ -112,16 +115,16 @@ const Navbar = () => {
                             {
 
                             }
-                         {  
-                       userid && !userid.idlogin && 
-                         <div>
-                            <Link className="css-i4vpdl">
+                            {
+                                userid && !userid.idlogin &&
+                                <div>
+                                    <Link className="css-i4vpdl">
 
-                                    <MenuItem onClick={() => Logout()}>
-                                        Logout
-                                    </MenuItem>
-                                </Link>
-                            </div>}
+                                        <MenuItem onClick={() => Logout()}>
+                                            Logout
+                                        </MenuItem>
+                                    </Link>
+                                </div>}
 
                         </Menu>
                     </div>

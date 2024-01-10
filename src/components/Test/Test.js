@@ -67,14 +67,14 @@ const RouteContainer = () => {
                 return (
                     <>
                         <Link to={`${x.link}`} className="css-uaat4j css-1ur49oz" style={{ cursor: "pointer", textAlign: "center", position: "relative" }}>
-                             <div className="Cuponbox" >
+                            {/* <div className="Cuponbox" >
                                 <div>
                                     2500
                                 </div>
                                 <div>
                                     Coin
                                 </div>
-                            </div>
+                            </div> */}
                             {x.svg}
                             <h4>{x.testname}</h4>
                             <p>{x.testdes}</p>
