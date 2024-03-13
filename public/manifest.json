@@ -1,9 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Brain Game",
+  "name": "Mindpuzzler Brain game ",
   "icons": [
     {
-      "src": "logo192.png",
+      "src": "Braingamelogo.png",
       "type": "image/png",
       "sizes": "512x512"
     }

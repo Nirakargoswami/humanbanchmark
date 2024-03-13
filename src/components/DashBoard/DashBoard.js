@@ -25,7 +25,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 
 const Dashborad = () => {
-    const State = useSelector(state => state)
+    const State = useSelector(state => state.productdata)
     const [data, setdata] = useState([])
     const [info, setifo] = useState({})
     const [user, setUser] = useState(false)
@@ -47,10 +47,10 @@ const Dashborad = () => {
                                 Rank
                             </button>
                         </Link> */}
-                         <Link to="">
-                         <PinIcon />
-                         </Link>
-                        
+                        <Link to="">
+                            <PinIcon />
+                        </Link>
+
                     </div>
                 )
             case "reactiontime":
@@ -104,7 +104,7 @@ const Dashborad = () => {
                             </Link>
                         </Link> */}
                         <Link to="">
-                           <AcUnitIcon ></AcUnitIcon>
+                            <AcUnitIcon ></AcUnitIcon>
                         </Link>
                     </div>
                 )
@@ -167,7 +167,7 @@ const Dashborad = () => {
     }, []);
 
 
-console.log(State.productdata)
+    console.log(State)
 
     useEffect(() => {
         const data = []
@@ -178,17 +178,17 @@ console.log(State.productdata)
             setUser(false)
 
         }
-        Object.keys(State.productdata).forEach(key => {
+        Object.keys(State).forEach(key => {
             if (key !== "name" && key !== "id") {
                 const newObj = {};
                 newObj.name = key
                 newObj.Action = makearoute(key)
-                newObj.score = State.productdata[key];
+                newObj.score = State[key];
                 data.push(newObj);
             } else {
                 setifo({
-                    name: State.productdata["name"].toUpperCase(),
-                    id: State.productdata["id"]
+                    name: State["name"].toUpperCase(),
+                    id: State["id"]
                 })
             }
 
@@ -212,56 +212,44 @@ console.log(State.productdata)
             return
         }
     }
-
+    console.log(data)
     const Makeatable = () => {
         return (
             <>
                 {
                     loading ?
                         <CircularIndeterminate />
-                        : <Table sx={{ maxWidth: 500 }} style={{marginTop:"12px"}} size="larg" aria-label="a dense table">
+                        : <Table sx={{ maxWidth: 500 }} style={{ marginTop: "12px" }} size="larg" aria-label="a dense table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell align="left" style={{color:"rgb(43, 135, 209)"}}>Games</TableCell>
-                                    <TableCell align="center" style={{color:"rgb(43, 135, 209)"}} >Score</TableCell>
-
-
+                                    <TableCell align="left" style={{ color: "rgb(43, 135, 209)" }}>Games</TableCell>
+                                    <TableCell align="center" style={{ color: "rgb(43, 135, 209)" }} >Score</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {data && data.map((row, y) => {
                                     return (
-                                    <TableRow
-                                        key={y}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                        <TableCell style={{ fontWeight: "bold",fontSize:"1rem" }}>{row.name.toUpperCase()} {row.Action}</TableCell>
-                                        <TableCell style={{ fontSize: "16px", fontWeight: "bold",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center" }} >
-                                            <div>
-                                            {row.score || row.score === 0 ? row.score : "?"}
-                                            </div>
-                                            <Button style={{ padding: "2px 13px" }} className="boxcolor" >
-                                                Play
-                                            </Button>
+                                        <TableRow
+                                            key={y}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                            <TableCell style={{ fontWeight: "bold", fontSize: "1rem" }}>{row.name.toUpperCase()} {row.Action}</TableCell>
+                                            <TableCell style={{ fontSize: "16px", fontWeight: "bold", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }} >
+                                                <div>
+                                                    {row.score || row.score === 0 ? row.score : "?"}
+                                                </div>
+                                                <Link to={`/${row.name}`}>
 
-                                        </TableCell>
-
-
-                                    </TableRow>)
+                                                    <Button  style={{ padding: "2px 13px" ,backgroundColor:"rgb(43, 135, 209)",color:"white"}} className="boxcolor" >
+                                                        Play
+                                                    </Button>
+                                                </Link>
+                                            </TableCell>
+                                        </TableRow>)
                                 }
-
-
-
                                 )}
                             </TableBody>
                         </Table>
-
                 }
-
-
-
-
-
             </>
         )
     }
@@ -270,19 +258,28 @@ console.log(State.productdata)
             <div style={{ color: "black", marginBottom: "16px", fontSize: "30px", fontWeight: "bold" }}>
 
             </div>
-            <div style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", marginLeft: "31px", width: "100%",marginTop:"12px" }}>
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", marginLeft: "31px", width: "100%", marginTop: "12px" }}>
                 {
                     user ?
                         <>
                             <span style={{ color: "black", fontSize: "18px", fontWeight: "400", textAlign: "start" }}>User Name</span>
                             <span style={{ color: "black" }}>:</span>
-                            <div style={{ color: "black", marginLeft: "12px", fontSize: "15px", fontWeight: "bold" ,marginTop:"4px"}}>
+                            <div style={{ color: "black", marginLeft: "12px", fontSize: "15px", fontWeight: "bold", marginTop: "4px" }}>
                                 {(info.name && info.name)}
                             </div>
 
                         </>
                         :
-                        <div style={{ color: "black", textAlign: "start" }} class="link"><Link to={"/login"}>Log in</Link> or <Link to={"/signup"}>sign up</Link> to save your results</div>
+                      
+                        <div style={{ color: "black", textAlign: "start" }} class="link"><Link to={"/login"}>
+                              <Button className="boxcolor">
+                              Log in
+                            </Button>
+                           </Link> or <Link to={"/signup"}>
+                           <Button className="boxcolor">
+                            sign up
+                            </Button>
+                            </Link> to save your results</div>
                 }
             </div>
 

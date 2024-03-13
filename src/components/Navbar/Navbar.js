@@ -16,6 +16,8 @@ import { onAuthStateChanged, Signout, auth } from "../../Firebse/firebse"
 const Navbar = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+    const data = "When \\(a \\ne 0\\), there are two solutions to \\(ax^2 + bx + c = 0\\) and they are \\[x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.\\]";
+
     const [user, setUser] = useState(null);
     const params = useParams();
 
@@ -60,13 +62,13 @@ const Navbar = () => {
                         <AcUnitIcon style={{ fontSize: "30px" }} />
                     </div>
                     <Link to={"/"} className="css-i4vpdl">
-                        <div style={{ padding: "0px 5px ", fontSize: "15px", color: "black" }} variant="h6" color="inherit" className='css-i4vpdl  css-de05nr' component="div">
+                        <div style={{ padding: "0px 5px ", fontSize: "15px", color: "black" ,display:"flex",justifyContent:"center"}} variant="h6" color="inherit" className='css-i4vpdl  css-de05nr' component="div">
                             Brain
                             BenchMark
                         </div>
                     </Link>
                     <Link to={"/dashboard"} className="css-i4vpdl">
-                        <div style={{ padding: "9px 3px ", fontSize: "18px", color: "black" }} variant="h6" color="inherit" className='mr-2 ml-1 css-i4vpdl css-de05nr' component="div">
+                        <div style={{ padding: "9px 3px ", fontSize: "15px", color: "black" ,display:"flex",justifyContent:"center"}} variant="h6" color="inherit" className='mr-2 ml-1 css-i4vpdl css-de05nr' component="div">
                             Dashboard
                         </div>
                     </Link>
@@ -98,14 +100,14 @@ const Navbar = () => {
                             open={open}
                             onClose={handleClose}
                         >
-                            <Link to={"/"} className="css-i4vpdl">
+                            <Link to={"/"} className="css-i4vpdl"  style={{color:"rgb(43, 135, 209)"}}>
                                 <MenuItem onClick={handleClose}>
 
                                     Home
 
                                 </MenuItem>
                             </Link>
-                            <Link to={"/dashboard"} className="css-i4vpdl">
+                            <Link to={"/dashboard"} style={{color:"rgb(43, 135, 209)"}} className="css-i4vpdl">
 
                                 <MenuItem onClick={handleClose}>
                                     Dashboard

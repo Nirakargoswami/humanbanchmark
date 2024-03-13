@@ -108,17 +108,14 @@ const ChimpTest = () => {
             setTilePositions(newTilePositions)
             setcount(count + 1)
 
-        }else {
+        } else {
             setNo(no)
             setStrick(Strick - 1)
             setCountine(true)
         }
         if (level !== 0) {
             setGamestarted(true)
-
         }
-
-
     }
 
     useEffect(() => {
@@ -190,8 +187,7 @@ const ChimpTest = () => {
             setNo(null)
             setCountine(false)
             setGamestarted(false)
-            generateTilePositions()
-        }else{
+        } else {
             setCountine(false)
             setLevel(cubeno + 1)
             setcount(1)
@@ -230,107 +226,108 @@ const ChimpTest = () => {
         )
     }
     return (
+        <>
+            <div className="Nodisplay anim-slide-fade-in">
+                <Alertmessge message={Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={cubeno} handleClose={handleClose} open={open} />
 
-        <div>
-            <Alertmessge message={Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={cubeno} handleClose={handleClose} open={open} />
-
-            {start &&
-                <Mainwraper setStart={setStart} Img={<GridOnIcon />} linktext={"Start"} Text={"Chimptest "} Header={"Chimptest Memory Test"} />
-            }
-
-            <div>
-
-                {!start && !Countine && !showanswer && 
-                    <div
-                        style={{ backgroundColor: "rgb(43, 135, 209)" }}
-                        className='Mainbox'>
-
-                        {Showcube()}
-                    </div>
-
-
+                {start &&
+                    <Mainwraper setStart={setStart} Img={<GridOnIcon />} linktext={"Start"} Text={"Chimptest "} Header={"Chimptest Memory Test"} />
                 }
-                {showanswer && !Countine &&
 
-                    <div
-                        style={{ backgroundColor: "rgb(43, 135, 209)" }}
-                        className='Mainbox' >
-                        <div className='Secondbox'>
-                            <Alertmessge message={Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={cubeno} handleClose={handleClose} open={open} />
+            
 
-                            <AppsIcon className='Icon' />
-                            <div className='textbox'>
-                                <span className='SecLevel'>
-                                    <span className='TEXt'>Level </span>
-                                    <span style={{ fontSize: "27px" }} >{cubeno}</span>
-                                </span>
-                                <div className='textfirst'>
-                                    Chimp Test
+                    {!start && !Countine && !showanswer &&
+                        <div
+                            style={{ backgroundColor: "rgb(43, 135, 209)" }}
+                            className='Mainboxsec'>
+
+                            {Showcube()}
+                        </div>
+
+
+                    }
+                    {showanswer && !Countine &&
+
+                        <div
+                            style={{ backgroundColor: "rgb(43, 135, 209)" }}
+                            className='Mainboxsec' >
+                            <div className='Secondbox'>
+                                <Alertmessge message={Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={cubeno} handleClose={handleClose} open={open} />
+
+                                <AppsIcon className='Icon' />
+                                <div className='textbox'>
+                                    <span className='SecLevel'>
+                                        <span className='TEXt'>Level </span>
+                                        <span style={{ fontSize: "27px" }} >{cubeno}</span>
+                                    </span>
+                                    <div className='textfirst'>
+                                        Chimp Test
+                                    </div>
+
                                 </div>
 
-                            </div>
-
-                            <div className='textbox '>
+                                <div className='textbox '>
 
 
 
-                                <div className='
+                                    <div className='
                         Flex'>
 
-                                    {Tryaginbutton()}
-                                </div>
+                                        {Tryaginbutton()}
+                                    </div>
 
+                                </div>
                             </div>
+
                         </div>
+                    }
+                    {Countine && !start &&
+                        <div
+                            style={{ backgroundColor: "rgb(43, 135, 209)" }}
+                            className='Mainbox' >
+                            <div className='Secondbox'>
 
-                    </div>
-                }
-                {Countine && !start &&
-                    <div
-                        style={{ backgroundColor: "rgb(43, 135, 209)" }}
-                        className='Mainbox' >
-                        <div className='Secondbox'>
+                                <AppsIcon className='Icon' />
+                                <div className='textbox'>
+                                    <span className='SecLevel'>
+                                        {No ? <span className='TEXt'>{No}</span>
+                                            :
+                                            <>
+                                                <span className='TEXt'>Level </span>
+                                                <span style={{ fontSize: "27px" }} >{level}</span>
+                                            </>
+                                        }
+                                    </span>
+                                    <div className='textfirst'>
+                                        Lives
+                                    </div>
+                                    <div className='textfirst'>
+                                        3 out of {Strick}
+                                    </div>
+                                    <div className='textfirst'>
+                                        Chim ChimpTest
+                                    </div>
 
-                            <AppsIcon className='Icon' />
-                            <div className='textbox'>
-                                <span className='SecLevel'>
-                                    {No ? <span className='TEXt'>{No}</span>
-                                        :
-                                        <>
-                                            <span className='TEXt'>Level </span>
-                                            <span style={{ fontSize: "27px" }} >{level}</span>
-                                        </>
-                                    }
-                                </span>
-                                <div className='textfirst'>
-                                    Lives
-                                </div>
-                                <div className='textfirst'>
-                                    3 out of {Strick}
-                                </div>
-                                <div className='textfirst'>
-                                    Chim ChimpTest
                                 </div>
 
+                                <div className='textbox '>
+
+
+
+                                    <div className='Flex'>
+                                        <button style={{ backgroundColor: "rgb(255, 209, 84)" }} onClick={() => Continue()} className="Tryagain Link" >
+                                            Countine
+                                        </button>
+                                    </div>
+
+                                </div>
                             </div>
 
-                            <div className='textbox '>
-
-
-
-                                <div className='Flex'>
-                                    <button style={{ backgroundColor: "rgb(255, 209, 84)" }} onClick={() => Continue()} className="Tryagain Link" >
-                                        Countine
-                                    </button>
-                                </div>
-
-                            </div>
                         </div>
-
-                    </div>
-                }
+                    }
+                
             </div>
-        </div>
+        </>
     )
 }
 

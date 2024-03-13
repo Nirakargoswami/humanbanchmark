@@ -10,9 +10,7 @@
    animation:animation1sios 0.1s linear 0s 1 normal none running ;
 }
 @keyframes animation1sios {
- 
-
-   100% {border:20px solid #068fff;
+   100% {border: 6px solid #068fff;
    
    }
 }

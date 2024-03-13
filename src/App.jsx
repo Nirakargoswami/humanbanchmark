@@ -39,15 +39,15 @@ function App() {
           <Route path="/login" element={<Login />} />
 
           <Route path="/wordmemomry" element={<WordTriel />} />
-          <Route path="/chimpTest" element={<ChimpTest />} />
+          <Route path="/chimptest" element={<ChimpTest />} />
 
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashborad />} />
 
-          <Route path="/sequence" element={<SequenceMemoryTest />} />
-          <Route path="/number-memory" element={<Numbermemory />} />
+          <Route path="/sequencememory" element={<SequenceMemoryTest />} />
+          <Route path="/numbermemory" element={<Numbermemory />} />
           {/* <Route path="/verbal-memory" element={<Wordmemery />} /> */}
-          <Route path="/memory" element={<Visualmemory />} />
+          <Route path="/visualmemory" element={<Visualmemory />} />
           <Route path="/gameleadorbord" element={<Gameleaderbord />} />
 
           <Route path="/Numbermemory" element={<Numbermemory />} />

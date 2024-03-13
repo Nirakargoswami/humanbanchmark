@@ -8,6 +8,8 @@ import { useDispatch } from 'react-redux';
 import { Savedata } from "../../Firebse/firebse"
 import Alertmessge from "../Diloaugbox/Dialoubox"
 import GridOnIcon from '@mui/icons-material/GridOn';
+import clickSound from "../aseest/click.wav";
+const clickAudio = new Audio(clickSound);
 
 const SequenceMemoryTest = () => {
 
@@ -30,7 +32,6 @@ const SequenceMemoryTest = () => {
     const [Scueess,setScueess] = useState(true)
     const Noarry = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     const dispatch = useDispatch()
-
 
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
@@ -103,6 +104,7 @@ const SequenceMemoryTest = () => {
 
     const Cubeclick = (x) => {
         check.push(x)
+        clickAudio.play(); // Play the click sound
 
         setShowanimaton(false)
         if (countarry.indexOf(x) === check.indexOf(x)) {
@@ -200,7 +202,7 @@ const SequenceMemoryTest = () => {
             setnewwidth((310 / (mylevel + 1)) - 2),
             setnocube((mylevel + 1) * (mylevel + 1)))
     }
-    const classnaem = `Cubenames   ${shwonaimation && "animate"}`
+    const classnaem = `Cubenames   `
 
 const Tryaginbutton = () => {
     return (
@@ -209,7 +211,8 @@ const Tryaginbutton = () => {
     )
 }
     return (
-        <div>
+        <>
+        <div className="Nodisplay anim-slide-fade-in">
             {start && !showanswer &&
                 <Mainwraper setStart={setStart} Img={<GridOnIcon />} linktext={"Start"} Text={"Memorize the pattern"} Header={"Sequence Memory Test"} />
             }
@@ -255,7 +258,7 @@ const Tryaginbutton = () => {
                             <span >{Level}</span>
                         </span>
                         <div className={classnaem}>
-                            <div style={{marginBottom:"37px"}} className='Cubesec'>
+                            <div style={{marginBottom:"37px"}} className= { `Cubesec ${shwonaimation && "animate"}`} >
 
                                 {
                                     Sowcube()
@@ -265,13 +268,15 @@ const Tryaginbutton = () => {
                         </div>
                     </div>
                 </div>}
-            <div className='Abouttest'>
+          
+        </div>
+        <div className='Abouttest'>
                 <h1 style={{ textAlign: "start" }}>About the test</h1>
                 <p style={{ textAlign: "start" }}>Memorize the sequence of buttons that light up, then press them in order.</p>
                 <p style={{ textAlign: "start" }}>Every time you finish the pattern, it gets longer.</p>
                 <p style={{ textAlign: "start" }}>Make a mistake, and the test is over.</p>
             </div>
-        </div>
+        </>
 
     )
 }

@@ -12,14 +12,14 @@ const Data = [
     {
         testname: "NUMBER MEMORY",
         testdes: "Remember the longest number you can.",
-        link: "number-memory",
+        link: "numbermemory",
         svg: <PinIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
 
     },
     {
         testname: "SEQUENCE MEMORY",
         testdes: "Remember an increasingly long pattern of button presses.",
-        link: "sequence",
+        link: "sequencememory",
         svg: <GridOnIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
 
 
@@ -29,7 +29,7 @@ const Data = [
     {
         testname: "VISUAl MEMORY",
         testdes: "Remember an increasingly large board of squares.",
-        link: "memory",
+        link: "visualmemory",
         svg: <AcUnitIcon
             style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }}
         />
@@ -52,7 +52,7 @@ const Data = [
     {
         testname: "Chimp Test",
         testdes: "Are you smarter than a chimpanzee?",
-        link: "chimpTest",
+        link: "chimptest",
         svg: <GridOnIcon style={{ fontSize: "60px", color: "rgb(43, 135, 209)" }} />
 
     },

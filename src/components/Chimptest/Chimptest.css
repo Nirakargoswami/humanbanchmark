@@ -25,3 +25,12 @@
 .css-19b5rdt:hover {
     border-color: rgba(255, 255, 255, 0.5);
 }
+.Mainboxsec{
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin: 0px auto;
+    height: calc(100vh - 150px);
+    padding: 10px;
+}

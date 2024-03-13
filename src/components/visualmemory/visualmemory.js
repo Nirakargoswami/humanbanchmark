@@ -7,8 +7,11 @@ import Alertmessge from "../Diloaugbox/Dialoubox"
 import { useDispatch } from 'react-redux';
 import { Verbalmemory } from "../../redux/actions/gamescore"
 import { Savedata } from "../../Firebse/firebse"
-
+import clickSound from "../aseest/click.wav";
 import { Mainwraper } from "../../components/inexpage/index"
+
+const clickAudio = new Audio(clickSound);
+
 const Visualmemory = () => {
     const [Start, setStart] = useState(true)
     const [levelArry, setLevelArry] = useState([])
@@ -72,6 +75,8 @@ const Visualmemory = () => {
 
 
     const Cubeclikck = (x) => {
+        clickAudio.play(); // Play the click sound
+
         if (!gamestart) {
             setGAmestart(true)
         }
@@ -108,7 +113,7 @@ const Visualmemory = () => {
                     setCount(1)
                     if (Stagecount < 2) {
                         setStagecount(Stagecount + 1)
-                        setLevel(leve + 2)
+                        setLevel(leve + 1)
                     } else {
                         setmainlevel(mainlevel + 1)
                     }
@@ -177,7 +182,7 @@ const Visualmemory = () => {
             const Item = levelArry[`${x}`]
             const classs = ` Cube ${!gamestart && Item.animate && "Animate"}`
             return (<div key={y} style={{ width: `${newwidth}px`, height: `${newwidth}px`, backgroundColor: Item.bacg == true ? "white" : value == Item.key ? "red" : "", opacity: Item.bacg == true ? "1" : value == Item.key ? "1" : "0.15" }} onClick={() => Cubeclikck(Item.key)} className={classs} >
-             
+
             </div>)
         })
     }
@@ -211,61 +216,65 @@ const Visualmemory = () => {
 
     return (
         <>
+            <div className="Nodisplay anim-slide-fade-in">
 
-            {Start && !gameover &&
-                <Mainwraper setStart={setStart} Img={<AppsIcon />} linktext={"Start"} Text={"Memorize the pattern"} Header={"Visual  Memory Test"} />
-            }
-            {!Start && !gameover &&
-                <Cuebmaekr>
-                      <span className='SecLevel'>
+
+
+                {Start && !gameover &&
+                    <Mainwraper setStart={setStart} Img={<AppsIcon />} linktext={"Start"} Text={"Memorize the pattern"} Header={"Visual  Memory Test"} />
+                }
+                {!Start && !gameover &&
+                    <Cuebmaekr>
+                        <span className='SecLevel'>
                             <span className='TEXt'>Level </span>
                             <span style={{ fontSize: "27px" }} >{(leve - 2)}</span>
                         </span>
-                    <div className='Mainboxofcube'>
-                      
-                        {Sowcube()}
-                    </div>
+                        <div className='Mainboxofcube'>
 
-                </Cuebmaekr>}
-            {gameover && <div
-                style={{ backgroundColor: "rgb(43, 135, 209)" }}
-                className='Mainbox' >
-                <div className='Secondbox'>
-                    <Alertmessge message={Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={leve - 1} handleClose={handleClose} open={open} />
-
-                    <AppsIcon className='Icon' />
-                    <div className='textbox'>
-                        <span className='SecLevel'>
-                            <span className='TEXt'>Level </span>
-                            <span style={{ fontSize: "27px" }} >{leve}</span>
-                        </span>
-                        <div className='textfirst'>
-                            Reaction Time
+                            {Sowcube()}
                         </div>
 
-                    </div>
+                    </Cuebmaekr>}
+                {gameover && <div
+                    style={{ backgroundColor: "rgb(43, 135, 209)" }}
+                    className='Mainbox' >
+                    <div className='Secondbox'>
+                        <Alertmessge message={Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={leve - 1} handleClose={handleClose} open={open} />
+
+                        <AppsIcon className='Icon' />
+                        <div className='textbox'>
+                            <span className='SecLevel'>
+                                <span className='TEXt'>Level </span>
+                                <span style={{ fontSize: "27px" }} >{leve}</span>
+                            </span>
+                            <div className='textfirst'>
+                                Reaction Time
+                            </div>
+
+                        </div>
 
 
-                    <div className='textbox '>
+                        <div className='textbox '>
 
-                        <p className='Discription'>
-                            Save your score to see how you compare.
+                            <p className='Discription'>
+                                Save your score to see how you compare.
 
-                        </p>
+                            </p>
 
-                        <div className='
+                            <div className='
                         Flex'>
 
-                            <Tryagin Tryagin={Tryagain} />
-                            {/* <Savebutton Score={SavebuttonScore} /> */}
+                                <Tryagin Tryagin={Tryagain} />
+                                {/* <Savebutton Score={SavebuttonScore} /> */}
+
+                            </div>
 
                         </div>
-
                     </div>
-                </div>
 
+                </div>
+                }
             </div>
-            }
             <div>
                 <div className='Abouttest'>
 

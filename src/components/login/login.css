@@ -1,79 +1,91 @@
-.main_div{
-  background-color:  rgb(43, 135, 209)!important;
+.main_div {
+  background-color: rgb(43, 135, 209) !important;
   color: white;
   display: flex;
-  
+
 }
-.main_div2{
-  background-color:  #363d47!important;
+
+.main_div2 {
+  background-color: #363d47 !important;
   color: white;
 }
-.login_button{
+
+.login_button {
   background: transparent;
   border: 1px solid rgb(168, 22, 22);
-  
+
 }
-.login_button:hover{
-  background-color:rgb(43, 135, 209) !important;
+
+.login_button:hover {
+  background-color: rgb(43, 135, 209) !important;
   transition: 0.7s;
- 
-    border: 1px solid transparent;
+  border: 1px solid transparent;
 }
-.input_box{
+
+.input_box {
   background: transparent;
   border: 1px solid white;
-  color:white
+  color: white
 }
-.login_first_banner_ad{
+
+.login_first_banner_ad {
   margin-left: auto;
   margin-right: auto;
   margin-top: 1%;
 }
-.login_second_banner_ad{
+
+.login_second_banner_ad {
   margin-left: auto;
   margin-right: auto;
   margin-top: 2%;
 }
-.login_card{
+
+.login_card {
   /* margin-top: 25px; */
 }
-.login_div{
+
+.login_div {
   display: flex;
   flex-direction: row;
-justify-content: center;
-align-items: center;
-width: 100%;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
-.first_square_ad{
+
+.first_square_ad {
   margin-left: auto;
   margin-right: auto;
   /* justify-content: center;
   align-items: center; */
 }
-.second_square_ad{
+
+.second_square_ad {
   margin-left: auto;
   margin-right: auto;
   /* justify-content: center;
   align-items: center; */
 }
+
 @media screen and (min-width: 100px) and (max-width: 1024px) {
-  .first_square_ad{
+  .first_square_ad {
     display: none;
   }
-  .second_square_ad{
+
+  .second_square_ad {
     display: none;
 
   }
-  
+
 }
-.social_logins{
+
+.social_logins {
   display: flex;
   justify-content: center;
   /* margin-top: 5px; */
 }
 
 
-.loginbox{
+.loginbox {
   display: flex;
 
   flex-direction: column;
@@ -82,19 +94,19 @@ width: 100%;
   width: 504px;
 }
 
-.social_login{
+.social_login {
   display: flex;
   justify-content: center;
   margin-top: 5px;
 }
 
-.facebokicon{
+.facebokicon {
   display: block;
-    margin-right: 7px;
-    height: 20px;
-    width: 20px;
-    
-   
+  margin-right: 7px;
+  height: 20px;
+  width: 20px;
+
+
 }
 
 .Facebookbutto {
@@ -103,19 +115,20 @@ width: 100%;
   justify-content: center;
   align-items: center;
 }
-.padding{
+
+.padding {
   padding: 0px 16px 0px 16px;
 }
 
 
-@media screen and (max-width: 769px){
+@media screen and (max-width: 769px) {
   .loginbox {
     width: 100%;
-}
+  }
 }
 
 
-.Logintext{
+.Logintext {
   margin: 24px 0px 32px;
   min-width: 0px;
   font-weight: 600;
@@ -128,21 +141,21 @@ width: 100%;
 }
 
 
-@media screen and (min-width: 767px){
+@media screen and (min-width: 767px) {
   .Logintext {
     font-weight: 600;
     font-size: 32px;
     line-height: 40px;
     text-align: start;
-}
+  }
 }
 
-.clor1{
+.clor1 {
   color: #59CE8F;
 
 }
 
-.Emailtext{
+.Emailtext {
   box-sizing: border-box;
   margin: 0px 0px 4px;
   min-width: 0px;
@@ -158,7 +171,7 @@ width: 100%;
 }
 
 
-.Emailinput{
+.Emailinput {
   box-sizing: border-box;
   margin: 0px;
   min-width: 0px;
@@ -172,63 +185,65 @@ width: 100%;
   flex: 1 1 0%;
   width: 100%;
 }
-.input[type=email]:focus{
-  border:  1px solid red !important;
+
+.input[type=email]:focus {
+  border: 1px solid red !important;
 }
 
 
 
-.lable{
+.lable {
   box-sizing: border-box;
-    margin: 4px 0px 0px;
-    min-width: 0px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    width: 100%;
-    color: rgb(246, 70, 93);
+  margin: 4px 0px 0px;
+  min-width: 0px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  width: 100%;
+  color: rgb(246, 70, 93);
 }
 
-.Loginbutton{
+.Loginbutton {
   margin: 0px 0px 16px 0px;
-    appearance: none;
-    user-select: none;
-    cursor: pointer;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    box-sizing: border-box;
-    font-size: 16px;
-    font-family: inherit;
-    font-weight: 500;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    padding: 12px 24px;
-    line-height: 24px;
-    min-width: 80px;
-    word-break: keep-all;
+  appearance: none;
+  user-select: none;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: inherit;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  padding: 12px 24px;
+  line-height: 24px;
+  min-width: 80px;
+  word-break: keep-all;
 
-    color: white !important;
-    border-radius: 4px;
-    min-height: 24px;
-    border: none;
-    background-image: none;
-    background-color: #2B3139 !important;
-    white-space: normal;
-    width: 100%;
-    height: 48px;
+  color: white !important;
+  border-radius: 4px;
+  min-height: 24px;
+  border: none;
+  background-image: none;
+  background-color: #2B3139 !important;
+  white-space: normal;
+  width: 100%;
+  height: 48px;
 }
 
-.Loginbutton:hover{
+.Loginbutton:hover {
   background-color: rgb(71, 77, 87) !important;
 }
-.googlebutton{
-  margin: 10px 0px 0px 0px ;
+
+.googlebutton {
+  margin: 10px 0px 0px 0px;
   appearance: none;
   user-select: none;
   overflow: hidden;
@@ -260,11 +275,11 @@ width: 100%;
   cursor: pointer;
 }
 
-.googlebutton div{
+.googlebutton div {
   background-color: transparent !important;
 }
 
-.social_login{
+.social_login {
   display: flex;
   justify-content: center;
   margin-top: 5px;
@@ -272,7 +287,7 @@ width: 100%;
 
 
 
-.social_login span{
+.social_login span {
   margin: 0px;
   appearance: none;
   user-select: none;
@@ -305,7 +320,7 @@ width: 100%;
   cursor: pointer;
 }
 
-.Facebookbutto span{
+.Facebookbutto span {
   width: 100%;
 }
 
@@ -323,12 +338,23 @@ width: 100%;
 
 .Image {
   box-sizing: border-box;
-    margin: 0;
-    min-width: 0;
-    color: currentColor;
-    width: 152px;
-    font-size: 24px;
-    fill: #EAECEF;
-    fill: currentColor;
-    height: 39px;
+  margin: 0;
+  min-width: 0;
+  color: currentColor;
+  width: 152px;
+  font-size: 24px;
+  fill: #EAECEF;
+  fill: currentColor;
+  height: 39px;
+}
+
+.Extra{
+  padding: 0px 16px;
+  width: 93%;
+  height: 637px;
+}
+
+.Paddi{
+  margin-top: 20px;
+
 }

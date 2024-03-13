@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from "react-router-dom"
+import { Link, redirect } from "react-router-dom"
 import './login.css'
 import { Scoredata } from "../../redux/actions/gamescore"
 
@@ -62,7 +62,8 @@ function Login() {
     await logInWithEmailAndPassword(email, password)
       .then((x) => {
         if (x.logged) {
-          setusercreated("Loged in successfully")
+          window.location.href = "/";
+
         } else {
           setusercreated(x.message)
 
@@ -76,10 +77,12 @@ function Login() {
 
   const getdata = async () => {
     const userid = JSON.parse(localStorage.getItem("user"))
-
+    console.log("Logout ")
     const data = Getallscore(userid.uid)
-    data.then((responce) => {
+    await data.then((responce) => {
       dipatch(Scoredata(responce))
+      console.log("redirect")
+
 
     }).catch(() => {
 
@@ -88,11 +91,11 @@ function Login() {
     }
   }
 
-  const Goolelogin = () => {
-    signInWithGoogle().then((x) => {
-      if (x.loged) {
-        getdata()
-      } else {
+  const Goolelogin = async () => {
+    await signInWithGoogle().then((x) => {
+      console.log(x)
+      if (x) {
+        window.location.href = "/";
       }
     })
 
@@ -107,39 +110,47 @@ function Login() {
     <>
 
 
-   
-<div  style={{height:"582px"}}  className="relative flex flex-col  min-h-screen overflow-hidden main_div">
 
-<div className='login_div'>
+      <div style={{ height: "760px" }} className="relative flex flex-col  min-h-screen overflow-hidden main_div">
 
-  <div className='loginbox'>
+        <div className='login_div'>
 
-    {usercreated ?
-      <h1 style={{ color: "rgb(43, 135, 209)" }} className="Logintext">
-        <span style={{ color: "white" }} ></span>
-      </h1>
-      :
+          <div className='loginbox'>
 
-      null
-    }
-    <div className="w-full padding m-auto bg-white rounded-md shadow-md lg:max-w-xl main_div2 shadow-sm login_card">
-      <h1 style={{ color: "rgb(43, 135, 209)",marginTop:"10px" }} className="Logintext">
-        <span style={{ color: "white" }} > Brain Banchmark</span> 
-       Login
-      </h1>
-      <form>
-        <div className='social_logins'>
-          <button
-            type='button'
-            style={{marginBottom:"0px"}}
-            className="Loginbutton">
-            <div onClick={() => Goolelogin()}>
-              Login with Google
-            </div>
-          </button>
+            {usercreated ?
+              <h1 style={{ color: "rgb(43, 135, 209)" }} className="Logintext">
+                <span style={{ color: "white" }} ></span>
+              </h1>
+              :
+
+              null
+            }
+            <div className="Extra w-full padding m-auto bg-white rounded-md shadow-md lg:max-w-xl main_div2 shadow-sm login_card">
+              <h1 style={{ color: "rgb(43, 135, 209)", marginTop: "6px" }} className="Logintext">
+                <span style={{ color: "white", marginRight: "5px" }} > Brain Banchmark</span>
+                Login
+              </h1>
+              <button
+                type='button'
+                style={{ marginBottom: "0px" }}
+                className="Loginbutton">
+                <div onClick={() => Goolelogin()}>
+                  Login with Google
+                </div>
+              </button>
+              <div style={{ color: "rgb(43, 135, 209)", fontSize: "24px", marginBottom: "3px" }}  > or</div>
+              <h1 style={{ color: "rgb(43, 135, 209)", marginTop: "0px" }} className="Logintext">
+                Login
+                <span style={{ color: "white", marginRight: "5px" }} > With Email and Password</span>
+
+              </h1>
+
+              <form>
+                <div className='social_logins'>
 
 
-          {/* <GoogleLogin
+
+                  {/* <GoogleLogin
            
               clientId="873843703961-55jm6idv8jbnifp956prdtjr5as6alhl.apps.googleusercontent.com"
               buttonText="Login With Google"
@@ -150,62 +161,61 @@ function Login() {
 
            
             /> */}
-        </div>
-        <div  style={{ color: "rgb(43, 135, 209)" ,fontSize:"24px"}}  > or</div>
-         <span style={{ color: "white" }} >Login With Email and Password</span>
-        <div className="mb-2 mt-3">
-          <label className="Emailtext">
-            Email
-          </label>
-          <input
-            value={email && email}
-            type="email"
+                </div>
+                <div className="Paddi mb-12 mt-13">
+                  <label className="Emailtext">
+                    Email
+                  </label>
+                  <input
+                    value={email && email}
+                    type="email"
 
-            name='email'
-            autoComplete='on'
-            onChange={e => Setemial(e)}
-            className="Emailinput"
+                    name='email'
+                    autoComplete='on'
+                    onChange={e => Setemial(e)}
+                    className="Emailinput"
 
-          // style={{border :!validEmail ? "1px solid red" : "" }}
-          />
-          {/* {
+                  // style={{border :!validEmail ? "1px solid red" : "" }}
+                  />
+                  {/* {
             !validEmail ? <label className="lable">
               Please enter valid email
             </label> : ""
           } */}
 
-        </div>
-        <div className="mb-2">
-          <label
+                </div>
+                <div className="Paddi mb-2">
+                  <label
 
-            className="Emailtext"
-          >
-            Password
-          </label>
-          <input
-            value={password}
-            // style={{ border: !validPassword ? "1px solid red" : "" }}
+                    className="Emailtext"
+                  >
+                    Password
+                  </label>
+                  <input
+                    value={password}
+                    // style={{ border: !validPassword ? "1px solid red" : "" }}
 
-            type="password"
-            name='password'
-            onChange={e => setpassword(e.target.value)}
-            className="Emailinput"
-          />
-          {/* {
+                    type="password"
+                    name='password'
+                    onChange={e => setpassword(e.target.value)}
+                    className="Emailinput"
+                  />
+                  {/* {
             !validPassword ? <label className="lable">
               Please enter valid password
             </label> : ""
           } */}
-        </div>
+                </div>
 
-        <div className="mt-2">
-          <button
-            onClick={e => { e.preventDefault(); handleLogin() }}
-            className="Loginbutton">
-            Login
-          </button>
-          <div className='social_login'>
-            {/* <FacebookLogin
+                <div className="Paddi mt-2">
+                  <button
+                    style={{ marginTop: "16px" }}
+                    onClick={e => { e.preventDefault(); handleLogin() }}
+                    className="Loginbutton">
+                    Login
+                  </button>
+                  <div className='social_login'>
+                    {/* <FacebookLogin
               textButton='Login With Facebook'
               appId="348712449773241"
               autoLoad={false}
@@ -215,30 +225,31 @@ function Login() {
               icon={<FaFacebookF className='facebokicon' />}
             /> */}
 
+                  </div>
+
+                </div>
+              </form>
+
+              <p className="mt-8 text-xs font-light text-center" style={{ color: "white", marginBottom: "27px" }}>
+                {" "}
+                Don't have an account?{" "}
+                <Link
+                  style={{ color: "rgb(43, 135, 209)", textDecoration: "none" }}
+                  to="/signup"
+                  className="text-xs hover:underline"
+                >                    Sign Up
+                </Link>
+              </p>
+            </div>
+
           </div>
 
         </div>
-      </form>
-
-      <p className="mt-8 text-xs font-light text-center" style={{ color: "white" }}>
-        {" "}
-        Don't have an account?{" "}
-        <Link
-          to="/signup"
-          className="text-xs hover:underline"
-        >                    Sign Up
-        </Link>
-      </p>
-    </div>
-
-  </div>
-
-</div>
-{/* <div className='login_second_banner_ad'>
+        {/* <div className='login_second_banner_ad'>
     <ins data-revive-zoneid="2" data-revive-id="00885bcd5807a6fdf17d7982d17956a2"></ins> 
     <img src='https://via.placeholder.com/600x100?text=600x100+Full +Banner' />
  </div> */}
-</div>
+      </div>
     </>
   );
 }

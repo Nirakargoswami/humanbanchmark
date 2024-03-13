@@ -1,0 +1,7 @@
+{
+  "name": "BrainBenchmark",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

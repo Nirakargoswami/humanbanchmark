@@ -2,24 +2,17 @@ import React, { useEffect, useState } from "react"
 import "./firstscreen.css"
 import RouteContainer from "../../components/Test/Test"
 import AcUnitIcon from '@mui/icons-material/AcUnit';
-import Dashborad from "../DashBoard/DashBoard";
-import Offerbox from "../Offrebox/Offerbox"
-// import { Distrubutrcoin } from "../../Firebse/firebse";
-import { Scoredata } from "../../redux/actions/gamescore";
-import {Creatuser} from "../../Firebse/firebse"
-import {  useDispatch } from "react-redux";
+import Matchinput from "../MathDisplay";
 
-import {
-    
-    useParams
-  
-  } from "react-router-dom";
+// import { Distrubutrcoin } from "../../Firebse/firebse";
+
 const Firstscreen = () => {
     const [open, setOpen] = React.useState(true);
+    const mathExpression = '\\frac{2x}{3x^2}';
 
 
     // Show the current time (in minutes) in a 24-hour format
-  
+
 
 
     // const getdata = async () => {
@@ -34,7 +27,7 @@ const Firstscreen = () => {
 
     //         }
     //     localStorage.setItem("user", JSON.stringify(user))
-         
+
     //   }else if ((params.userId ==  null || undefined || "") && !userid.uid){
     //     const user = {
     //         uid : null,
@@ -43,7 +36,7 @@ const Firstscreen = () => {
     //         }
     //     localStorage.setItem("user", JSON.stringify(user))
     //   }else if (params.userId){
-       
+
     //    const Created = await Creatuser(params.userId)
     //    console.log(Created)
     //    if(Created){
@@ -51,33 +44,32 @@ const Firstscreen = () => {
 
     //    return  showDshborad()
     //    }
-       
+
     //   }
-    
-     
-      
+
+
+
     // };
 
     useEffect(() => {
-        
+
         // Distrubutrcoin()
         setTimeout(() => {
             setOpen(false)
         }, 3000);
-     
-    },[])
-    
+
+    }, [])
+
     const handleClickOpen = () => {
         setOpen(true);
-      };
-    
-      const handleClose = () => {
+    };
+
+    const handleClose = () => {
         setOpen(false);
-      };
-
-
+    };
+   
     return (
-        <div style={{ backgroundColor: "white"  ,paddingBottom:"30px"}}>
+        <div style={{ backgroundColor: "white", paddingBottom: "30px" }}>
             {/* <Offerbox handleClose={handleClose} handleClickOpen={handleClickOpen} open={open}/>
 
 
@@ -108,9 +100,14 @@ const Firstscreen = () => {
             </div> */}
             <div className="Gamenam">
                 Brain Game Test
-                
+
             </div>
-            <RouteContainer  />
+            {/* <div>
+                <h1>MathJax in React</h1>
+                <Matchinput/>
+            </div> */}
+
+            <RouteContainer />
         </div>
     )
 }

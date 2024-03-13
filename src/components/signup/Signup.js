@@ -1,7 +1,7 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom"
 import './signup.css'
-import {registerWithEmailAndPassword,auth} from "../../Firebse/firebse"
+import { registerWithEmailAndPassword, auth } from "../../Firebse/firebse"
 import { useAuthState } from "react-firebase-hooks/auth";
 
 function Signup() {
@@ -15,7 +15,7 @@ function Signup() {
   const [validPassword, setvalidPassword] = useState(true)
   const [validConfirmPassword, setvalidConfirmPassword] = useState(true)
   const [toogle, settoogle] = useState(false)
-  const [submit,setSubmit] = useState(false)
+  const [submit, setSubmit] = useState(false)
   // const [isAuthenticated, loading, error] = useAuthState(auth);
 
   const Toogle = () => {
@@ -43,9 +43,9 @@ function Signup() {
       setvalidEmail(true)
     }
   }
-  
+
   function Passwordvalidation(password) {
-    var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,15}$/;
+    var paswd = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,15}$/;
     if (!paswd.test(password)) {
       setvalidPassword(false)
     } else {
@@ -65,7 +65,7 @@ function Signup() {
   //   }
   // }
   // function validation() {
-    
+
   //   let valid = true
   //   var filter = /^([a-zA-Z0-9_+\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
@@ -81,18 +81,18 @@ function Signup() {
   //   } else {
   //     setvalidPassword(true)
   //   }
-    // if (confirmPassword != password) {
-    //   setvalidConfirmPassword(false)
-    //   valid = false
-    // } else {
-    //   setvalidConfirmPassword(true)
-    // }
-    // if (name.length < 2 || name.length > 50) {
-    //   setvalidName(false)
-    //   valid = false
-    // } else {
-    //   setvalidName(true)
-    // }
+  // if (confirmPassword != password) {
+  //   setvalidConfirmPassword(false)
+  //   valid = false
+  // } else {
+  //   setvalidConfirmPassword(true)
+  // }
+  // if (name.length < 2 || name.length > 50) {
+  //   setvalidName(false)
+  //   valid = false
+  // } else {
+  //   setvalidName(true)
+  // }
   //   if(!toogle){
   //     valid = false
   //   }
@@ -112,12 +112,12 @@ function Signup() {
     //   "password": password,
     //   "referal_code": localStorage.getItem('referrar')
     // });
-     registerWithEmailAndPassword(name,email,password).then((x) => {
-      if(x.message){
-      }else{
+    registerWithEmailAndPassword(name, email, password).then((x) => {
+      if (x.message) {
+      } else {
         alert()
       }
-     })
+    })
     // fetch(API_URL + "/register", {
     //   method: 'POST',
     //   headers: myHeaders,
@@ -156,16 +156,16 @@ function Signup() {
   }
   return (
     <>
-      <div className="relative flex flex-col  min-h-screen overflow-hidden main_div">
-      
-        
+      <div style={{ height: "760px" }} className="relative flex flex-col  min-h-screen overflow-hidden main_div">
+
+
         <div className='login_div'>
-          
+
           <div className='loginbox'>
 
-            <div className="w-full p-4 m-auto bg-white rounded-md shadow-md lg:max-w-xl main_div2 shadow-sm">
-            <h1 style={{color:"rgb(43, 135, 209)"}} className="Logintext">
-                <span style={{color:"white",marginRight:"5px"}} > Brain Banchmark</span >Signup
+            <div style={{ width: "83%", padding: "15px" }} className="w-full p-4 m-auto bg-white rounded-md shadow-md lg:max-w-xl main_div2 shadow-sm">
+              <h1 style={{ color: "rgb(43, 135, 209)" }} className="Logintext">
+                <span style={{ color: "white", marginRight: "5px" }} > Brain Banchmark</span >Signup
               </h1>
               <form className="mt-4">
                 {/* <div className="mb-2">
@@ -187,7 +187,7 @@ function Signup() {
                     </label> : ""
                   }
                 </div> */}
-                 <div className="mt-2 mb-6">
+                <div style={{ marginTop: "20px" }} className="mb-20 mb-6">
                   <label
 
                     className="Emailtext"
@@ -195,19 +195,20 @@ function Signup() {
                     Name
                   </label>
                   <input
+
                     value={name}
                     defaultValue={name}
 
                     onChange={e => { setName(e.target.value) }}
                     type="text"
                     className="Emailinput"
-                    style={{color:"white"}}
+                    style={{ color: "white"}}
                   />
-                 
+
                 </div>
                 <div className="mt-2 mb-6">
                   <label
-
+                    style={{ marginTop: "20px" }}
                     className="Emailtext"
                   >
                     Personal Email
@@ -215,9 +216,10 @@ function Signup() {
                   <input
                     value={email}
                     defaultValue={email}
-                    style={{color:"white"}}
+                    style={{ color: "white", }}
                     onChange={e => { setEmail(e.target.value); Emailvalidation(e.target.value) }}
                     type="email"
+
                     className="Emailinput"
                   />
                   {
@@ -228,13 +230,14 @@ function Signup() {
                 </div>
                 <div className="mb-2">
                   <label
+                    style={{ marginTop: "20px" }}
 
                     className="block text-sm font-semibold Emailtext"
                   >
                     Password
                   </label>
                   <input
-                  style={{color:"white"}}
+                    style={{ color: "white" }}
                     value={password}
                     onChange={e => { setpassword(e.target.value); Passwordvalidation(e.target.value) }}
                     type="password"
@@ -266,60 +269,51 @@ function Signup() {
                     </label> : ""
                   }
                 </div> */}
-               
+
 
 
                 <div className='xvxpe5'>
                   <div className='hiy16i'>
-                    <label
-
-                      className="Labeleinput"
-                    >
-
-
-                      <div onClick={Toogle} style={{ border: toogle ? "1px solid  white" : "1px solid rgb(94, 102, 115)" ,backgroundColor : toogle ?  "" : "white" }} className='lablebox'>
-                      </div>
-                      {/* <div className='lebale'>
-                        I have read and agree to wordy <a href='https://ktgamez.com/terms-conditions' target="_blank" style={{textDecoration: "underline"}}> Terms of Service </a> and <a target="_blank" href='https://ktgamez.com/privacy-policy' style={{textDecoration: "underline"}}> Privacy Policy</a>
-                      </div> */}
-                    </label>
+                   
                     {
-                      !toogle && submit ? 
-                    <label className="block text-xs text-red-700 px-2">Please accept terms and conditions</label>
-                      :""
+                      !toogle && submit ?
+                        <label className="block text-xs text-red-700 px-2">Please accept terms and conditions</label>
+                        : ""
                     }
                   </div>
 
                 </div>
                 <div >
 
-                  <button onClick={e => { e.preventDefault(); handleSignIn() }} className="w-full px-4 py-1  text-white  rounded-md login_button">
-                  Create Personal Account                  </button>
+                  <button style={{color:"padding:5px"}} onClick={e => { e.preventDefault(); handleSignIn() }} className="w-full px-4 py-1  text-white  rounded-md login_button">
+                    Create Personal Account                  </button>
                 </div>
               </form>
 
-              <p className="mt-2 text-xs font-light text-center" style={{ color: "white" }}>
+              <p  className="mt-20 text-xs font-light text-center" style={{ color: "white",marginTop:"10px" }}>
                 {" "}
                 have an account?{" "}
-             
-                 
-                  <Link to="/login" >
-                    Login
-                  </Link>
-                       
-              
-              
+
+
+                <Link to="/login" >
+                  Login
+                </Link>
+
+
+
               </p>
             </div>
-          
+
           </div>
-         
+
         </div>
         {/* <div className='login_second_banner_ad'>
             <ins data-revive-zoneid="2" data-revive-id="00885bcd5807a6fdf17d7982d17956a2"></ins> 
             <img src='https://via.placeholder.com/600x100?text=600x100+Full +Banner' /> 
          </div> */}
       </div>
+
+
     </>
   );
 }

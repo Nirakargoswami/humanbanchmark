@@ -43,3 +43,11 @@ text-align: center;
    
     align-items: center;
 }
+
+.mainColor{
+    color: rgb(43, 135, 209)
+}
+a{
+    color: rgb(43, 135, 209) !important;
+    text-decoration: none;
+}

@@ -1,0 +1,8 @@
+{
+  "appId": "io.ionic.nameofyourapp",
+  "appName": "BrainBenchmark",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "cordova": {}
+}

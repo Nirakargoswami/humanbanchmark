@@ -135,7 +135,7 @@ const Numbermemory = () => {
 
                     <div className="column">
                         <div >
-                            <h1 style={{ color: "white", wordWrap: "break-word", wordBreak: "break-all" }}>{Noshow}</h1>
+                            <h1 style={{ color: "white", wordWrap: "break-word", wordBreak: "break-all",fontSize:"35px" }}>{Noshow}</h1>
                         </div>
 
                         <div className="progress">
@@ -181,16 +181,14 @@ const Numbermemory = () => {
 
                     <div >
 
-                        <h4>Level {level}</h4>
-                        {eroro && <h4 style={{ color: "red", fontSize: "20px" }}>Enter the No </h4>}
-                        <h4>What was the number?</h4>
-
-                        <span>Press enter to submit</span>
-
+                        <h4 style={{  fontSize: "20px" }}>Level {level}</h4>
+                        {eroro &&
+                         <h4 style={{ color: "red", fontSize: "25px" }}>Enter the No </h4>}
+                        <h4 style={{  fontSize: "20px" }}> What was the number?</h4>
+                        <span style={{  fontSize: "20px" }}>Press enter to submit</span>
                         <div>
                             <input type="text" ref={inputRef} style={{ color: "white" }} className="css-18qa6we" onChange={(e) => setVAlue(e.target.value.trim())} />
                         </div>
-
                         <button style={{ marginTop: "20px" }} className="css-de05nr" onClick={Checkvalue}>
                             Submit
                         </button>

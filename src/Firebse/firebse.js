@@ -25,6 +25,7 @@ import {
   doc,
 
 } from "firebase/firestore";
+import { redirect } from "react-router";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -172,11 +173,12 @@ const signInWithGoogle = async () => {
         idlogin: false
       }
       localStorage.setItem("user", JSON.stringify(Newuser))
- 
-
     }
     user.idlogin = false
+   return res._tokenResponse.emailVerified
+
     window.opener.postMessage('closePopup', '*');
+
   } catch (err) {
     console.log(err)
     return err
@@ -196,8 +198,9 @@ const logInWithEmailAndPassword = async (email, password) => {
     if (querySnapshot) {
       querySnapshot.forEach((doc) => {
         const data = doc.data()
+        console.log(data)
         const User = {
-          id: data.uid,
+          uid: data.id,
           name: data.name,
           idlogin: false
 
@@ -264,14 +267,19 @@ const registerWithEmailAndPassword = async (displayName, email, password) => {
     );
     console.log(res)
     res.user.idlogin = false
+    const User = {
+      id: res.user.uid,
+      name: displayName,
+      idlogin: false
 
-    localStorage.setItem("user", JSON.stringify(res.user))
+    }
+    localStorage.setItem("user", JSON.stringify(User))
 
 
-    setTimeout(() => {
-      window.location.href = "/"
+    // setTimeout(() => {
+    //   window.location.href = "/"
 
-    }, 1000)
+    // }, 1000)
     return res
 
   } catch (err) {
