@@ -32,7 +32,9 @@ function App() {
       <div className="Maionpage">
         <div className="secondwraper"></div>
         <Routes>
-          <Route path="/:userId?" element={<Firstscreen />} />
+          <Route path="/" element={<Firstscreen />} />
+          <Route path="/:id?" element={<Firstscreen />} />
+
 
           <Route path="/reactiontime" element={<Reactiontime />} />
           <Route path="/login" element={<Login />} />

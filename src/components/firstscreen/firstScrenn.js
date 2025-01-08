@@ -67,7 +67,7 @@ const Firstscreen = () => {
     const handleClose = () => {
         setOpen(false);
     };
-   
+
     return (
         <div style={{ backgroundColor: "white", paddingBottom: "30px" }}>
             {/* <Offerbox handleClose={handleClose} handleClickOpen={handleClickOpen} open={open}/>
@@ -102,6 +102,8 @@ const Firstscreen = () => {
                 Brain Game Test
 
             </div>
+            
+
             {/* <div>
                 <h1>MathJax in React</h1>
                 <Matchinput/>
