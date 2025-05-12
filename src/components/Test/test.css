@@ -1,9 +1,9 @@
 .RoteCon {
-    flex-direction: row;
+    /* flex-direction: row; */
     display: flex;
     align-items: center;
     justify-content: center;
-    /* flex-direction: column; */
+    flex-direction: column;
     width: 100%;
     margin-bottom: 20px;
     padding: 10px;

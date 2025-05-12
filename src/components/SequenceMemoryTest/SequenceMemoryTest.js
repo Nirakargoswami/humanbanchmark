@@ -9,6 +9,8 @@ import { Savedata } from "../../Firebse/firebse"
 import Alertmessge from "../Diloaugbox/Dialoubox"
 import GridOnIcon from '@mui/icons-material/GridOn';
 import clickSound from "../aseest/click.wav";
+import { Thirdscreen } from "../firstscreen/firstScrenn"
+
 const clickAudio = new Audio(clickSound);
 
 const SequenceMemoryTest = () => {
@@ -25,11 +27,11 @@ const SequenceMemoryTest = () => {
     const [levelcount, setlevelcount] = useState(0)
     const [mainlevel, setmainlevel] = useState(6)
     const [mylevel, setmylevel] = useState(3)
-    const [open,setOpen] = useState(false)
+    const [open, setOpen] = useState(false)
     const [nocube, setnocube] = useState(mylevel * mylevel)
     const [newwidth, setnewwidth] = useState((310 / 3) - 2)
     const [showanswer, setshowanswer] = useState(false)
-    const [Scueess,setScueess] = useState(true)
+    const [Scueess, setScueess] = useState(true)
     const Noarry = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     const dispatch = useDispatch()
 
@@ -91,7 +93,7 @@ const SequenceMemoryTest = () => {
         return MianArry.map((x) => {
 
             return (<div key={x} style={{ width: `${newwidth}px`, height: `${newwidth}px`, backgroundColor: x === flashcount ? "white" : null, opacity: x === flashcount ? 1 : 0.15 }} onClick={() => Cubeclick(x)} className='Cube'>
-               
+
             </div>)
 
         })
@@ -169,32 +171,32 @@ const SequenceMemoryTest = () => {
 
     const SavebuttonScore = () => {
         const userid = JSON.parse(localStorage.getItem("user"))
-        if(userid){
+        if (userid) {
             Savedata(userid.uid, "sequencememory", (Level - 1)).then((x) => {
                 if (x === "Document successfully updated!") {
                     dispatch(SeauenceScore(Level - 1))
                     handleClickOpen()
-                   
+
                 }
             })
         }
-        if(!userid){
-                 setScueess(false)
-                 handleClickOpen()  
+        if (!userid) {
+            setScueess(false)
+            handleClickOpen()
         }
     }
 
     useEffect(() => {
         Tryaginbutton()
-    },[open])
+    }, [open])
 
     const handleClickOpen = () => {
         setOpen(true);
-      };
-    
-      const handleClose = () => {
+    };
+
+    const handleClose = () => {
         setOpen(false);
-      };
+    };
     const Tiemlapse = () => {
 
         return (setlevelcount(1),
@@ -204,78 +206,81 @@ const SequenceMemoryTest = () => {
     }
     const classnaem = `Cubenames   `
 
-const Tryaginbutton = () => {
-    return (
-        <Tryagin disable={open} Tryagin={Tryagain} />
+    const Tryaginbutton = () => {
+        return (
+            <Tryagin disable={open} Tryagin={Tryagain} />
 
-    )
-}
+        )
+    }
     return (
         <>
-        <div className="Nodisplay anim-slide-fade-in">
-            {start && !showanswer &&
-                <Mainwraper setStart={setStart} Img={<GridOnIcon />} linktext={"Start"} Text={"Memorize the pattern"} Header={"Sequence Memory Test"} />
-            }
-            {showanswer && <div
-                style={{ backgroundColor: "rgb(43, 135, 209)" }}
-                className='Mainbox' >
-                <div className='Secondbox'>
-                    <Alertmessge message={ Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={Level - 1} handleClose={handleClose} open={open} />
+            <div className="Nodisplay anim-slide-fade-in">
+                {start && !showanswer &&
+                    <Mainwraper setStart={setStart} Img={<GridOnIcon />} linktext={"Start"} Text={"Memorize the pattern"} Header={"Sequence Memory Test"} />
+                }
+                {showanswer && <div
+                    style={{ backgroundColor: "rgb(43, 135, 209)" }}
+                    className='Mainbox' >
+                    <div className='Secondbox'>
+                        <Alertmessge message={Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={Level - 1} handleClose={handleClose} open={open} />
 
-                    <AppsIcon className='Icon' />
-                    <div className='textbox'>
-                        <span className='SecLevel'>
-                            <span className='TEXt'>Level </span>
-                            <span style={{ fontSize: "27px" }} >{Level}</span>
-                        </span>
-                        <div className='textfirst'>
-                            Sequence Memory 
+                        <AppsIcon className='Icon' />
+                        <div className='textbox'>
+                            <span className='SecLevel'>
+                                <span className='TEXt'>Level </span>
+                                <span style={{ fontSize: "27px" }} >{Level}</span>
+                            </span>
+                            <div className='textfirst'>
+                                Sequence Memory
+                            </div>
+
                         </div>
 
-                    </div>
+                        <div className='textbox '>
 
-                    <div className='textbox '>
 
-                        
 
-                        <div className='
+                            <div className='
                         Flex'>
 
-                          {Tryaginbutton()}
+                                {Tryaginbutton()}
+                            </div>
+
                         </div>
-
                     </div>
+
                 </div>
+                }
 
-            </div>
-            }
+                {!start && !showanswer &&
+                    <div className="SeqMain">
+                        <div className="SeqSec">
+                            <span className='SecLevel'>
+                                <span className='TEXt'>Level </span>
+                                <span >{Level}</span>
+                            </span>
+                            <div className={classnaem}>
+                                <div style={{ marginBottom: "37px" }} className={`Cubesec ${shwonaimation && "animate"}`} >
 
-            {!start && !showanswer &&
-                <div className="SeqMain">
-                    <div className="SeqSec">
-                        <span className='SecLevel'>
-                            <span className='TEXt'>Level </span>
-                            <span >{Level}</span>
-                        </span>
-                        <div className={classnaem}>
-                            <div style={{marginBottom:"37px"}} className= { `Cubesec ${shwonaimation && "animate"}`} >
+                                    {
+                                        Sowcube()
 
-                                {
-                                    Sowcube()
-
-                                }
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>}
-          
-        </div>
-        <div className='Abouttest'>
+                    </div>}
+
+            </div>
+            <div style={{ marginTop: "30px" }}>
+                <Thirdscreen />
+            </div>
+            {/* <div className='Abouttest'>
                 <h1 style={{ textAlign: "start" }}>About the test</h1>
                 <p style={{ textAlign: "start" }}>Memorize the sequence of buttons that light up, then press them in order.</p>
                 <p style={{ textAlign: "start" }}>Every time you finish the pattern, it gets longer.</p>
                 <p style={{ textAlign: "start" }}>Make a mistake, and the test is over.</p>
-            </div>
+            </div> */}
         </>
 
     )

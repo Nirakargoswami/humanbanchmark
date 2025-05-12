@@ -9,7 +9,7 @@ import { Verbalmemory } from "../../redux/actions/gamescore"
 import { Savedata } from "../../Firebse/firebse"
 import clickSound from "../aseest/click.wav";
 import { Mainwraper } from "../../components/inexpage/index"
-
+import {Thirdscreen} from "../firstscreen/firstScrenn"
 const clickAudio = new Audio(clickSound);
 
 const Visualmemory = () => {
@@ -276,6 +276,9 @@ const Visualmemory = () => {
                 }
             </div>
             <div>
+                <Thirdscreen/>
+            </div>
+            {/* <div>
                 <div className='Abouttest'>
 
                     <h1 style={{ textAlign: "start" }}>About the test</h1>
@@ -285,7 +288,8 @@ const Visualmemory = () => {
                     <p style={{ textAlign: "start" }}>You have three lives.</p>
                     <p style={{ textAlign: "start" }}>Make it as far as you can!</p>
                 </div>
-            </div>
+            </div> */}
+            
         </>
     )
 }

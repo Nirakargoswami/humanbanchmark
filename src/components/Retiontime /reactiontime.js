@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { Reactiontimescore } from "../../redux/actions/gamescore"
 import { Link } from "react-router-dom"
 import { Savedata } from "../../Firebse/firebse"
+import { Thirdscreen } from "../firstscreen/firstScrenn"
 
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 const Reactiontime = () => {
@@ -182,8 +183,8 @@ const Reactiontime = () => {
 
                         {red &&
 
-                            <div style={{ display: "flex",width:"100%", flexDirection: "column", margin: "26px" }}>
-                                <h1 style={{width:"100%"}}  className='Time'>
+                            <div style={{ display: "flex", width: "100%", flexDirection: "column", margin: "26px" }}>
+                                <h1 style={{ width: "100%" }} className='Time'>
                                     Wait for green
                                 </h1>
 
@@ -251,7 +252,7 @@ const Reactiontime = () => {
                 </div>
             </div>
 
-            <div className='Abouttest'>
+            {/* <div className='Abouttest'>
                 <h2>About the test</h2>
                 <p style={{ textAlign: "start" }}>
                     This is a simple tool to measure your reaction time.
@@ -280,9 +281,11 @@ const Reactiontime = () => {
                     If you want, you can keep track of your scores and see your full history of reaction times.
                     Just perform at least 5 clicks and then save.
                 </p>
+            </div> */}
+
+            <div style={{marginTop:"30px"}}>
+                <Thirdscreen/>
             </div>
-
-
 
         </>
 

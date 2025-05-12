@@ -66,7 +66,7 @@ const RouteContainer = () => {
             {Data.map((x) => {
                 return (
                     <>
-                        <Link to={`${x.link}`} className="css-uaat4j css-1ur49oz" style={{ cursor: "pointer", textAlign: "center", position: "relative" }}>
+                        <Link to={`/${x.link}`} className="css-uaat4j css-1ur49oz" style={{ cursor: "pointer", textAlign: "center", position: "relative" }}>
                             {/* <div className="Cuponbox" >
                                 <div>
                                     2500

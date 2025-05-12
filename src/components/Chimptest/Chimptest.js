@@ -9,6 +9,7 @@ import Alertmessge from "../Diloaugbox/Dialoubox"
 import GridOnIcon from '@mui/icons-material/GridOn';
 import { SettingsInputComponentOutlined } from "@mui/icons-material";
 import AppsIcon from '@mui/icons-material/Apps';
+import { Thirdscreen } from "../firstscreen/firstScrenn"
 
 
 const ChimpTest = () => {
@@ -234,99 +235,106 @@ const ChimpTest = () => {
                     <Mainwraper setStart={setStart} Img={<GridOnIcon />} linktext={"Start"} Text={"Chimptest "} Header={"Chimptest Memory Test"} />
                 }
 
-            
-
-                    {!start && !Countine && !showanswer &&
-                        <div
-                            style={{ backgroundColor: "rgb(43, 135, 209)" }}
-                            className='Mainboxsec'>
-
-                            {Showcube()}
-                        </div>
 
 
-                    }
-                    {showanswer && !Countine &&
+                {!start && !Countine && !showanswer &&
+                    <div
+                        style={{ backgroundColor: "rgb(43, 135, 209)" }}
+                        className='Mainboxsec'>
 
-                        <div
-                            style={{ backgroundColor: "rgb(43, 135, 209)" }}
-                            className='Mainboxsec' >
-                            <div className='Secondbox'>
-                                <Alertmessge message={Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={cubeno} handleClose={handleClose} open={open} />
+                        {Showcube()}
+                    </div>
 
-                                <AppsIcon className='Icon' />
-                                <div className='textbox'>
-                                    <span className='SecLevel'>
-                                        <span className='TEXt'>Level </span>
-                                        <span style={{ fontSize: "27px" }} >{cubeno}</span>
-                                    </span>
-                                    <div className='textfirst'>
-                                        Chimp Test
-                                    </div>
 
+                }
+                {showanswer && !Countine &&
+
+                    <div
+                        style={{ backgroundColor: "rgb(43, 135, 209)" }}
+                        className='Mainboxsec' >
+                        <div className='Secondbox'>
+                            <Alertmessge message={Scueess ? "Your score hase been saved" : "Need to login for Saving Score "} level={cubeno} handleClose={handleClose} open={open} />
+
+                            <AppsIcon className='Icon' />
+                            <div className='textbox'>
+                                <span className='SecLevel'>
+                                    <span className='TEXt'>Level </span>
+                                    <span style={{ fontSize: "27px" }} >{cubeno}</span>
+                                </span>
+                                <div className='textfirst'>
+                                    Chimp Test
                                 </div>
 
-                                <div className='textbox '>
-
-
-
-                                    <div className='
-                        Flex'>
-
-                                        {Tryaginbutton()}
-                                    </div>
-
-                                </div>
                             </div>
 
+                            <div className='textbox '>
+
+
+
+                                <div className='Flex'>
+
+                                    {Tryaginbutton()}
+                                </div>
+
+                            </div>
                         </div>
-                    }
-                    {Countine && !start &&
-                        <div
-                            style={{ backgroundColor: "rgb(43, 135, 209)" }}
-                            className='Mainbox' >
-                            <div className='Secondbox'>
 
-                                <AppsIcon className='Icon' />
-                                <div className='textbox'>
-                                    <span className='SecLevel'>
-                                        {No ? <span className='TEXt'>{No}</span>
-                                            :
-                                            <>
-                                                <span className='TEXt'>Level </span>
-                                                <span style={{ fontSize: "27px" }} >{level}</span>
-                                            </>
-                                        }
-                                    </span>
-                                    <div className='textfirst'>
-                                        Lives
-                                    </div>
-                                    <div className='textfirst'>
-                                        3 out of {Strick}
-                                    </div>
-                                    <div className='textfirst'>
-                                        Chim ChimpTest
-                                    </div>
+                    </div>
+                }
+                <div>
 
+                </div>
+                {Countine && !start &&
+                    <div
+                        style={{ backgroundColor: "rgb(43, 135, 209)" }}
+                        className='Mainbox' >
+                        <div className='Secondbox'>
+
+                            <AppsIcon className='Icon' />
+                            <div className='textbox'>
+                                <span className='SecLevel'>
+                                    {No ? <span className='TEXt'>{No}</span>
+                                        :
+                                        <>
+                                            <span className='TEXt'>Level </span>
+                                            <span style={{ fontSize: "27px" }} >{level}</span>
+                                        </>
+                                    }
+                                </span>
+                                <div className='textfirst'>
+                                    Lives
+                                </div>
+                                <div className='textfirst'>
+                                    3 out of {Strick}
+                                </div>
+                                <div className='textfirst'>
+                                    Chim ChimpTest
                                 </div>
 
-                                <div className='textbox '>
-
-
-
-                                    <div className='Flex'>
-                                        <button style={{ backgroundColor: "rgb(255, 209, 84)" }} onClick={() => Continue()} className="Tryagain Link" >
-                                            Countine
-                                        </button>
-                                    </div>
-
-                                </div>
                             </div>
 
+                            <div className='textbox '>
+
+
+
+                                <div className='Flex'>
+                                    <button style={{ backgroundColor: "rgb(255, 209, 84)" }} onClick={() => Continue()} className="Tryagain Link" >
+                                        Countine
+                                    </button>
+                                </div>
+
+                            </div>
                         </div>
-                    }
-                
+
+                    </div>
+                }
+
             </div>
+            {/* <div>
+                <div style={{marginTop:"30px"}}>
+                    <Thirdscreen />
+                </div>
+            </div> */}
         </>
     )
 }

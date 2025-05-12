@@ -21,6 +21,7 @@ import Signup from "./components/signup/Signup";
 import Wordmemery from "./components/Wordmemmory/Wordmemory";
 import { Getallscore } from "../src/Firebse/firebse";
 import { Scoredata } from "../src/redux/actions/gamescore";
+import Gamepage from "./components/Gamepage/gamepage"
 import { Firstscreen } from "./components/firstscreen/firstScrenn";
 function App() {
   
@@ -34,7 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Firstscreen />} />
           <Route path="/:id?" element={<Firstscreen />} />
-
+          
 
           <Route path="/reactiontime" element={<Reactiontime />} />
           <Route path="/login" element={<Login />} />
@@ -51,6 +52,7 @@ function App() {
           {/* <Route path="/verbal-memory" element={<Wordmemery />} /> */}
           <Route path="/visualmemory" element={<Visualmemory />} />
           <Route path="/gameleadorbord" element={<Gameleaderbord />} />
+          <Route path="/Gamepage/:id" element={<Gamepage />} />
 
           <Route path="/Numbermemory" element={<Numbermemory />} />
         </Routes>

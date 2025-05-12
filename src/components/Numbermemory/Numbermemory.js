@@ -10,6 +10,8 @@ import Alertmessge from "../Diloaugbox/Dialoubox"
 import PinIcon from '@mui/icons-material/Pin';
 import { Numbermemoryscore } from "../../redux/actions/gamescore"
 import "./Number.css"
+import { Thirdscreen } from "../firstscreen/firstScrenn"
+
 const Numbermemory = () => {
     const [start, setStart] = useState(true)
     const [value, setVAlue] = useState("")
@@ -196,7 +198,13 @@ const Numbermemory = () => {
                 }
 
             </div>
-            <div className="Abouttest" style={{ display: "flex", flexDirection: "c" }}>
+
+            <div>
+            <div style={{marginTop:"30px"}}>
+                <Thirdscreen/>
+            </div>
+            </div>
+            {/* <div className="Abouttest" style={{ display: "flex", flexDirection: "c" }}>
 
                 <div className="css-1oen1ps e19owgy73">
                     <h2 style={{ textAlign: "start" }}>About the test</h2>
@@ -207,7 +215,7 @@ const Numbermemory = () => {
                     <p style={{ textAlign: "start" }}><Link to="https://en.wikipedia.org/wiki/Katapayadi_system">Katapayadi system</Link></p>
                     <p style={{ textAlign: "start" }}><Link to="https://en.wikipedia.org/wiki/Mnemonic">Mnemonic devices</Link></p>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }

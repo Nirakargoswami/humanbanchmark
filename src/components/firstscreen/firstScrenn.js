@@ -3,13 +3,22 @@ import "./firstscreen.css"
 import RouteContainer from "../../components/Test/Test"
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import Matchinput from "../MathDisplay";
+import { Link } from "react-router-dom";
 
 // import { Distrubutrcoin } from "../../Firebse/firebse";
+import { Quizdata } from "../Constatant/constatn";
 
 const Firstscreen = () => {
     const [open, setOpen] = React.useState(true);
+    const [quizzess, setQuizzess] = useState([]);
+
     const mathExpression = '\\frac{2x}{3x^2}';
 
+
+    useEffect(() => {
+        setQuizzess(Quizdata);
+
+    }, []);
 
     // Show the current time (in minutes) in a 24-hour format
 
@@ -102,16 +111,45 @@ const Firstscreen = () => {
                 Brain Game Test
 
             </div>
-            
 
+            
             {/* <div>
                 <h1>MathJax in React</h1>
                 <Matchinput/>
             </div> */}
 
             <RouteContainer />
+            <div>
+            {/* <Thirdscreen/> */}
+            </div>
+            
         </div>
     )
+}
+
+
+const Thirdscreen = () => {
+return (    <div className="classMainBox" style={{margin:"auto",width:"284px"}}>
+
+                {Quizdata.map((x, y) => (
+                    <Link to={`/gamepage/${x.id}`}  className=" css-1ur49oz" style={{ cursor: "pointer", textAlign: "center", position: "relative" }} key={x.id}>
+                        <div className="QuizBoxmiansecond">
+                            <div>
+                                {x.Poster}
+                            </div>
+                            <h2>
+                                Part : {y + 1} {x.slang}
+                            </h2>
+                            <div style={{ display: "flex" }}>
+                               
+                            </div>
+                            <button className="css-1q1iwm8">
+                                Play Now
+                            </button>
+                        </div>
+                    </Link>
+                ))}
+            </div>)
 }
 
 const Secondscreen = () => {
@@ -142,4 +180,4 @@ const Secondscreen = () => {
         </div>
     )
 }
-export { Firstscreen, Secondscreen };
+export { Firstscreen, Secondscreen ,Thirdscreen};
